@@ -393,6 +393,14 @@ document.querySelectorAll('.copy').forEach(function(b){
       '<h3>'+title+'</h3>'+text+'</div>';
   }
 
+  function reset(){
+    box.querySelectorAll('input[type=radio]').forEach(function(i){i.checked=false;});
+    box.querySelectorAll('.qz-o.on').forEach(function(l){l.classList.remove('on');});
+    res.hidden=true;res.innerHTML='';
+    refresh();
+    box.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
   go.addEventListener('click',function(){
     var a=answers(),score={},readiness='',i;
     for(i=0;i<total;i++){
@@ -402,8 +410,43 @@ document.querySelectorAll('.copy').forEach(function(b){
       var s=o.s||{};
       for(var k in s){score[k]=(score[k]||0)+s[k];}
     }
-    var id=top(data.identities,score),sc=top(data.scenarios,score);
     var html='';
+    // two scoring modes. "score": sum every axis, place the total on a band, then name the
+    // weakest links. default: pick the top-scoring name out of each pool.
+    if(data.mode==='score'){
+      var keys=data.axes.map(function(x){return x.key;});
+      var totalPts=0,maxPts=0;
+      keys.forEach(function(k){totalPts+=score[k]||0;});
+      data.axes.forEach(function(x){maxPts+=x.max;});
+      var band=data.bands[0];
+      for(i=0;i<data.bands.length;i++){if(totalPts>=data.bands[i].min)band=data.bands[i];}
+      html+=card(data.score_label.replace('{n}',totalPts).replace('{m}',maxPts),
+                 band.title,fields(band),true);
+      // ties keep the author's axis order, so the advice is stable between runs
+      // a maxed-out axis is not a weak link, so a perfect run gets no "weakest" cards
+      var ranked=data.axes.filter(function(x){return (score[x.key]||0)<x.max;})
+        .sort(function(x,y){
+          var dx=(score[x.key]||0)/x.max,dy=(score[y.key]||0)/y.max;
+          return dx===dy?keys.indexOf(x.key)-keys.indexOf(y.key):dx-dy;
+        });
+      var labs=data.weak_labels,shown=0;
+      for(i=0;i<Math.min(labs.length,ranked.length);i++){
+        var w=data.weak[ranked[i].key];
+        if(w){html+=card(labs[i],w.title,fields(w),false);shown++;}
+      }
+      // with nothing weak left, the default "start with your weakest link" advice would
+      // point at a card that is not on the page
+      var nx=shown?data.next:(data.next_full||data.next);
+      html+='<div class="qz-card"><div class="qz-lab">Что дальше</div>'+
+        nx.map(function(p){return '<p>'+p+'</p>';}).join('')+'</div>';
+      if(data.cut)html+=card('Честная граница этого теста',data.cut.title,fields(data.cut),false);
+      html+='<button class="qz-again" type="button">Пройти заново</button>';
+      res.innerHTML=html;res.hidden=false;
+      res.scrollIntoView({behavior:'smooth',block:'start'});
+      res.querySelector('.qz-again').addEventListener('click',reset);
+      return;
+    }
+    var id=top(data.identities,score),sc=top(data.scenarios,score);
     if(id){
       var r=data.results[id.name];
       html+=card('Ваша финансовая идентичность',r.title,fields(r),true);
@@ -427,13 +470,7 @@ document.querySelectorAll('.copy').forEach(function(b){
     res.innerHTML=html;
     res.hidden=false;
     res.scrollIntoView({behavior:'smooth',block:'start'});
-    res.querySelector('.qz-again').addEventListener('click',function(){
-      box.querySelectorAll('input[type=radio]').forEach(function(i){i.checked=false;});
-      box.querySelectorAll('.qz-o.on').forEach(function(l){l.classList.remove('on');});
-      res.hidden=true;res.innerHTML='';
-      refresh();
-      box.scrollIntoView({behavior:'smooth',block:'start'});
-    });
+    res.querySelector('.qz-again').addEventListener('click',reset);
   });
 
   refresh();
