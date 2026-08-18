@@ -1,0 +1,469 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Тест: какую роль я играю в своём бизнесе</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"><style>
+:root{
+--accent:#d59468;--accent-ink:#2b261f;--ink:#2b261f;--offwhite:#ffffff;
+--bg-light:#f1ece1;--bg-dark:#1c1813;
+--bg:var(--bg-light);--text:#1c1c1f;--muted:#6b7280;--surface:#ffffff;
+--card-bg:rgba(0,0,0,.035);--card-border:rgba(0,0,0,.10);--hair:rgba(0,0,0,.08);
+--dot:rgba(0,0,0,.05);--shadow:0 10px 30px rgba(0,0,0,.10);
+--font-display:'Inter Tight',system-ui,sans-serif;
+--font-body:'Inter',system-ui,-apple-system,sans-serif;
+--font-mono:'JetBrains Mono',ui-monospace,monospace;
+--font-serif:'PT Serif',Georgia,serif;
+}
+:root[data-theme=dark]{
+--bg:var(--bg-dark);--text:#f4f4f5;--muted:#9ca3af;--surface:#1a1a1c;
+--card-bg:rgba(255,255,255,.05);--card-border:rgba(255,255,255,.12);--hair:rgba(255,255,255,.10);
+--dot:rgba(255,255,255,.05);--shadow:0 10px 30px rgba(0,0,0,.45);
+}
+@media(prefers-color-scheme:dark){
+:root:not([data-theme=light]){
+--bg:var(--bg-dark);--text:#f4f4f5;--muted:#9ca3af;--surface:#1a1a1c;
+--card-bg:rgba(255,255,255,.05);--card-border:rgba(255,255,255,.12);--hair:rgba(255,255,255,.10);
+--dot:rgba(255,255,255,.05);--shadow:0 10px 30px rgba(0,0,0,.45);
+}
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg)}
+body{color:var(--text);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh}
+a{color:inherit;text-decoration:none}
+.mono{font-family:var(--font-mono)}
+/* ============ header ============ */
+.hd{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--hair)}
+.hd-in{height:66px;max-width:1340px;margin:0 auto;padding:0 44px;display:flex;align-items:center;gap:24px}
+.logo{font-family:var(--font-display);font-weight:700;font-size:19px;letter-spacing:-.04em;text-transform:uppercase;color:var(--text);display:inline-flex;align-items:center;flex:none;white-space:nowrap}
+.logo .sq{width:8px;height:8px;background:var(--accent);border:1.5px solid var(--ink);display:inline-block;margin:0 5px 0 3px}
+:root[data-theme=dark] .logo .sq{border-color:rgba(255,255,255,.7)}
+.hd-nav{display:flex;align-items:center;gap:22px;font-size:14px;flex:none}
+.hd-nav a{color:var(--muted);position:relative;padding:4px 1px;transition:color .15s;white-space:nowrap}
+.hd-nav a:hover{color:var(--text)}
+.hd-nav a.cur{color:var(--text);font-weight:600}
+.hd-nav a.cur::after{content:'';position:absolute;left:0;right:0;bottom:-3px;height:1.5px;background:var(--text);opacity:.8}
+.sp{flex:1}
+.tools{display:flex;align-items:center;gap:10px;flex:none}
+.tgl{width:34px;height:34px;border:1px solid var(--hair);border-radius:9px;display:grid;place-items:center;color:var(--text);background:none;cursor:pointer;padding:0;transition:border-color .15s}
+.tgl:hover{border-color:var(--muted)}
+.tgl svg{display:block;width:15px;height:15px}
+.tgl .ic-sun{display:none}
+:root[data-theme=dark] .tgl .ic-sun{display:block}
+:root[data-theme=dark] .tgl .ic-moon{display:none}
+.hd-btn{font-family:var(--font-display);font-size:14px;font-weight:600;padding:10px 17px;border-radius:999px;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;background:var(--accent);color:var(--accent-ink);border:1.5px solid var(--ink);transition:transform .12s;flex:none}
+.hd-btn:hover{transform:translateY(-1px)}
+.hd-btn .ar{transition:transform .15s}
+.hd-btn:hover .ar{transform:translateX(3px)}
+:root[data-theme=dark] .hd-btn{border-color:var(--accent)}
+/* ============ shell ============ */
+.wrap{max-width:1340px;margin:0 auto;padding:0 44px 60px}
+.eyebrow{font-family:var(--font-mono);font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;color:var(--muted)}
+.eyebrow .dot{width:7px;height:7px;background:var(--accent);outline:1px solid var(--ink);display:inline-block;flex:none}
+:root[data-theme=dark] .eyebrow .dot{outline-color:rgba(255,255,255,.35)}
+/* ============ hero ============ */
+.hero{margin:26px 0 6px;border-radius:18px;overflow:hidden;background:var(--ink);color:#f5f5f0;position:relative;min-height:340px;display:flex}
+.hero .art{position:absolute;inset:0;background:var(--ink)}
+/* the dot-grid and the accent bloom are the fallback look while there is no cover image yet;
+   cover_css() turns them off as soon as site.hero_image is set (two of each only muddies it) */
+.hero .grid{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1px);background-size:11px 11px}
+.hero .glow{position:absolute;right:-90px;top:-90px;width:420px;height:420px;border-radius:50%;background:var(--accent);filter:blur(120px);opacity:.28}
+/* scrim keeps the copy on dark whatever the glow does behind it (on narrow screens the
+   glow otherwise floods the whole card and the title lands on bright lime) */
+.hero .txt{position:relative;z-index:2;padding:44px 44px 38px;display:flex;flex-direction:column;max-width:760px;
+background:linear-gradient(100deg,color-mix(in srgb,var(--ink) 88%,transparent) 0%,color-mix(in srgb,var(--ink) 55%,transparent) 62%,transparent 100%)}
+.hero .eyebrow{color:var(--accent)}
+/* hero is always the dark ink card, so its title must not follow --text (black on black in light theme) */
+.hero h1{font-family:var(--font-display);font-size:42px;font-weight:700;letter-spacing:-.025em;line-height:1.08;margin:18px 0 14px;max-width:17ch;color:#f5f5f0}
+.hero .desc{font-size:16px;line-height:1.55;color:rgba(245,245,240,.72);max-width:52ch;margin:0}
+.hero .read{margin-top:auto;padding-top:30px;display:inline-flex;align-items:center;gap:14px;color:#fbfbf8;cursor:pointer;align-self:flex-start}
+.hero .read .circ{width:46px;height:46px;border-radius:50%;background:var(--accent);display:grid;place-items:center;color:var(--accent-ink);flex:none;transition:transform .15s}
+.hero .read:hover .circ{transform:translateX(3px)}
+.hero .read .lbl{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+/* ============ tabs ============ */
+/* grid, not flex-wrap: inline chips left a ragged right edge and one orphan on the
+   second row. auto-fit + minmax(240px) resolves to exactly 5 columns on a 1440 shell
+   (avail 1352px: 6 cols would need 240*6+8*5=1480), so 10 chips read as a deliberate
+   5+5 block. Narrow screens re-solve to 4/3/2 columns via the overrides below. */
+.tabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px;margin:34px 0 0;padding-top:24px;border-top:1px solid var(--hair)}
+.tab{font-size:13px;font-weight:500;padding:9px 14px;border-radius:999px;border:1px solid var(--card-border);color:var(--muted);background:none;cursor:pointer;font-family:inherit;white-space:nowrap;transition:border-color .15s,color .15s;display:flex;align-items:center;justify-content:center;text-align:center;width:100%;min-width:0}
+.tab:hover{color:var(--text);border-color:var(--muted)}
+.tab.on{background:var(--accent);color:var(--accent-ink);border-color:var(--ink);font-weight:600}
+:root[data-theme=dark] .tab.on{border-color:var(--accent)}
+.count{font-family:var(--font-mono);font-size:12px;color:var(--muted);margin:18px 0 14px}
+/* ============ cards ============ */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
+.card{border:1px solid var(--card-border);border-radius:14px;padding:18px;background:var(--card-bg);display:flex;flex-direction:column;gap:9px;min-height:158px;transition:border-color .15s,transform .15s}
+.card:hover{border-color:var(--ink);transform:translateY(-2px)}
+:root[data-theme=dark] .card:hover{border-color:var(--accent)}
+.card .tag{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:7px}
+.card .tag .d{width:7px;height:7px;background:var(--accent);outline:1px solid var(--ink);display:inline-block;flex:none}
+:root[data-theme=dark] .card .tag .d{outline-color:rgba(255,255,255,.35)}
+.card .ct{font-family:var(--font-display);font-size:17px;font-weight:600;letter-spacing:-.01em;line-height:1.25;color:var(--text)}
+.card .cd{font-size:13.5px;color:var(--muted);line-height:1.5;flex:1;margin:0}
+.card .cm{font-family:var(--font-mono);font-size:10.5px;color:var(--muted)}
+.empty{font-family:var(--font-display);font-size:17px;font-weight:600;color:var(--muted);padding:30px 0}
+/* ============ article ============ */
+.page{max-width:760px;margin:0 auto;padding:34px 44px 60px}
+.pcol{min-width:0}
+/* ============ toc: long guides only (4+ sections), shell adds .has-toc ============ */
+/* the reading column keeps the exact measure of a short guide (672px = 760 minus the
+   44px gutters), the menu hangs to its right and the pair is centered together, so a
+   long guide reads at the same width as a short one. */
+.page.has-toc{max-width:1180px;display:grid;grid-template-columns:minmax(0,672px) 200px;gap:44px;justify-content:center;align-items:start}
+/* padding-top 0 so «На странице» sits on the breadcrumb line of the article column */
+.toc{position:sticky;top:66px;align-self:start;max-height:calc(100vh - 96px);overflow-y:auto;font-size:12.5px;padding:0 0 24px}
+.toc .h{font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;padding-left:13px}
+/* the marker gutter is always reserved (transparent border), so switching sections
+   recolors in place instead of nudging the text. NB: .toc scrolls on the y axis, which
+   makes the x axis a scroll box too, so a negative margin here would be clipped away. */
+.toc a{display:block;color:var(--muted);padding:5px 0 5px 11px;line-height:1.4;border-left:2px solid transparent;transition:color .15s,border-color .15s}
+.toc a:hover{color:var(--text)}
+.toc a.on{color:var(--text);font-weight:600;border-left-color:var(--accent)}
+.toc{scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.18) transparent}
+.toc::-webkit-scrollbar{width:5px}
+.toc::-webkit-scrollbar-track{background:transparent}
+.toc::-webkit-scrollbar-thumb{background:rgba(0,0,0,.18);border-radius:10px}
+:root[data-theme=dark] .toc{scrollbar-color:rgba(255,255,255,.2) transparent}
+:root[data-theme=dark] .toc::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18)}
+/* anchor lands below the sticky header, not under it */
+.sec h2[id]{scroll-margin-top:86px}
+/* no room for a side column: fall back to the plain reading page */
+@media(max-width:1100px){
+.page.has-toc{display:block;max-width:760px}
+.toc{display:none}
+}
+.bc{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.bc a:hover{color:var(--text)}
+h1{font-family:var(--font-display);font-size:36px;font-weight:700;letter-spacing:-.02em;line-height:1.12;margin:0 0 6px;color:var(--text)}
+.lead{font-family:var(--font-serif);font-size:20px;line-height:1.5;font-weight:700;color:var(--text);border-left:3px solid var(--accent);padding-left:18px;margin:20px 0 22px}
+.meta{font-family:var(--font-mono);font-size:11px;color:var(--muted);padding-bottom:20px;border-bottom:1px solid var(--hair);margin-bottom:26px}
+.leadlist{margin:0 0 22px;padding-left:22px;font-size:16px;line-height:1.62;color:var(--text)}
+.leadlist li{margin:8px 0}
+.leadlist li::marker{color:var(--accent);font-weight:700}
+.how{border:1px solid var(--card-border);border-radius:12px;background:var(--surface);padding:16px 18px;margin:22px 0;font-size:14.5px;line-height:1.56;color:var(--text)}
+.p,.sec{border:1px solid var(--card-border);border-radius:14px;background:var(--card-bg);padding:20px;margin:18px 0}
+.p .num{display:inline-block;font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--accent-ink);background:var(--accent);border:1px solid var(--ink);padding:3px 10px;margin-bottom:10px}
+:root[data-theme=dark] .p .num{border-color:var(--accent)}
+.p h2{font-family:var(--font-display);font-size:20px;margin:0 0 6px;font-weight:700;letter-spacing:-.01em}
+.p .when{font-size:13.5px;color:var(--muted);margin:0 0 10px}
+.sec h2{font-family:var(--font-display);font-size:22px;margin:0 0 10px;font-weight:700;letter-spacing:-.015em}
+.sec h3{font-family:var(--font-display);font-size:17px;margin:18px 0 6px;font-weight:700}
+.sec p,.p p{font-size:15.5px;line-height:1.66;margin:10px 0}
+.sec ol,.sec ul{margin:8px 0;padding-left:22px;font-size:15.5px;line-height:1.66}
+.sec li{margin:0 0 7px}
+.sec li::marker{color:var(--muted)}
+.lblrow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:14px 0 6px}
+.lbl{font-family:var(--font-mono);font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
+.box{font-family:var(--font-mono);font-size:12.5px;background:var(--surface);border:1px solid var(--hair);border-radius:10px;padding:14px 16px;white-space:pre-wrap;line-height:1.6;color:var(--text);overflow-x:auto}
+.copy{font-family:var(--font-mono);font-size:11px;color:var(--muted);background:none;border:1px solid var(--card-border);border-radius:8px;padding:6px 11px;cursor:pointer;white-space:nowrap;transition:color .15s,border-color .15s,background .15s}
+.copy:hover{color:var(--text);border-color:var(--muted)}
+.copy.done{background:var(--accent);color:var(--accent-ink);border-color:var(--ink);font-weight:600}
+.ex{font-size:14px;color:var(--muted);margin-top:12px}
+.ex b{color:var(--text)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
+.cardb{background:var(--surface);border:1px solid var(--card-border);border-radius:12px;padding:14px 16px}
+.cardb h3{font-family:var(--font-display);margin:0 0 6px;font-size:16px}
+.cardb ul,.cardb ol{padding-left:18px;margin:6px 0;font-size:14.5px}
+.cardb p{font-size:14.5px;margin:6px 0}
+.quote{font-family:var(--font-serif);font-style:italic;color:var(--text);opacity:.85;border-left:3px solid var(--accent);padding-left:14px;margin:14px 0;font-size:15.5px}
+.note{font-size:14.5px;line-height:1.56;color:var(--text);background:var(--surface);border:1px solid var(--card-border);border-left:3px solid var(--accent);border-radius:10px;padding:12px 16px;margin:14px 0}
+.linkbtn{display:inline-block;margin:12px 0 4px;font-weight:600;font-size:15px;color:var(--text);word-break:break-word;border-bottom:2px solid var(--accent)}
+.linkbtn:hover{opacity:.75}
+.mid{margin:26px 0;text-align:center}
+.mid a{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-display);font-size:14.5px;font-weight:600;padding:12px 22px;border-radius:999px;background:var(--ink);color:var(--offwhite);border:1px solid var(--ink)}
+:root[data-theme=dark] .mid a{background:var(--surface);border-color:var(--accent);color:var(--text)}
+/* ============ CTA ============ */
+.cta{margin:40px 0 6px;padding:30px 32px;border-radius:18px;background:var(--ink);color:#f5f5f0;background-image:radial-gradient(rgba(255,255,255,.08) 1px,transparent 1px);background-size:10px 10px}
+.cta .ttl{font-family:var(--font-display);font-size:25px;font-weight:700;letter-spacing:-.02em;margin:10px 0 6px}
+.cta .sub{font-size:14.5px;line-height:1.55;color:rgba(245,245,240,.68);margin:0 0 20px;max-width:60ch}
+.cta .eyebrow{color:var(--accent)}
+.cta-btn{font-family:var(--font-display);font-size:15px;font-weight:600;padding:13px 22px;border-radius:999px;background:var(--accent);color:var(--accent-ink);border:1px solid var(--accent);display:inline-flex;align-items:center;gap:9px}
+.cta-btn:hover{transform:translateY(-1px)}
+/* ============ footer ============ */
+.ft{border-top:1px solid var(--hair);background-image:radial-gradient(var(--dot) 1px,transparent 1px);background-size:9px 9px;padding:36px 0 26px}
+.ft-in{max-width:1340px;margin:0 auto;padding:0 44px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.ft-in .logo{font-size:17px}
+.ft-links{display:flex;gap:20px;font-size:13.5px;color:var(--text);opacity:.82}
+.ft-links a:hover{opacity:1}
+.ft-bot{max-width:1340px;margin:20px auto 0;padding:16px 44px 0;border-top:1px solid var(--hair);font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.ft-law{max-width:1340px;margin:10px auto 0;padding:0 44px 4px;font-size:11.5px;line-height:1.5;color:var(--muted);opacity:.8}
+/* ============ responsive ============ */
+@media(max-width:900px){
+.hd-in,.wrap,.ft-in,.ft-bot{padding-left:20px;padding-right:20px}
+.page{padding:26px 20px 50px}
+/* narrow: the copy sits ON the artwork (no room to dodge it), so the scrim goes near-opaque
+   under the text and only clears near the bottom edge, where the art can breathe */
+.hero .txt{padding:30px 24px 26px;background:linear-gradient(180deg,color-mix(in srgb,var(--ink) 94%,transparent) 0%,color-mix(in srgb,var(--ink) 88%,transparent) 68%,color-mix(in srgb,var(--ink) 60%,transparent) 100%)}
+.hero .glow{width:240px;height:240px;right:-80px;top:-80px;opacity:.2}
+.hero h1{font-size:29px}
+.hero{min-height:0}
+h1{font-size:28px}
+.grid2{grid-template-columns:1fr}
+.tabs{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+}
+@media(max-width:700px){
+.hd-in{height:60px;gap:12px}
+.hd-nav{display:none}
+.logo{font-size:16px}
+.hd-btn{font-size:12.5px;padding:9px 13px}
+.cards{grid-template-columns:1fr}
+.cta{padding:24px 20px}
+.cta .ttl{font-size:21px}
+.lead{font-size:18px}
+.ft-in{gap:14px}
+}
+/* phone: logo + toggle + CTA must all survive on a 390px bar, so tighten the type
+   and let the CTA label clamp instead of pushing the button off the screen */
+@media(max-width:460px){
+.hd-in{gap:8px;padding:0 14px}
+.logo{font-size:12.5px}
+.hd-btn{font-size:11px;padding:8px 10px;gap:5px;min-width:0}
+.hd-btn .lb{display:block;max-width:36vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tgl{width:32px;height:32px}
+.wrap,.ft-in,.ft-bot{padding-left:14px;padding-right:14px}
+.page{padding:22px 14px 44px}
+/* phone: 2 even columns. 3 would starve the longest label ("Образ и внешность")
+   and force a mid-word wrap inside the pill. */
+.tabs{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:7px}
+.tab{font-size:12.5px;padding:9px 8px}
+.qz-o{padding:11px 12px}
+.qz-bar{flex-direction:column;align-items:stretch;gap:10px}
+.qz-go{width:100%}
+}
+
+/* --- interactive quiz (block type "quiz") --- */
+.qz{margin:1.4rem 0}
+.qz-q{margin:0 0 1.5rem}
+.qz-t{font-weight:650;line-height:1.4;margin:0 0 .7rem}
+.qz-n{color:var(--accent);font-weight:700;margin-right:.35em}
+.qz-opts{display:flex;flex-direction:column;gap:8px}
+.qz-o{display:flex;align-items:flex-start;gap:10px;padding:10px 13px;border-radius:11px;
+border:1px solid var(--card-border);background:var(--card-bg);cursor:pointer;
+line-height:1.45;transition:border-color .13s,background .13s}
+.qz-o:hover{border-color:var(--accent)}
+.qz-o input{margin:.32em 0 0;accent-color:var(--accent);flex:0 0 auto;cursor:pointer}
+.qz-o.on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.qz-bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:1.6rem 0 0;
+padding-top:1.2rem;border-top:1px solid var(--hair)}
+.qz-go{font:inherit;font-weight:600;padding:12px 22px;border-radius:11px;border:0;
+background:var(--accent);color:var(--accent-ink);cursor:pointer}
+.qz-go[disabled]{opacity:.45;cursor:not-allowed}
+.qz-prog{color:var(--muted);font-size:.92em}
+.qz-res{margin:1.8rem 0 0;display:flex;flex-direction:column;gap:14px}
+.qz-card{padding:16px 18px;border-radius:14px;border:1px solid var(--card-border);
+background:var(--card-bg)}
+.qz-card.qz-top{border-color:var(--accent);box-shadow:var(--shadow)}
+.qz-lab{font-size:.78em;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);
+margin:0 0 .4rem}
+.qz-card h3{margin:0 0 .5rem;font-size:1.22em}
+.qz-card p{margin:0 0 .5rem}
+.qz-card p:last-child{margin-bottom:0}
+.qz-f{margin:0 0 .95rem}
+.qz-f:last-child{margin-bottom:0}
+.qz-fk{font-size:.78em;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);
+font-weight:650;margin:0 0 .25rem}
+.qz-f ul{margin:.2rem 0 0;padding-left:1.15rem}
+.qz-f li{margin:.15rem 0}
+.qz-again{font:inherit;padding:10px 18px;border-radius:11px;cursor:pointer;
+border:1px solid var(--card-border);background:transparent;color:var(--text);align-self:flex-start}
+</style>
+<script>
+(function(){
+  var d=document.documentElement;
+  function set(t){d.setAttribute('data-theme',t);}
+  var q=(location.search.match(/[?&]theme=(dark|light)/)||[])[1];
+  var s=null;try{s=localStorage.getItem('vi-theme');}catch(e){}
+  set(q||s||(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('.tgl');if(!b)return;
+    var n=d.getAttribute('data-theme')==='dark'?'light':'dark';
+    set(n);try{localStorage.setItem('vi-theme',n);}catch(err){}
+  });
+})();
+</script>
+</head><body><header class="hd"><div class="hd-in"><a class="logo" href="/">Лариса<i class="sq"></i>Тернер</a><nav class="hd-nav"><a href="/">Все материалы</a><a href="/about/">Обо мне</a></nav><span class="sp"></span><div class="tools"><button class="tgl" type="button" aria-label="Сменить тему"><svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"/></svg></button><a class="hd-btn" href="https://t.me/larisaturner"><span class="lb">Запись на консультацию</span><span class="ar">&#8594;</span></a></div></div></header>
+<main class="page">
+<article class="pcol">
+<div class="bc"><a href="/#cat-povtoraetsa-odno-i-to-je">Повторяется одно и то же</a></div>
+<h1>Тест: какую роль я играю в своём бизнесе</h1>
+<p class="lead">Вы можете быть владельцем бизнеса по документам и при этом каждый день играть совсем другую роль.</p>
+<ol class="leadlist"><li>Ведущая роль: то, через что вы естественно создаёте результат.</li><li>Дефицитная роль: то, чего сейчас не хватает делу и что держит ваш потолок.</li><li>Финансовая позиция: насколько ваша жизнь оплачивается вашим трудом, а насколько созданным капиталом.</li></ol>
+<div class="note">Владение бизнесом это юридический статус. Предприниматель это роль, которую человек должен уметь играть. Роли меняются, статус нет.</div>
+<div class="how">Отвечайте по факту последних трёх месяцев, а не по тому, каким хотите быть. Первые двадцать утверждений про роли, последние пять про деньги. Баллы считаются на странице сами.</div>
+<div class="sec"><h2 id="sec-0">Пять ролей, из которых собирается дело</h2><p>Это не типы личности. Это функции, которые в деле кто-то обязан выполнять. Если функцию не делает никто, дело теряет деньги именно в этом месте.</p><div class="grid2"><div class="cardb"><h3>Торговец</h3><p>Двигает деньги. Контакт, продажи, цена, сделки. Без него ценность есть, а выручки нет.</p></div><div class="cardb"><h3>Управленец</h3><p>Держит систему. Процессы, команда, качество, сроки. Без него рост превращается в беспорядок.</p></div><div class="cardb"><h3>Финансист</h3><p>Превращает доход в капитал. Прибыль, резерв, риски, разделение денег дела и семьи.</p></div><div class="cardb"><h3>Визионер</h3><p>Открывает будущее. Новые направления, стратегия, решения в неизвестности.</p></div><div class="cardb"><h3>Наставник</h3><p>Держит смысл. Ради чего дело существует, во что вы не играете ради денег, что остаётся после вас.</p></div></div><div class="quote">Роль Предпринимателя создаёт деньги. Роль Финансиста превращает заработанное в капитал.</div><p>Сильное дело это не то, где владелец одинаково хорошо делает всё. Это то, где все пять функций закрыты и согласованы. Часть из них можно передать людям, и это нормальный путь. Нельзя передать только одну, последнюю.</p><div class="note">Пример перекоса. Много Торговца и мало Управленца: продажи растут, система не выдерживает, деньги утекают в переделки и потери клиентов. Много Визионера и мало Финансиста: идей и запусков много, доход есть, а личного капитала не появляется годами.</div></div>
+<div class="sec"><h2 id="sec-1">Двадцать пять вопросов</h2><div class="qz"><div class="qz-q"><div class="qz-t"><span class="qz-n">1.</span>Мне легко говорить о своём продукте так, что человек начинает его хотеть.</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q0" value="0"><span>Точно про меня</span></label><label class="qz-o"><input type="radio" name="q0" value="1"><span>Чаще да, чем нет</span></label><label class="qz-o"><input type="radio" name="q0" value="2"><span>Скорее нет</span></label><label class="qz-o"><input type="radio" name="q0" value="3"><span>Совсем не про меня</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">2.</span>Я спокойно называю цену и не отступаю от неё в переговорах.</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q1" value="0"><span>Точно про меня</span></label><label class="qz-o"><input type="radio" name="q1" value="1"><span>Чаще да, чем нет</span></label><label class="qz-o"><input type="radio" name="q1" value="2"><span>Скорее нет</span></label><label class="qz-o"><input type="radio" name="q1" value="3"><span>Совсем не про меня</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">3.</span>Когда выручка падает, я первым делом иду к клиентам и в сделки, а не в анализ.</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q2" value="0"><span>Точно про меня</span></label><label class="qz-o"><input type="radio" name="q2" value="1"><span>Чаще да, чем нет</span></label><label class="qz-o"><input type="radio" name="q2" value="2"><span>Скорее нет</span></label><label class="qz-o"><input type="radio" name="q2" value="3"><span>Совсем не про меня</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">4.</span>Я умею превращать внимание людей в деньги на счёте, а не только в лайки и отклики.</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q3" value="0"><span>Точно про меня</span></label><label class="qz-o"><input type="radio" name="q3" value="1"><span>Чаще да, чем нет</span></label><label class="qz-o"><input type="radio" name="q3" value="2"><span>Скорее нет</span></label><label class="qz-o"><input type="radio" name="q3" value="3"><span>Совсем не про меня</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">5.</span>В моём бизнесе есть понятные правила: кто за что отвечает и по каким срокам.</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q4" value="0"><span>Точно про меня</span></label><label class="qz-o"><input type="radio" name="q4" value="1"><span>Чаще да, чем нет</span></label><label class="qz-o"><input type="radio" name="q4" value="2"><span>Скорее нет</span></label><label class="qz-o"><input type="radio" name="q4" value="3"><span>Совсем не про меня</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">6.</span>Результат в компании появляется руками других людей, а не только моими.</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q5" value="0"><span>Точно про меня</span></label><label class="qz-o"><input type="radio" name="q5" value="1"><span>Чаще да, чем нет</span></label><label class="qz-o"><input type="radio" name="q5" value="2"><span>Скорее нет</span></label><label class="qz-o"><input type="radio" name="q5" value="3"><span>Совсем не про меня</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">7.</span>Я вижу, где бизнес теряет деньги из-за беспорядка, и умею это чинить.</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q6" value="0"><span>Точно про меня</span></label><label class="qz-o"><input type="radio" name="q6" value="1"><span>Чаще да, чем нет</span></label><label class="qz-o"><input type="radio" name="q6" value="2"><span>Скорее нет</span></label><label class="qz-o"><input type="radio" name="q6" value="3"><span>Совсем не про меня</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">8.</span>Если я на неделю выйду из операционки, работа не остановится.</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q7" value="0"><span>Точно про меня</span></label><label class="qz-o"><input type="radio" name="q7" value="1"><span>Чаще да, чем нет</span></label><label class="qz-o"><input type="radio" name="q7" value="2"><span>Скорее нет</span></label><label class="qz-o"><input type="radio" name="q7" value="3"><span>Совсем не про меня</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">9.</span>Я знаю, куда уходит прибыль, и не путаю выручку с прибылью.</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q8" value="0"><span>Точно про меня</span></label><label class="qz-o"><input type="radio" name="q8" value="1"><span>Чаще да, чем нет</span></label><label class="qz-o"><input type="radio" name="q8" value="2"><span>Скорее нет</span></label><label class="qz-o"><input type="radio" name="q8" value="3"><span>Совсем не про меня</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">10.</span>Деньги бизнеса и деньги семьи у меня разделены и лежат на разных счетах.</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q9" value="0"><span>Точно про меня</span></label><label class="qz-o"><input type="radio" name="q9" value="1"><span>Чаще да, чем нет</span></label><label class="qz-o"><input type="radio" name="q9" value="2"><span>Скорее нет</span></label><label class="qz-o"><input type="radio" name="q9" value="3"><span>Совсем не про меня</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">11.</span>У меня есть резерв, которого хватит семье на несколько месяцев без бизнеса.</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q10" value="0"><span>Точно про меня</span></label><label class="qz-o"><input type="radio" name="q10" value="1"><span>Чаще да, чем нет</span></label><label class="qz-o"><input type="radio" name="q10" value="2"><span>Скорее нет</span></label><label class="qz-o"><input type="radio" name="q10" value="3"><span>Совсем не про меня</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">12.</span>Я оцениваю вложение не только по доходности, но и по риску и по сроку.</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q11" value="0"><span>Точно про меня</span></label><label class="qz-o"><input type="radio" name="q11" value="1"><span>Чаще да, чем нет</span></label><label class="qz-o"><input type="radio" name="q11" value="2"><span>Скорее нет</span></label><label class="qz-o"><input type="radio" name="q11" value="3"><span>Совсем не про меня</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">13.</span>Я вижу новые возможности раньше, чем они становятся очевидными для рынка.</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q12" value="0"><span>Точно про меня</span></label><label class="qz-o"><input type="radio" name="q12" value="1"><span>Чаще да, чем нет</span></label><label class="qz-o"><input type="radio" name="q12" value="2"><span>Скорее нет</span></label><label class="qz-o"><input type="radio" name="q12" value="3"><span>Совсем не про меня</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">14.</span>Мне комфортно принимать решения, когда исход заранее неизвестен.</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q13" value="0"><span>Точно про меня</span></label><label class="qz-o"><input type="radio" name="q13" value="1"><span>Чаще да, чем нет</span></label><label class="qz-o"><input type="radio" name="q13" value="2"><span>Скорее нет</span></label><label class="qz-o"><input type="radio" name="q13" value="3"><span>Совсем не про меня</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">15.</span>Я регулярно думаю о том, каким мой бизнес будет через пять лет, и меняю его под это.</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q14" value="0"><span>Точно про меня</span></label><label class="qz-o"><input type="radio" name="q14" value="1"><span>Чаще да, чем нет</span></label><label class="qz-o"><input type="radio" name="q14" value="2"><span>Скорее нет</span></label><label class="qz-o"><input type="radio" name="q14" value="3"><span>Совсем не про меня</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">16.</span>Я умею собрать вокруг новой идеи людей, деньги и продукт.</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q15" value="0"><span>Точно про меня</span></label><label class="qz-o"><input type="radio" name="q15" value="1"><span>Чаще да, чем нет</span></label><label class="qz-o"><input type="radio" name="q15" value="2"><span>Скорее нет</span></label><label class="qz-o"><input type="radio" name="q15" value="3"><span>Совсем не про меня</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">17.</span>Я могу коротко объяснить, ради чего мой бизнес существует помимо прибыли.</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q16" value="0"><span>Точно про меня</span></label><label class="qz-o"><input type="radio" name="q16" value="1"><span>Чаще да, чем нет</span></label><label class="qz-o"><input type="radio" name="q16" value="2"><span>Скорее нет</span></label><label class="qz-o"><input type="radio" name="q16" value="3"><span>Совсем не про меня</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">18.</span>Есть вещи, которые я не сделаю ради денег, и в команде про них знают.</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q17" value="0"><span>Точно про меня</span></label><label class="qz-o"><input type="radio" name="q17" value="1"><span>Чаще да, чем нет</span></label><label class="qz-o"><input type="radio" name="q17" value="2"><span>Скорее нет</span></label><label class="qz-o"><input type="radio" name="q17" value="3"><span>Совсем не про меня</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">19.</span>Люди рядом со мной растут профессионально, потому что я их учу.</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q18" value="0"><span>Точно про меня</span></label><label class="qz-o"><input type="radio" name="q18" value="1"><span>Чаще да, чем нет</span></label><label class="qz-o"><input type="radio" name="q18" value="2"><span>Скорее нет</span></label><label class="qz-o"><input type="radio" name="q18" value="3"><span>Совсем не про меня</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">20.</span>Я думаю о своём деле как о том, что должно пережить моё личное участие.</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q19" value="0"><span>Точно про меня</span></label><label class="qz-o"><input type="radio" name="q19" value="1"><span>Чаще да, чем нет</span></label><label class="qz-o"><input type="radio" name="q19" value="2"><span>Скорее нет</span></label><label class="qz-o"><input type="radio" name="q19" value="3"><span>Совсем не про меня</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">21.</span>Если завтра вы перестанете работать, сколько месяцев семья проживёт привычной жизнью</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q20" value="0"><span>Меньше месяца</span></label><label class="qz-o"><input type="radio" name="q20" value="1"><span>От одного до трёх месяцев</span></label><label class="qz-o"><input type="radio" name="q20" value="2"><span>От трёх до шести месяцев</span></label><label class="qz-o"><input type="radio" name="q20" value="3"><span>От полугода до двух лет</span></label><label class="qz-o"><input type="radio" name="q20" value="4"><span>Больше двух лет, доход идёт и без меня</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">22.</span>Откуда приходят основные деньги вашей семьи</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q21" value="0"><span>Из моей работы по задачам и заказам</span></label><label class="qz-o"><input type="radio" name="q21" value="1"><span>Из моей личной экспертизы, клиенты идут ко мне</span></label><label class="qz-o"><input type="radio" name="q21" value="2"><span>Из моего бизнеса, но он держится на мне</span></label><label class="qz-o"><input type="radio" name="q21" value="3"><span>Часть из бизнеса, часть от активов и вложений</span></label><label class="qz-o"><input type="radio" name="q21" value="4"><span>Из нескольких систем, которые работают без моего ежедневного участия</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">23.</span>Что происходит с деньгами по итогам года</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q22" value="0"><span>Сколько пришло, столько и ушло</span></label><label class="qz-o"><input type="radio" name="q22" value="1"><span>Остаётся немного, но уходит на следующий рывок в деле</span></label><label class="qz-o"><input type="radio" name="q22" value="2"><span>Остаётся, и часть я вывожу себе регулярно</span></label><label class="qz-o"><input type="radio" name="q22" value="3"><span>Остаётся, выводится и работает в активах</span></label><label class="qz-o"><input type="radio" name="q22" value="4"><span>Капитал растёт быстрее, чем мои личные расходы</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">24.</span>Чем вы владеете на самом деле</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q23" value="0"><span>Своим временем и навыком, больше ничем</span></label><label class="qz-o"><input type="radio" name="q23" value="1"><span>Именем и репутацией, они кормят</span></label><label class="qz-o"><input type="radio" name="q23" value="2"><span>Бизнесом, который без меня остановится</span></label><label class="qz-o"><input type="radio" name="q23" value="3"><span>Бизнесом и личными активами вне его</span></label><label class="qz-o"><input type="radio" name="q23" value="4"><span>Долями в нескольких активах, которыми управляют другие люди</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">25.</span>Кто задаёт правила, по которым вы работаете</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q24" value="0"><span>Заказчики и обстоятельства, я подстраиваюсь</span></label><label class="qz-o"><input type="radio" name="q24" value="1"><span>Рынок, но условия я уже выбираю</span></label><label class="qz-o"><input type="radio" name="q24" value="2"><span>Я внутри своего дела</span></label><label class="qz-o"><input type="radio" name="q24" value="3"><span>Я внутри своего дела и в своих деньгах отдельно от него</span></label><label class="qz-o"><input type="radio" name="q24" value="4"><span>Я задаю условия партнёрам и рынку, на котором работаю</span></label></div></div><div class="qz-bar"><button class="qz-go" type="button" disabled>Показать результат</button><span class="qz-prog">0 из 25</span></div><div class="qz-res" hidden></div></div><script type="application/json" id="qz-data">{"type": "quiz", "mode": "score", "cta": "Показать результат", "axes": [{"key": "Торговец", "max": 12}, {"key": "Управленец", "max": 12}, {"key": "Финансист", "max": 12}, {"key": "Визионер", "max": 12}, {"key": "Наставник", "max": 12}], "lead_label": "Ваша ведущая роль", "lead": {"Торговец": {"title": "Торговец. Вы двигаете деньги", "fields": [{"k": "Как вы создаёте результат", "v": "Через контакт, интерес и сделку. Вы умеете показать ценность, назвать цену и довести человека до решения. Деньги в вашем деле появляются потому, что вы идёте к людям."}, {"k": "Что это даёт", "v": "Быстрый денежный поток, чувство рынка, способность вытащить месяц личными действиями."}, {"k": "Где перегиб", "v": "Обещаний больше, чем система успевает выполнить. Продажи растут быстрее процессов, и на этом рвётся качество."}, {"k": "Финансовый риск", "v": "Много выручки и мало прибыли. Деньги проходят через руки и не задерживаются."}]}, "Управленец": {"title": "Управленец. Вы держите систему", "fields": [{"k": "Как вы создаёте результат", "v": "Через процессы, людей и правила. Вы превращаете беспорядок в повторяемую работу, и результат появляется не только вашими руками."}, {"k": "Что это даёт", "v": "Предсказуемость, качество при росте нагрузки, возможность выйти из операционки без обвала."}, {"k": "Где перегиб", "v": "Контроль ради контроля, тяжёлая структура, страх менять то, что работает."}, {"k": "Финансовый риск", "v": "Деньги застревают в раздутых расходах и медленных решениях."}]}, "Финансист": {"title": "Финансист. Вы превращаете доход в капитал", "fields": [{"k": "Как вы создаёте результат", "v": "Через структуру денег. Вы видите, куда идёт прибыль, где сидит риск и что из заработанного остаётся семье."}, {"k": "Что это даёт", "v": "Устойчивость. Кризис в деле не превращается в кризис дома, потому что деньги разведены по разным контурам."}, {"k": "Где перегиб", "v": "Осторожность, которая тормозит рост. Всё посчитано, но мало движения."}, {"k": "Финансовый риск", "v": "Накопление без развития: капитал есть, а бизнес перестал расти."}]}, "Визионер": {"title": "Визионер. Вы открываете будущее", "fields": [{"k": "Как вы создаёте результат", "v": "Через новые направления и решения, которых на рынке ещё нет. Вы спокойно действуете там, где исход неизвестен."}, {"k": "Что это даёт", "v": "Рост, новые источники дохода, способность собрать вокруг идеи людей и деньги."}, {"k": "Где перегиб", "v": "Много начатого и мало завершённого. Команда устаёт от смены курса."}, {"k": "Финансовый риск", "v": "Деньги уходят в следующую гипотезу раньше, чем предыдущая успела окупиться."}]}, "Наставник": {"title": "Наставник. Вы держите смысл", "fields": [{"k": "Как вы создаёте результат", "v": "Через ценности и людей. Вы понимаете, ради чего существует дело, и умеете передать это команде."}, {"k": "Что это даёт", "v": "Культуру, сильный бренд и людей, которые растут рядом с вами. Дело получает шанс пережить ваше личное участие."}, {"k": "Где перегиб", "v": "Смысла много, коммерции мало. Разговор о миссии заменяет разговор о цифрах."}, {"k": "Финансовый риск", "v": "Красивое дело, которое экономически не выдерживает само себя."}]}}, "weak_labels": ["Дефицитная роль, она держит ваш потолок", "Вторая по нехватке"], "weak": {"Торговец": {"title": "Не хватает Торговца", "fields": [{"k": "Как это выглядит", "v": "Продукт сильный, а денег он приносит меньше, чем мог бы. Вы ждёте, что клиент сам оценит качество, и неохотно говорите о цене."}, {"k": "Что делать первым", "v": "Возьмите пять последних диалогов, которые не дошли до сделки, и найдите место, где разговор оборвался. Обычно это момент цены."}, {"k": "Можно ли закрыть человеком", "v": "Да. Продажи делегируются, если у вас есть понятный продукт и цена."}]}, "Управленец": {"title": "Не хватает Управленца", "fields": [{"k": "Как это выглядит", "v": "Всё держится на вас. Люди есть, а системы нет, поэтому каждый рост нагрузки вы вывозите лично."}, {"k": "Что делать первым", "v": "Выпишите три задачи, которые в этом месяце делали только вы, и назначьте на каждую ответственного с датой и критерием готовности."}, {"k": "Можно ли закрыть человеком", "v": "Да, но не раньше, чем вы сами опишете правила. Управляющий без ваших правил построит свои."}]}, "Финансист": {"title": "Не хватает Финансиста", "fields": [{"k": "Как это выглядит", "v": "Деньги приходят и уходят в дело. Личного капитала нет, резерва нет, каждый кризис бизнеса становится кризисом семьи."}, {"k": "Что делать первым", "v": "Назначьте дату и долю регулярного вывода денег себе и отдельный счёт под это. Начните с той доли, которую бизнес переживёт."}, {"k": "Можно ли закрыть человеком", "v": "Частично. Считать может бухгалтер, а решение, сколько забирать из дела, остаётся за вами."}]}, "Визионер": {"title": "Не хватает Визионера", "fields": [{"k": "Как это выглядит", "v": "Дело работает стабильно и не растёт. Вы улучшаете то, что есть, и давно не пробовали новое."}, {"k": "Что делать первым", "v": "Ответьте письменно на один вопрос: что должно измениться в вашем деле за три года, чтобы оно осталось нужным рынку."}, {"k": "Можно ли закрыть человеком", "v": "Нет. Направление задаёт владелец, советники только помогают проверить гипотезу."}]}, "Наставник": {"title": "Не хватает Наставника", "fields": [{"k": "Как это выглядит", "v": "Дело прибыльное, но безликое. Команда не понимает, ради чего работает, и уходит за деньгами при первом предложении."}, {"k": "Что делать первым", "v": "Сформулируйте одну страницу: ради чего существует дело, чего вы не сделаете ради денег и что должно остаться после вас."}, {"k": "Можно ли закрыть человеком", "v": "Нет. Это единственная роль, которую нельзя отдать наружу."}]}}, "position_pool": ["Активный доход", "Экспертиза", "Свой источник", "Капитал платит", "Владелец систем"], "position_label": "Ваша финансовая позиция", "positions": {"Активный доход": {"title": "Всё держится на вашей работе", "fields": [{"k": "Что это значит", "v": "Уровень жизни семьи оплачивается тем, что вы сделаете в этом месяце. Доход при этом может быть большим: если расходы растут вместе с ним, позиция не меняется."}, {"k": "Главный признак", "v": "Пауза в работе быстро становится финансовой проблемой."}, {"k": "Что двигает дальше", "v": "Первый месяц обязательных расходов на отдельном счёте и регулярный вывод себе фиксированной доли."}]}, "Экспертиза": {"title": "Вас кормит ваше имя", "fields": [{"k": "Что это значит", "v": "Вы дорого продаёте компетентность, и клиенты идут именно к вам. Главный актив это вы сами."}, {"k": "Главный признак", "v": "Уберите вас из процесса, и продукт почти исчезает."}, {"k": "Что двигает дальше", "v": "Перевод личной экспертизы в то, что работает без вас: методика, команда, продукт с понятной технологией."}]}, "Свой источник": {"title": "У вас есть своё дело", "fields": [{"k": "Что это значит", "v": "Вы создали источник дохода и несёте риск. Дело кормит, но зависит от вашего ежедневного участия."}, {"k": "Главный признак", "v": "Отпуск дольше недели ощущается как риск для выручки."}, {"k": "Что двигает дальше", "v": "Разделение денег дела и денег семьи плюс перевод части задач на систему и людей."}]}, "Капитал платит": {"title": "Часть жизни оплачивает капитал", "fields": [{"k": "Что это значит", "v": "Кроме активного дохода у вас есть активы, которые дают деньги сами. Часть расходов семьи закрыта не вашим трудом."}, {"k": "Главный признак", "v": "Вы можете отказаться от невыгодного контракта и не потерять месяц."}, {"k": "Что двигает дальше", "v": "Увеличение доли расходов, закрытой капиталом, и защита семьи на случай выбывания кормильца."}]}, "Владелец систем": {"title": "Вы владеете системами", "fields": [{"k": "Что это значит", "v": "Результат создают системы и люди, а не ваше личное время. Капитал растёт быстрее ваших расходов."}, {"k": "Главный признак", "v": "Ваше участие влияет на стратегию, а не на выручку следующего месяца."}, {"k": "Что двигает дальше", "v": "Вопрос смены масштаба: ради чего этот капитал существует и что вы передаёте дальше."}]}}, "bands": [{"min": 0, "title": "Архитектура держится на одной роли", "fields": [{"k": "Что показывает результат", "v": "Вы вывозите дело за счёт одной сильной функции, остальные почти не работают. Это нормально на старте и становится потолком дальше."}, {"k": "Что это значит для денег", "v": "Рост упирается не в усилия, а в отсутствующую роль. Больше работы в сильной роли результат уже не меняет."}]}, {"min": 25, "title": "Работают две или три роли из пяти", "fields": [{"k": "Что показывает результат", "v": "Дело живёт и растёт, но провалы в двух функциях регулярно съедают то, что приносят сильные."}, {"k": "Что это значит для денег", "v": "Деньги приходят, а капитал не формируется или система не выдерживает объём."}]}, {"min": 45, "title": "Архитектура почти собрана", "fields": [{"k": "Что показывает результат", "v": "Четыре роли работают, одна проседает. Именно она сейчас задаёт ваш потолок."}, {"k": "Что это значит для денег", "v": "Точечное усиление одной функции даёт больше, чем любые новые вложения в остальные."}]}, {"min": 56, "title": "Архитектура собрана", "fields": [{"k": "Что показывает результат", "v": "Все пять функций у вас закрыты и работают. На этом уровне вопрос уже не в том, чего не хватает, а в том, что из этого пора перестать делать лично."}, {"k": "Что это значит для денег", "v": "Дальше растёт не тот, кто добавляет себе задач, а тот, кто передаёт роль человеку или системе и освобождает своё время под следующий масштаб."}]}], "score_label": "Ролевая архитектура: {n} из {m}", "questions": [{"q": "Мне легко говорить о своём продукте так, что человек начинает его хотеть.", "options": [{"t": "Точно про меня", "s": {"Торговец": 3}}, {"t": "Чаще да, чем нет", "s": {"Торговец": 2}}, {"t": "Скорее нет", "s": {"Торговец": 1}}, {"t": "Совсем не про меня", "s": {"Торговец": 0}}]}, {"q": "Я спокойно называю цену и не отступаю от неё в переговорах.", "options": [{"t": "Точно про меня", "s": {"Торговец": 3}}, {"t": "Чаще да, чем нет", "s": {"Торговец": 2}}, {"t": "Скорее нет", "s": {"Торговец": 1}}, {"t": "Совсем не про меня", "s": {"Торговец": 0}}]}, {"q": "Когда выручка падает, я первым делом иду к клиентам и в сделки, а не в анализ.", "options": [{"t": "Точно про меня", "s": {"Торговец": 3}}, {"t": "Чаще да, чем нет", "s": {"Торговец": 2}}, {"t": "Скорее нет", "s": {"Торговец": 1}}, {"t": "Совсем не про меня", "s": {"Торговец": 0}}]}, {"q": "Я умею превращать внимание людей в деньги на счёте, а не только в лайки и отклики.", "options": [{"t": "Точно про меня", "s": {"Торговец": 3}}, {"t": "Чаще да, чем нет", "s": {"Торговец": 2}}, {"t": "Скорее нет", "s": {"Торговец": 1}}, {"t": "Совсем не про меня", "s": {"Торговец": 0}}]}, {"q": "В моём бизнесе есть понятные правила: кто за что отвечает и по каким срокам.", "options": [{"t": "Точно про меня", "s": {"Управленец": 3}}, {"t": "Чаще да, чем нет", "s": {"Управленец": 2}}, {"t": "Скорее нет", "s": {"Управленец": 1}}, {"t": "Совсем не про меня", "s": {"Управленец": 0}}]}, {"q": "Результат в компании появляется руками других людей, а не только моими.", "options": [{"t": "Точно про меня", "s": {"Управленец": 3}}, {"t": "Чаще да, чем нет", "s": {"Управленец": 2}}, {"t": "Скорее нет", "s": {"Управленец": 1}}, {"t": "Совсем не про меня", "s": {"Управленец": 0}}]}, {"q": "Я вижу, где бизнес теряет деньги из-за беспорядка, и умею это чинить.", "options": [{"t": "Точно про меня", "s": {"Управленец": 3}}, {"t": "Чаще да, чем нет", "s": {"Управленец": 2}}, {"t": "Скорее нет", "s": {"Управленец": 1}}, {"t": "Совсем не про меня", "s": {"Управленец": 0}}]}, {"q": "Если я на неделю выйду из операционки, работа не остановится.", "options": [{"t": "Точно про меня", "s": {"Управленец": 3}}, {"t": "Чаще да, чем нет", "s": {"Управленец": 2}}, {"t": "Скорее нет", "s": {"Управленец": 1}}, {"t": "Совсем не про меня", "s": {"Управленец": 0}}]}, {"q": "Я знаю, куда уходит прибыль, и не путаю выручку с прибылью.", "options": [{"t": "Точно про меня", "s": {"Финансист": 3}}, {"t": "Чаще да, чем нет", "s": {"Финансист": 2}}, {"t": "Скорее нет", "s": {"Финансист": 1}}, {"t": "Совсем не про меня", "s": {"Финансист": 0}}]}, {"q": "Деньги бизнеса и деньги семьи у меня разделены и лежат на разных счетах.", "options": [{"t": "Точно про меня", "s": {"Финансист": 3}}, {"t": "Чаще да, чем нет", "s": {"Финансист": 2}}, {"t": "Скорее нет", "s": {"Финансист": 1}}, {"t": "Совсем не про меня", "s": {"Финансист": 0}}]}, {"q": "У меня есть резерв, которого хватит семье на несколько месяцев без бизнеса.", "options": [{"t": "Точно про меня", "s": {"Финансист": 3}}, {"t": "Чаще да, чем нет", "s": {"Финансист": 2}}, {"t": "Скорее нет", "s": {"Финансист": 1}}, {"t": "Совсем не про меня", "s": {"Финансист": 0}}]}, {"q": "Я оцениваю вложение не только по доходности, но и по риску и по сроку.", "options": [{"t": "Точно про меня", "s": {"Финансист": 3}}, {"t": "Чаще да, чем нет", "s": {"Финансист": 2}}, {"t": "Скорее нет", "s": {"Финансист": 1}}, {"t": "Совсем не про меня", "s": {"Финансист": 0}}]}, {"q": "Я вижу новые возможности раньше, чем они становятся очевидными для рынка.", "options": [{"t": "Точно про меня", "s": {"Визионер": 3}}, {"t": "Чаще да, чем нет", "s": {"Визионер": 2}}, {"t": "Скорее нет", "s": {"Визионер": 1}}, {"t": "Совсем не про меня", "s": {"Визионер": 0}}]}, {"q": "Мне комфортно принимать решения, когда исход заранее неизвестен.", "options": [{"t": "Точно про меня", "s": {"Визионер": 3}}, {"t": "Чаще да, чем нет", "s": {"Визионер": 2}}, {"t": "Скорее нет", "s": {"Визионер": 1}}, {"t": "Совсем не про меня", "s": {"Визионер": 0}}]}, {"q": "Я регулярно думаю о том, каким мой бизнес будет через пять лет, и меняю его под это.", "options": [{"t": "Точно про меня", "s": {"Визионер": 3}}, {"t": "Чаще да, чем нет", "s": {"Визионер": 2}}, {"t": "Скорее нет", "s": {"Визионер": 1}}, {"t": "Совсем не про меня", "s": {"Визионер": 0}}]}, {"q": "Я умею собрать вокруг новой идеи людей, деньги и продукт.", "options": [{"t": "Точно про меня", "s": {"Визионер": 3}}, {"t": "Чаще да, чем нет", "s": {"Визионер": 2}}, {"t": "Скорее нет", "s": {"Визионер": 1}}, {"t": "Совсем не про меня", "s": {"Визионер": 0}}]}, {"q": "Я могу коротко объяснить, ради чего мой бизнес существует помимо прибыли.", "options": [{"t": "Точно про меня", "s": {"Наставник": 3}}, {"t": "Чаще да, чем нет", "s": {"Наставник": 2}}, {"t": "Скорее нет", "s": {"Наставник": 1}}, {"t": "Совсем не про меня", "s": {"Наставник": 0}}]}, {"q": "Есть вещи, которые я не сделаю ради денег, и в команде про них знают.", "options": [{"t": "Точно про меня", "s": {"Наставник": 3}}, {"t": "Чаще да, чем нет", "s": {"Наставник": 2}}, {"t": "Скорее нет", "s": {"Наставник": 1}}, {"t": "Совсем не про меня", "s": {"Наставник": 0}}]}, {"q": "Люди рядом со мной растут профессионально, потому что я их учу.", "options": [{"t": "Точно про меня", "s": {"Наставник": 3}}, {"t": "Чаще да, чем нет", "s": {"Наставник": 2}}, {"t": "Скорее нет", "s": {"Наставник": 1}}, {"t": "Совсем не про меня", "s": {"Наставник": 0}}]}, {"q": "Я думаю о своём деле как о том, что должно пережить моё личное участие.", "options": [{"t": "Точно про меня", "s": {"Наставник": 3}}, {"t": "Чаще да, чем нет", "s": {"Наставник": 2}}, {"t": "Скорее нет", "s": {"Наставник": 1}}, {"t": "Совсем не про меня", "s": {"Наставник": 0}}]}, {"q": "Если завтра вы перестанете работать, сколько месяцев семья проживёт привычной жизнью", "options": [{"t": "Меньше месяца", "s": {"Активный доход": 3}}, {"t": "От одного до трёх месяцев", "s": {"Экспертиза": 2, "Активный доход": 1}}, {"t": "От трёх до шести месяцев", "s": {"Свой источник": 2}}, {"t": "От полугода до двух лет", "s": {"Капитал платит": 2}}, {"t": "Больше двух лет, доход идёт и без меня", "s": {"Владелец систем": 3}}]}, {"q": "Откуда приходят основные деньги вашей семьи", "options": [{"t": "Из моей работы по задачам и заказам", "s": {"Активный доход": 3}}, {"t": "Из моей личной экспертизы, клиенты идут ко мне", "s": {"Экспертиза": 3}}, {"t": "Из моего бизнеса, но он держится на мне", "s": {"Свой источник": 3}}, {"t": "Часть из бизнеса, часть от активов и вложений", "s": {"Капитал платит": 3}}, {"t": "Из нескольких систем, которые работают без моего ежедневного участия", "s": {"Владелец систем": 3}}]}, {"q": "Что происходит с деньгами по итогам года", "options": [{"t": "Сколько пришло, столько и ушло", "s": {"Активный доход": 3}}, {"t": "Остаётся немного, но уходит на следующий рывок в деле", "s": {"Экспертиза": 2, "Свой источник": 1}}, {"t": "Остаётся, и часть я вывожу себе регулярно", "s": {"Свой источник": 2, "Капитал платит": 1}}, {"t": "Остаётся, выводится и работает в активах", "s": {"Капитал платит": 3}}, {"t": "Капитал растёт быстрее, чем мои личные расходы", "s": {"Владелец систем": 3}}]}, {"q": "Чем вы владеете на самом деле", "options": [{"t": "Своим временем и навыком, больше ничем", "s": {"Активный доход": 3}}, {"t": "Именем и репутацией, они кормят", "s": {"Экспертиза": 3}}, {"t": "Бизнесом, который без меня остановится", "s": {"Свой источник": 3}}, {"t": "Бизнесом и личными активами вне его", "s": {"Капитал платит": 3}}, {"t": "Долями в нескольких активах, которыми управляют другие люди", "s": {"Владелец систем": 3}}]}, {"q": "Кто задаёт правила, по которым вы работаете", "options": [{"t": "Заказчики и обстоятельства, я подстраиваюсь", "s": {"Активный доход": 3}}, {"t": "Рынок, но условия я уже выбираю", "s": {"Экспертиза": 3}}, {"t": "Я внутри своего дела", "s": {"Свой источник": 3}}, {"t": "Я внутри своего дела и в своих деньгах отдельно от него", "s": {"Капитал платит": 3}}, {"t": "Я задаю условия партнёрам и рынку, на котором работаю", "s": {"Владелец систем": 3}}]}], "next": ["Выпишите две вещи: роль, которая создала ваш сегодняшний результат, и роль, которой не хватает. Дальше решите по дефицитной роли одно из двух: развиваете сами или закрываете человеком. Оба варианта рабочие, нерабочий только третий, когда роль просто остаётся пустой.", "Сделайте по дефицитной роли один шаг из карточки выше на этой неделе. Не план на квартал, а одно действие за семь дней."], "next_full": ["Все пять ролей у вас работают. Тогда вопрос не в ролях, а в масштабе: какая из них должна перестать быть вашей личной и перейти к человеку или системе, чтобы вы освободили время под следующий уровень."], "cut": {"title": "Что тест видит и чего не видит", "fields": [{"k": "Что вы уже получили", "v": "Ведущую роль, дефицитную роль и вашу финансовую позицию. Этого достаточно, чтобы понять, куда уходит ваш потолок, и сделать первый шаг."}, {"k": "Чего тест не видит", "v": "Почему дефицитная роль у вас именно эта. За слабой ролью обычно стоит финансовый сценарий: человек не делает не потому, что не умеет, а потому что на этом месте у него страх, стыд или старая договорённость с собой. Это разбирается в личной работе, тестом не измеряется."}]}, "lead_none": {"title": "Ведущая роль пока не видна", "fields": [{"k": "Что это значит", "v": "По вашим ответам ни одна из пяти функций сейчас не работает уверенно. Так бывает в двух случаях: дело только начинается либо вы давно вышли из него и занимаетесь другим."}, {"k": "Что делать", "v": "Начните с Торговца. Пока в деле нет денежного потока, остальные четыре роли строить не на чем."}]}}</script></div>
+<div class="sec"><h2 id="sec-2">Как читать результат</h2><p>Результат теста это не ярлык. Это три указателя, каждый со своим действием.</p><ol><li>Ведущая роль объясняет, откуда взялся ваш сегодняшний доход. Её не надо чинить, её надо признать и опираться.</li><li>Дефицитная роль объясняет, где стоит ваш потолок. С ней есть ровно два рабочих решения: развить самому или закрыть человеком. Оставить пустой это третий вариант, и он не работает.</li><li>Финансовая позиция показывает, чем оплачена ваша жизнь сегодня. Она меняется медленнее роли и двигается только регулярными действиями с деньгами.</li></ol><p>Отдельно про совпадение, которое встречается чаще всего у сильных предпринимателей. Ведущая роль Визионер или Торговец, дефицитная Финансист, финансовая позиция при этом «всё держится на вашей работе». Человек с большим доходом живёт в позиции, где пауза в деле сразу становится проблемой дома. Это не про дисциплину и не про нехватку знаний, это про то, что функция сохранения в системе не назначена никому.</p><div class="quote">Ваш следующий финансовый уровень может требовать не большего количества работы, а новой роли.</div></div>
+<div class="cta"><span class="eyebrow"><i class="dot"></i>Следующий шаг</span><div class="ttl">Разбор финансовой идентичности с Ларисой Тернер</div><p class="sub">Кому подойдёт: доход есть, а накоплений нет; крупные решения о деньгах, вложить, взять кредит, помочь родным, принимаются на тревоге или откладываются годами.</p><p class="sub">Что получите: разберём, куда уходят ваши деньги, увидим сценарий, который этим управляет, и соберём первые шаги на ближайший месяц по резерву, долгам и накоплениям. Запись и подробности в Telegram у Ларисы.</p><a class="cta-btn" href="https://t.me/larisaturner">Запись на консультацию «Разбор финансовой идентичности»<span class="ar">&#8594;</span></a></div>
+</article>
+</main>
+<footer class="ft"><div class="ft-in"><a class="logo" href="/">Лариса<i class="sq"></i>Тернер</a><span class="sp"></span><nav class="ft-links"><a href="/">Все материалы</a><a href="/about/">Обо мне</a><a href="https://t.me/larisaturner">Запись на консультацию</a></nav></div><div class="ft-bot">Лариса Тернер · terner.money</div><div class="ft-law">Материалы сайта носят информационный характер и не являются индивидуальной инвестиционной рекомендацией или медицинской помощью.</div></footer>
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    navigator.clipboard.writeText(b.getAttribute('data-text')).then(function(){
+      var o=b.textContent;b.textContent='Скопировано';b.classList.add('done');
+      setTimeout(function(){b.textContent=o;b.classList.remove('done');},1600);
+    });
+  });
+});
+</script>
+
+<script>
+(function(){
+  var box=document.querySelector('.qz');if(!box)return;
+  var data=JSON.parse(document.getElementById('qz-data').textContent);
+  var opts=box.querySelectorAll('.qz-o');
+  var go=box.querySelector('.qz-go'),prog=box.querySelector('.qz-prog');
+  var res=box.querySelector('.qz-res');
+  var total=data.questions.length;
+
+  function answers(){
+    var out=[],i;
+    for(i=0;i<total;i++){
+      var el=box.querySelector('input[name="q'+i+'"]:checked');
+      out.push(el?parseInt(el.value,10):null);
+    }
+    return out;
+  }
+  function count(a){var n=0;a.forEach(function(v){if(v!==null)n++;});return n;}
+  function refresh(){
+    var n=count(answers());
+    prog.textContent=n+' из '+total;
+    go.disabled=n<total;
+  }
+  opts.forEach(function(l){
+    l.addEventListener('change',function(){
+      var name=l.querySelector('input').name;
+      box.querySelectorAll('input[name="'+name+'"]').forEach(function(i){
+        i.closest('.qz-o').classList.toggle('on',i.checked);
+      });
+      refresh();
+    });
+  });
+
+  // ties go to whichever name the author listed first, so the outcome is stable
+  // instead of depending on object key order in the browser
+  function top(pool,score){
+    var best=null,bv=0,i;
+    for(i=0;i<pool.length;i++){
+      var v=score[pool[i]]||0;
+      if(v>bv){bv=v;best=pool[i];}
+    }
+    return bv>0?{name:best,points:bv}:null;
+  }
+  // a result is a list of named fields (strategy, strengths, what limits, next level),
+  // so the card mirrors the structure of the author's own write-up instead of one blob
+  function fields(r){
+    if(r.text)return '<p>'+r.text+'</p>';
+    return (r.fields||[]).map(function(f){
+      var body=f.items
+        ? '<ul>'+f.items.map(function(i){return '<li>'+i+'</li>';}).join('')+'</ul>'
+        : '<p>'+f.v+'</p>';
+      return '<div class="qz-f"><div class="qz-fk">'+f.k+'</div>'+body+'</div>';
+    }).join('');
+  }
+  function card(lab,title,text,lead){
+    return '<div class="qz-card'+(lead?' qz-top':'')+'"><div class="qz-lab">'+lab+'</div>'+
+      '<h3>'+title+'</h3>'+text+'</div>';
+  }
+
+  function reset(){
+    box.querySelectorAll('input[type=radio]').forEach(function(i){i.checked=false;});
+    box.querySelectorAll('.qz-o.on').forEach(function(l){l.classList.remove('on');});
+    res.hidden=true;res.innerHTML='';
+    refresh();
+    box.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  go.addEventListener('click',function(){
+    var a=answers(),score={},readiness='',i;
+    for(i=0;i<total;i++){
+      var o=data.questions[i].options[a[i]];
+      if(!o)continue;
+      if(o.r)readiness=o.r;
+      var s=o.s||{};
+      for(var k in s){score[k]=(score[k]||0)+s[k];}
+    }
+    var html='';
+    // two scoring modes. "score": sum every axis, place the total on a band, then name the
+    // weakest links. default: pick the top-scoring name out of each pool.
+    if(data.mode==='score'){
+      var keys=data.axes.map(function(x){return x.key;});
+      var totalPts=0,maxPts=0;
+      keys.forEach(function(k){totalPts+=score[k]||0;});
+      data.axes.forEach(function(x){maxPts+=x.max;});
+      var band=data.bands[0];
+      for(i=0;i<data.bands.length;i++){if(totalPts>=data.bands[i].min)band=data.bands[i];}
+      html+=card(data.score_label.replace('{n}',totalPts).replace('{m}',maxPts),
+                 band.title,fields(band),true);
+      // leading axis: the one filled to the highest share of its own ceiling. Named first
+      // because the reader wants "what am I" before "what is missing".
+      if(data.lead){
+        var lead=data.axes.slice().sort(function(x,y){
+          var dx=(score[x.key]||0)/x.max,dy=(score[y.key]||0)/y.max;
+          return dy===dx?keys.indexOf(x.key)-keys.indexOf(y.key):dy-dx;
+        })[0];
+        // a run of all-zero answers has no leading role: naming one would be a lie
+        var lc=lead&&(score[lead.key]||0)>0&&data.lead[lead.key];
+        if(lc)html+=card(data.lead_label||'Ваша ведущая роль',lc.title,fields(lc),false);
+        else if(data.lead_none)html+=card(data.lead_label||'Ваша ведущая роль',
+          data.lead_none.title,fields(data.lead_none),false);
+      }
+      // ties keep the author's axis order, so the advice is stable between runs
+      // a maxed-out axis is not a weak link, so a perfect run gets no "weakest" cards
+      var ranked=data.axes.filter(function(x){return (score[x.key]||0)<x.max;})
+        .sort(function(x,y){
+          var dx=(score[x.key]||0)/x.max,dy=(score[y.key]||0)/y.max;
+          return dx===dy?keys.indexOf(x.key)-keys.indexOf(y.key):dx-dy;
+        });
+      var labs=data.weak_labels,shown=0;
+      for(i=0;i<Math.min(labs.length,ranked.length);i++){
+        var w=data.weak[ranked[i].key];
+        if(w){html+=card(labs[i],w.title,fields(w),false);shown++;}
+      }
+      // with nothing weak left, the default "start with your weakest link" advice would
+      // point at a card that is not on the page
+      // second, independent axis: questions scoring into data.position_pool keys
+      if(data.position_pool){
+        var pos=top(data.position_pool,score);
+        var pc=pos&&data.positions[pos.name];
+        if(pc)html+=card(data.position_label||'Ваша финансовая позиция',pc.title,fields(pc),false);
+      }
+      var nx=shown?data.next:(data.next_full||data.next);
+      html+='<div class="qz-card"><div class="qz-lab">Что дальше</div>'+
+        nx.map(function(p){return '<p>'+p+'</p>';}).join('')+'</div>';
+      if(data.cut)html+=card('Честная граница этого теста',data.cut.title,fields(data.cut),false);
+      html+='<button class="qz-again" type="button">Пройти заново</button>';
+      res.innerHTML=html;res.hidden=false;
+      res.scrollIntoView({behavior:'smooth',block:'start'});
+      res.querySelector('.qz-again').addEventListener('click',reset);
+      return;
+    }
+    var id=top(data.identities,score),sc=top(data.scenarios,score);
+    if(id){
+      var r=data.results[id.name];
+      html+=card('Ваша финансовая идентичность',r.title,fields(r),true);
+    }
+    if(sc){
+      var r2=data.results[sc.name];
+      html+=card('Сценарий, который управляет деньгами',r2.title,fields(r2),false);
+      // the mechanic that HOLDS the scenario: emotional root plus secondary gain.
+      // without it the result names the loop but leaves the reader no handle on it.
+      var h=data.holds&&data.holds[sc.name];
+      if(h)html+=card('Что удерживает этот механизм',h.title,fields(h),false);
+    }else{
+      html+=card('Сценарий','Ярко выраженного сценария нет',
+        '<p>'+data.no_scenario+'</p>',false);
+    }
+    if(readiness)html+=card('Готовность к изменениям',readiness,'<p>'+data.readiness_note+'</p>',false);
+    html+='<div class="qz-card"><div class="qz-lab">Что дальше</div>'+
+      data.next.map(function(p){return '<p>'+p+'</p>';}).join('')+'</div>';
+    if(data.cut)html+=card('Честная граница этого теста',data.cut.title,fields(data.cut),false);
+    html+='<button class="qz-again" type="button">Пройти заново</button>';
+    res.innerHTML=html;
+    res.hidden=false;
+    res.scrollIntoView({behavior:'smooth',block:'start'});
+    res.querySelector('.qz-again').addEventListener('click',reset);
+  });
+
+  refresh();
+})();
+</script>
+</body></html>

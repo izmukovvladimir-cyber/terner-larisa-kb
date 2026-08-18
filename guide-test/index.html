@@ -428,6 +428,19 @@ document.querySelectorAll('.copy').forEach(function(b){
       for(i=0;i<data.bands.length;i++){if(totalPts>=data.bands[i].min)band=data.bands[i];}
       html+=card(data.score_label.replace('{n}',totalPts).replace('{m}',maxPts),
                  band.title,fields(band),true);
+      // leading axis: the one filled to the highest share of its own ceiling. Named first
+      // because the reader wants "what am I" before "what is missing".
+      if(data.lead){
+        var lead=data.axes.slice().sort(function(x,y){
+          var dx=(score[x.key]||0)/x.max,dy=(score[y.key]||0)/y.max;
+          return dy===dx?keys.indexOf(x.key)-keys.indexOf(y.key):dy-dx;
+        })[0];
+        // a run of all-zero answers has no leading role: naming one would be a lie
+        var lc=lead&&(score[lead.key]||0)>0&&data.lead[lead.key];
+        if(lc)html+=card(data.lead_label||'Ваша ведущая роль',lc.title,fields(lc),false);
+        else if(data.lead_none)html+=card(data.lead_label||'Ваша ведущая роль',
+          data.lead_none.title,fields(data.lead_none),false);
+      }
       // ties keep the author's axis order, so the advice is stable between runs
       // a maxed-out axis is not a weak link, so a perfect run gets no "weakest" cards
       var ranked=data.axes.filter(function(x){return (score[x.key]||0)<x.max;})
@@ -442,6 +455,12 @@ document.querySelectorAll('.copy').forEach(function(b){
       }
       // with nothing weak left, the default "start with your weakest link" advice would
       // point at a card that is not on the page
+      // second, independent axis: questions scoring into data.position_pool keys
+      if(data.position_pool){
+        var pos=top(data.position_pool,score);
+        var pc=pos&&data.positions[pos.name];
+        if(pc)html+=card(data.position_label||'Ваша финансовая позиция',pc.title,fields(pc),false);
+      }
       var nx=shown?data.next:(data.next_full||data.next);
       html+='<div class="qz-card"><div class="qz-lab">Что дальше</div>'+
         nx.map(function(p){return '<p>'+p+'</p>';}).join('')+'</div>';
