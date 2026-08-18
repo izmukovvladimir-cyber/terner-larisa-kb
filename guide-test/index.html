@@ -421,9 +421,13 @@ document.querySelectorAll('.copy').forEach(function(b){
     // weakest links. default: pick the top-scoring name out of each pool.
     if(data.mode==='score'){
       var keys=data.axes.map(function(x){return x.key;});
+      // the band answers "is the working architecture covered", so it counts only the axes
+      // the author marked as load-bearing. Without band_axes every axis counts, as before.
+      var bandAxes=data.band_axes
+        ? data.axes.filter(function(x){return data.band_axes.indexOf(x.key)>=0;})
+        : data.axes;
       var totalPts=0,maxPts=0;
-      keys.forEach(function(k){totalPts+=score[k]||0;});
-      data.axes.forEach(function(x){maxPts+=x.max;});
+      bandAxes.forEach(function(x){totalPts+=score[x.key]||0;maxPts+=x.max;});
       var band=data.bands[0];
       for(i=0;i<data.bands.length;i++){if(totalPts>=data.bands[i].min)band=data.bands[i];}
       html+=card(data.score_label.replace('{n}',totalPts).replace('{m}',maxPts),
@@ -443,7 +447,12 @@ document.querySelectorAll('.copy').forEach(function(b){
       }
       // ties keep the author's axis order, so the advice is stable between runs
       // a maxed-out axis is not a weak link, so a perfect run gets no "weakest" cards
-      var ranked=data.axes.filter(function(x){return (score[x.key]||0)<x.max;})
+      // a missing axis is only a deficit among the axes a business must cover: an empty
+      // "Politician" is not a defect, an empty "Financier" is
+      var weakAxes=data.weak_axes
+        ? data.axes.filter(function(x){return data.weak_axes.indexOf(x.key)>=0;})
+        : data.axes;
+      var ranked=weakAxes.filter(function(x){return (score[x.key]||0)<x.max;})
         .sort(function(x,y){
           var dx=(score[x.key]||0)/x.max,dy=(score[y.key]||0)/y.max;
           return dx===dy?keys.indexOf(x.key)-keys.indexOf(y.key):dx-dy;
