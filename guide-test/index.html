@@ -250,6 +250,7 @@ background:var(--accent);color:var(--accent-ink);cursor:pointer}
 .qz-card{padding:16px 18px;border-radius:14px;border:1px solid var(--card-border);
 background:var(--card-bg)}
 .qz-card.qz-top{border-color:var(--accent);box-shadow:var(--shadow)}
+.qz-hint{margin:0;color:var(--muted);font-size:.95em;line-height:1.5}
 .qz-lab{font-size:.78em;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);
 margin:0 0 .4rem}
 .qz-card h3{margin:0 0 .5rem;font-size:1.22em}
@@ -441,6 +442,7 @@ document.querySelectorAll('.copy').forEach(function(b){
         })[0];
         // a run of all-zero answers has no leading role: naming one would be a lie
         var lc=lead&&(score[lead.key]||0)>0&&data.lead[lead.key];
+        if(data.lead_hint)html+='<p class="qz-hint">'+data.lead_hint+'</p>';
         if(lc)html+=card(data.lead_label||'Ваша ведущая роль',lc.title,fields(lc),false);
         else if(data.lead_none)html+=card(data.lead_label||'Ваша ведущая роль',
           data.lead_none.title,fields(data.lead_none),false);
