@@ -478,6 +478,21 @@ document.querySelectorAll('.copy').forEach(function(b){
         var pc=pos&&data.positions[pos.name];
         if(pc)html+=card(data.position_label||'Ваша финансовая позиция',pc.title,fields(pc),false);
       }
+      // the gap card: the band says what the numbers allow, gap_axis says what the person
+      // actually carries. The answer people need is the distance between the two, so it is
+      // read from shares of each own ceiling, never from raw points of different lengths.
+      if(data.gap&&data.gap_axis){
+        var gx=data.axes.filter(function(x){return x.key===data.gap_axis;})[0];
+        if(gx&&gx.max&&maxPts){
+          var cs=totalPts/maxPts,ts=(score[gx.key]||0)/gx.max,d=cs-ts;
+          // both shares near the floor is not a gap: calling it "you carry more than your
+          // numbers allow" would praise a person who is simply low on both axes
+          var gk=(cs<0.4&&ts<0.4&&data.gap.both_low)?'both_low'
+            :(d>0.2?'capacity_higher':(d<-0.2?'tolerance_higher':'aligned'));
+          var gc=data.gap[gk];
+          if(gc)html+=card(data.gap_label||'Разрыв между осями',gc.title,fields(gc),false);
+        }
+      }
       var nx=shown?data.next:(data.next_full||data.next);
       html+='<div class="qz-card"><div class="qz-lab">Что дальше</div>'+
         nx.map(function(p){return '<p>'+p+'</p>';}).join('')+'</div>';

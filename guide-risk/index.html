@@ -1,0 +1,498 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Тест: какой риск вы выдерживаете</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"><style>
+:root{
+--accent:#d59468;--accent-ink:#2b261f;--ink:#2b261f;--offwhite:#ffffff;
+--bg-light:#f1ece1;--bg-dark:#1c1813;
+--bg:var(--bg-light);--text:#1c1c1f;--muted:#6b7280;--surface:#ffffff;
+--card-bg:rgba(0,0,0,.035);--card-border:rgba(0,0,0,.10);--hair:rgba(0,0,0,.08);
+--dot:rgba(0,0,0,.05);--shadow:0 10px 30px rgba(0,0,0,.10);
+--font-display:'Inter Tight',system-ui,sans-serif;
+--font-body:'Inter',system-ui,-apple-system,sans-serif;
+--font-mono:'JetBrains Mono',ui-monospace,monospace;
+--font-serif:'PT Serif',Georgia,serif;
+}
+:root[data-theme=dark]{
+--bg:var(--bg-dark);--text:#f4f4f5;--muted:#9ca3af;--surface:#1a1a1c;
+--card-bg:rgba(255,255,255,.05);--card-border:rgba(255,255,255,.12);--hair:rgba(255,255,255,.10);
+--dot:rgba(255,255,255,.05);--shadow:0 10px 30px rgba(0,0,0,.45);
+}
+@media(prefers-color-scheme:dark){
+:root:not([data-theme=light]){
+--bg:var(--bg-dark);--text:#f4f4f5;--muted:#9ca3af;--surface:#1a1a1c;
+--card-bg:rgba(255,255,255,.05);--card-border:rgba(255,255,255,.12);--hair:rgba(255,255,255,.10);
+--dot:rgba(255,255,255,.05);--shadow:0 10px 30px rgba(0,0,0,.45);
+}
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg)}
+body{color:var(--text);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh}
+a{color:inherit;text-decoration:none}
+.mono{font-family:var(--font-mono)}
+/* ============ header ============ */
+.hd{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--hair)}
+.hd-in{height:66px;max-width:1340px;margin:0 auto;padding:0 44px;display:flex;align-items:center;gap:24px}
+.logo{font-family:var(--font-display);font-weight:700;font-size:19px;letter-spacing:-.04em;text-transform:uppercase;color:var(--text);display:inline-flex;align-items:center;flex:none;white-space:nowrap}
+.logo .sq{width:8px;height:8px;background:var(--accent);border:1.5px solid var(--ink);display:inline-block;margin:0 5px 0 3px}
+:root[data-theme=dark] .logo .sq{border-color:rgba(255,255,255,.7)}
+.hd-nav{display:flex;align-items:center;gap:22px;font-size:14px;flex:none}
+.hd-nav a{color:var(--muted);position:relative;padding:4px 1px;transition:color .15s;white-space:nowrap}
+.hd-nav a:hover{color:var(--text)}
+.hd-nav a.cur{color:var(--text);font-weight:600}
+.hd-nav a.cur::after{content:'';position:absolute;left:0;right:0;bottom:-3px;height:1.5px;background:var(--text);opacity:.8}
+.sp{flex:1}
+.tools{display:flex;align-items:center;gap:10px;flex:none}
+.tgl{width:34px;height:34px;border:1px solid var(--hair);border-radius:9px;display:grid;place-items:center;color:var(--text);background:none;cursor:pointer;padding:0;transition:border-color .15s}
+.tgl:hover{border-color:var(--muted)}
+.tgl svg{display:block;width:15px;height:15px}
+.tgl .ic-sun{display:none}
+:root[data-theme=dark] .tgl .ic-sun{display:block}
+:root[data-theme=dark] .tgl .ic-moon{display:none}
+.hd-btn{font-family:var(--font-display);font-size:14px;font-weight:600;padding:10px 17px;border-radius:999px;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;background:var(--accent);color:var(--accent-ink);border:1.5px solid var(--ink);transition:transform .12s;flex:none}
+.hd-btn:hover{transform:translateY(-1px)}
+.hd-btn .ar{transition:transform .15s}
+.hd-btn:hover .ar{transform:translateX(3px)}
+:root[data-theme=dark] .hd-btn{border-color:var(--accent)}
+/* ============ shell ============ */
+.wrap{max-width:1340px;margin:0 auto;padding:0 44px 60px}
+.eyebrow{font-family:var(--font-mono);font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;color:var(--muted)}
+.eyebrow .dot{width:7px;height:7px;background:var(--accent);outline:1px solid var(--ink);display:inline-block;flex:none}
+:root[data-theme=dark] .eyebrow .dot{outline-color:rgba(255,255,255,.35)}
+/* ============ hero ============ */
+.hero{margin:26px 0 6px;border-radius:18px;overflow:hidden;background:var(--ink);color:#f5f5f0;position:relative;min-height:340px;display:flex}
+.hero .art{position:absolute;inset:0;background:var(--ink)}
+/* the dot-grid and the accent bloom are the fallback look while there is no cover image yet;
+   cover_css() turns them off as soon as site.hero_image is set (two of each only muddies it) */
+.hero .grid{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1px);background-size:11px 11px}
+.hero .glow{position:absolute;right:-90px;top:-90px;width:420px;height:420px;border-radius:50%;background:var(--accent);filter:blur(120px);opacity:.28}
+/* scrim keeps the copy on dark whatever the glow does behind it (on narrow screens the
+   glow otherwise floods the whole card and the title lands on bright lime) */
+.hero .txt{position:relative;z-index:2;padding:44px 44px 38px;display:flex;flex-direction:column;max-width:760px;
+background:linear-gradient(100deg,color-mix(in srgb,var(--ink) 88%,transparent) 0%,color-mix(in srgb,var(--ink) 55%,transparent) 62%,transparent 100%)}
+.hero .eyebrow{color:var(--accent)}
+/* hero is always the dark ink card, so its title must not follow --text (black on black in light theme) */
+.hero h1{font-family:var(--font-display);font-size:42px;font-weight:700;letter-spacing:-.025em;line-height:1.08;margin:18px 0 14px;max-width:17ch;color:#f5f5f0}
+.hero .desc{font-size:16px;line-height:1.55;color:rgba(245,245,240,.72);max-width:52ch;margin:0}
+.hero .read{margin-top:auto;padding-top:30px;display:inline-flex;align-items:center;gap:14px;color:#fbfbf8;cursor:pointer;align-self:flex-start}
+.hero .read .circ{width:46px;height:46px;border-radius:50%;background:var(--accent);display:grid;place-items:center;color:var(--accent-ink);flex:none;transition:transform .15s}
+.hero .read:hover .circ{transform:translateX(3px)}
+.hero .read .lbl{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+/* ============ tabs ============ */
+/* grid, not flex-wrap: inline chips left a ragged right edge and one orphan on the
+   second row. auto-fit + minmax(240px) resolves to exactly 5 columns on a 1440 shell
+   (avail 1352px: 6 cols would need 240*6+8*5=1480), so 10 chips read as a deliberate
+   5+5 block. Narrow screens re-solve to 4/3/2 columns via the overrides below. */
+.tabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px;margin:34px 0 0;padding-top:24px;border-top:1px solid var(--hair)}
+.tab{font-size:13px;font-weight:500;padding:9px 14px;border-radius:999px;border:1px solid var(--card-border);color:var(--muted);background:none;cursor:pointer;font-family:inherit;white-space:nowrap;transition:border-color .15s,color .15s;display:flex;align-items:center;justify-content:center;text-align:center;width:100%;min-width:0}
+.tab:hover{color:var(--text);border-color:var(--muted)}
+.tab.on{background:var(--accent);color:var(--accent-ink);border-color:var(--ink);font-weight:600}
+:root[data-theme=dark] .tab.on{border-color:var(--accent)}
+.count{font-family:var(--font-mono);font-size:12px;color:var(--muted);margin:18px 0 14px}
+/* ============ cards ============ */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
+.card{border:1px solid var(--card-border);border-radius:14px;padding:18px;background:var(--card-bg);display:flex;flex-direction:column;gap:9px;min-height:158px;transition:border-color .15s,transform .15s}
+.card:hover{border-color:var(--ink);transform:translateY(-2px)}
+:root[data-theme=dark] .card:hover{border-color:var(--accent)}
+.card .tag{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:7px}
+.card .tag .d{width:7px;height:7px;background:var(--accent);outline:1px solid var(--ink);display:inline-block;flex:none}
+:root[data-theme=dark] .card .tag .d{outline-color:rgba(255,255,255,.35)}
+.card .ct{font-family:var(--font-display);font-size:17px;font-weight:600;letter-spacing:-.01em;line-height:1.25;color:var(--text)}
+.card .cd{font-size:13.5px;color:var(--muted);line-height:1.5;flex:1;margin:0}
+.card .cm{font-family:var(--font-mono);font-size:10.5px;color:var(--muted)}
+.empty{font-family:var(--font-display);font-size:17px;font-weight:600;color:var(--muted);padding:30px 0}
+/* ============ article ============ */
+.page{max-width:760px;margin:0 auto;padding:34px 44px 60px}
+.pcol{min-width:0}
+/* ============ toc: long guides only (4+ sections), shell adds .has-toc ============ */
+/* the reading column keeps the exact measure of a short guide (672px = 760 minus the
+   44px gutters), the menu hangs to its right and the pair is centered together, so a
+   long guide reads at the same width as a short one. */
+.page.has-toc{max-width:1180px;display:grid;grid-template-columns:minmax(0,672px) 200px;gap:44px;justify-content:center;align-items:start}
+/* padding-top 0 so «На странице» sits on the breadcrumb line of the article column */
+.toc{position:sticky;top:66px;align-self:start;max-height:calc(100vh - 96px);overflow-y:auto;font-size:12.5px;padding:0 0 24px}
+.toc .h{font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;padding-left:13px}
+/* the marker gutter is always reserved (transparent border), so switching sections
+   recolors in place instead of nudging the text. NB: .toc scrolls on the y axis, which
+   makes the x axis a scroll box too, so a negative margin here would be clipped away. */
+.toc a{display:block;color:var(--muted);padding:5px 0 5px 11px;line-height:1.4;border-left:2px solid transparent;transition:color .15s,border-color .15s}
+.toc a:hover{color:var(--text)}
+.toc a.on{color:var(--text);font-weight:600;border-left-color:var(--accent)}
+.toc{scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.18) transparent}
+.toc::-webkit-scrollbar{width:5px}
+.toc::-webkit-scrollbar-track{background:transparent}
+.toc::-webkit-scrollbar-thumb{background:rgba(0,0,0,.18);border-radius:10px}
+:root[data-theme=dark] .toc{scrollbar-color:rgba(255,255,255,.2) transparent}
+:root[data-theme=dark] .toc::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18)}
+/* anchor lands below the sticky header, not under it */
+.sec h2[id]{scroll-margin-top:86px}
+/* no room for a side column: fall back to the plain reading page */
+@media(max-width:1100px){
+.page.has-toc{display:block;max-width:760px}
+.toc{display:none}
+}
+.bc{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.bc a:hover{color:var(--text)}
+h1{font-family:var(--font-display);font-size:36px;font-weight:700;letter-spacing:-.02em;line-height:1.12;margin:0 0 6px;color:var(--text)}
+.lead{font-family:var(--font-serif);font-size:20px;line-height:1.5;font-weight:700;color:var(--text);border-left:3px solid var(--accent);padding-left:18px;margin:20px 0 22px}
+.meta{font-family:var(--font-mono);font-size:11px;color:var(--muted);padding-bottom:20px;border-bottom:1px solid var(--hair);margin-bottom:26px}
+.leadlist{margin:0 0 22px;padding-left:22px;font-size:16px;line-height:1.62;color:var(--text)}
+.leadlist li{margin:8px 0}
+.leadlist li::marker{color:var(--accent);font-weight:700}
+.how{border:1px solid var(--card-border);border-radius:12px;background:var(--surface);padding:16px 18px;margin:22px 0;font-size:14.5px;line-height:1.56;color:var(--text)}
+.p,.sec{border:1px solid var(--card-border);border-radius:14px;background:var(--card-bg);padding:20px;margin:18px 0}
+.p .num{display:inline-block;font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--accent-ink);background:var(--accent);border:1px solid var(--ink);padding:3px 10px;margin-bottom:10px}
+:root[data-theme=dark] .p .num{border-color:var(--accent)}
+.p h2{font-family:var(--font-display);font-size:20px;margin:0 0 6px;font-weight:700;letter-spacing:-.01em}
+.p .when{font-size:13.5px;color:var(--muted);margin:0 0 10px}
+.sec h2{font-family:var(--font-display);font-size:22px;margin:0 0 10px;font-weight:700;letter-spacing:-.015em}
+.sec h3{font-family:var(--font-display);font-size:17px;margin:18px 0 6px;font-weight:700}
+.sec p,.p p{font-size:15.5px;line-height:1.66;margin:10px 0}
+.sec ol,.sec ul{margin:8px 0;padding-left:22px;font-size:15.5px;line-height:1.66}
+.sec li{margin:0 0 7px}
+.sec li::marker{color:var(--muted)}
+.lblrow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:14px 0 6px}
+.lbl{font-family:var(--font-mono);font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
+.box{font-family:var(--font-mono);font-size:12.5px;background:var(--surface);border:1px solid var(--hair);border-radius:10px;padding:14px 16px;white-space:pre-wrap;line-height:1.6;color:var(--text);overflow-x:auto}
+.copy{font-family:var(--font-mono);font-size:11px;color:var(--muted);background:none;border:1px solid var(--card-border);border-radius:8px;padding:6px 11px;cursor:pointer;white-space:nowrap;transition:color .15s,border-color .15s,background .15s}
+.copy:hover{color:var(--text);border-color:var(--muted)}
+.copy.done{background:var(--accent);color:var(--accent-ink);border-color:var(--ink);font-weight:600}
+.ex{font-size:14px;color:var(--muted);margin-top:12px}
+.ex b{color:var(--text)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
+.cardb{background:var(--surface);border:1px solid var(--card-border);border-radius:12px;padding:14px 16px}
+.cardb h3{font-family:var(--font-display);margin:0 0 6px;font-size:16px}
+.cardb ul,.cardb ol{padding-left:18px;margin:6px 0;font-size:14.5px}
+.cardb p{font-size:14.5px;margin:6px 0}
+.quote{font-family:var(--font-serif);font-style:italic;color:var(--text);opacity:.85;border-left:3px solid var(--accent);padding-left:14px;margin:14px 0;font-size:15.5px}
+.note{font-size:14.5px;line-height:1.56;color:var(--text);background:var(--surface);border:1px solid var(--card-border);border-left:3px solid var(--accent);border-radius:10px;padding:12px 16px;margin:14px 0}
+.linkbtn{display:inline-block;margin:12px 0 4px;font-weight:600;font-size:15px;color:var(--text);word-break:break-word;border-bottom:2px solid var(--accent)}
+.linkbtn:hover{opacity:.75}
+.btnrow{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 4px}
+.btn2{font-family:var(--font-display);display:inline-flex;align-items:center;gap:8px;padding:13px 20px;border-radius:999px;background:var(--accent);color:var(--accent-ink);border:1px solid var(--accent);font-weight:600;font-size:15px;line-height:1.2}
+.btn2:hover{opacity:.9}
+.btn2.sec{background:transparent;color:var(--text);border:1px solid var(--accent)}
+.btnrow .btn2{flex:0 1 auto}
+.mid{margin:26px 0;text-align:center}
+.mid a{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-display);font-size:14.5px;font-weight:600;padding:12px 22px;border-radius:999px;background:var(--ink);color:var(--offwhite);border:1px solid var(--ink)}
+:root[data-theme=dark] .mid a{background:var(--surface);border-color:var(--accent);color:var(--text)}
+/* ============ CTA ============ */
+.cta{margin:40px 0 6px;padding:30px 32px;border-radius:18px;background:var(--ink);color:#f5f5f0;background-image:radial-gradient(rgba(255,255,255,.08) 1px,transparent 1px);background-size:10px 10px}
+.cta .ttl{font-family:var(--font-display);font-size:25px;font-weight:700;letter-spacing:-.02em;margin:10px 0 6px}
+.cta .sub{font-size:14.5px;line-height:1.55;color:rgba(245,245,240,.68);margin:0 0 20px;max-width:60ch}
+.cta .eyebrow{color:var(--accent)}
+.cta-btn{font-family:var(--font-display);font-size:15px;font-weight:600;padding:13px 22px;border-radius:999px;background:var(--accent);color:var(--accent-ink);border:1px solid var(--accent);display:inline-flex;align-items:center;gap:9px}
+.cta-btn:hover{transform:translateY(-1px)}
+/* ============ footer ============ */
+.ft{border-top:1px solid var(--hair);background-image:radial-gradient(var(--dot) 1px,transparent 1px);background-size:9px 9px;padding:36px 0 26px}
+.ft-in{max-width:1340px;margin:0 auto;padding:0 44px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.ft-in .logo{font-size:17px}
+.ft-links{display:flex;gap:20px;font-size:13.5px;color:var(--text);opacity:.82}
+.ft-links a:hover{opacity:1}
+.ft-bot{max-width:1340px;margin:20px auto 0;padding:16px 44px 0;border-top:1px solid var(--hair);font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.ft-law{max-width:1340px;margin:10px auto 0;padding:0 44px 4px;font-size:11.5px;line-height:1.5;color:var(--muted);opacity:.8}
+/* ============ responsive ============ */
+@media(max-width:900px){
+.hd-in,.wrap,.ft-in,.ft-bot{padding-left:20px;padding-right:20px}
+.page{padding:26px 20px 50px}
+/* narrow: the copy sits ON the artwork (no room to dodge it), so the scrim goes near-opaque
+   under the text and only clears near the bottom edge, where the art can breathe */
+.hero .txt{padding:30px 24px 26px;background:linear-gradient(180deg,color-mix(in srgb,var(--ink) 94%,transparent) 0%,color-mix(in srgb,var(--ink) 88%,transparent) 68%,color-mix(in srgb,var(--ink) 60%,transparent) 100%)}
+.hero .glow{width:240px;height:240px;right:-80px;top:-80px;opacity:.2}
+.hero h1{font-size:29px}
+.hero{min-height:0}
+h1{font-size:28px}
+.grid2{grid-template-columns:1fr}
+.tabs{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+}
+@media(max-width:700px){
+.hd-in{height:60px;gap:12px}
+.hd-nav{display:none}
+.logo{font-size:16px}
+.hd-btn{font-size:12.5px;padding:9px 13px}
+.cards{grid-template-columns:1fr}
+.cta{padding:24px 20px}
+.cta .ttl{font-size:21px}
+.lead{font-size:18px}
+.ft-in{gap:14px}
+}
+/* phone: logo + toggle + CTA must all survive on a 390px bar, so tighten the type
+   and let the CTA label clamp instead of pushing the button off the screen */
+@media(max-width:460px){
+.hd-in{gap:8px;padding:0 14px}
+.logo{font-size:12.5px}
+.hd-btn{font-size:11px;padding:8px 10px;gap:5px;min-width:0}
+.hd-btn .lb{display:block;max-width:36vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tgl{width:32px;height:32px}
+.wrap,.ft-in,.ft-bot{padding-left:14px;padding-right:14px}
+.page{padding:22px 14px 44px}
+/* phone: 2 even columns. 3 would starve the longest label ("Образ и внешность")
+   and force a mid-word wrap inside the pill. */
+.tabs{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:7px}
+.tab{font-size:12.5px;padding:9px 8px}
+.qz-o{padding:11px 12px}
+.qz-bar{flex-direction:column;align-items:stretch;gap:10px}
+.qz-go{width:100%}
+}
+
+/* --- interactive quiz (block type "quiz") --- */
+.qz{margin:1.4rem 0}
+.qz-q{margin:0 0 1.5rem}
+.qz-t{font-weight:650;line-height:1.4;margin:0 0 .7rem}
+.qz-n{color:var(--accent);font-weight:700;margin-right:.35em}
+.qz-opts{display:flex;flex-direction:column;gap:8px}
+.qz-o{display:flex;align-items:flex-start;gap:10px;padding:10px 13px;border-radius:11px;
+border:1px solid var(--card-border);background:var(--card-bg);cursor:pointer;
+line-height:1.45;transition:border-color .13s,background .13s}
+.qz-o:hover{border-color:var(--accent)}
+.qz-o input{margin:.32em 0 0;accent-color:var(--accent);flex:0 0 auto;cursor:pointer}
+.qz-o.on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.qz-bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:1.6rem 0 0;
+padding-top:1.2rem;border-top:1px solid var(--hair)}
+.qz-go{font:inherit;font-weight:600;padding:12px 22px;border-radius:11px;border:0;
+background:var(--accent);color:var(--accent-ink);cursor:pointer}
+.qz-go[disabled]{opacity:.45;cursor:not-allowed}
+.qz-prog{color:var(--muted);font-size:.92em}
+.qz-res{margin:1.8rem 0 0;display:flex;flex-direction:column;gap:14px}
+.qz-card{padding:16px 18px;border-radius:14px;border:1px solid var(--card-border);
+background:var(--card-bg)}
+.qz-card.qz-top{border-color:var(--accent);box-shadow:var(--shadow)}
+.qz-hint{margin:0;color:var(--muted);font-size:.95em;line-height:1.5}
+.qz-lab{font-size:.78em;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);
+margin:0 0 .4rem}
+.qz-card h3{margin:0 0 .5rem;font-size:1.22em}
+.qz-card p{margin:0 0 .5rem}
+.qz-card p:last-child{margin-bottom:0}
+.qz-f{margin:0 0 .95rem}
+.qz-f:last-child{margin-bottom:0}
+.qz-fk{font-size:.78em;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);
+font-weight:650;margin:0 0 .25rem}
+.qz-f ul{margin:.2rem 0 0;padding-left:1.15rem}
+.qz-f li{margin:.15rem 0}
+.qz-again{font:inherit;padding:10px 18px;border-radius:11px;cursor:pointer;
+border:1px solid var(--card-border);background:transparent;color:var(--text);align-self:flex-start}
+</style>
+<script>
+(function(){
+  var d=document.documentElement;
+  function set(t){d.setAttribute('data-theme',t);}
+  var q=(location.search.match(/[?&]theme=(dark|light)/)||[])[1];
+  var s=null;try{s=localStorage.getItem('vi-theme');}catch(e){}
+  set(q||s||(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('.tgl');if(!b)return;
+    var n=d.getAttribute('data-theme')==='dark'?'light':'dark';
+    set(n);try{localStorage.setItem('vi-theme',n);}catch(err){}
+  });
+})();
+</script>
+</head><body><header class="hd"><div class="hd-in"><a class="logo" href="/">Лариса<i class="sq"></i>Тернер</a><nav class="hd-nav"><a href="/">Все материалы</a><a href="/guide-uslugi/">Услуги</a><a href="/files/oferta/oferta-terner.pdf">Оферта</a><a href="/about/">Обо мне</a></nav><span class="sp"></span><div class="tools"><button class="tgl" type="button" aria-label="Сменить тему"><svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"/></svg></button><a class="hd-btn" href="https://t.me/larisaturner"><span class="lb">Запись на консультацию</span><span class="ar">&#8594;</span></a></div></div></header>
+<main class="page">
+<article class="pcol">
+<div class="bc"><a href="/#cat-resenia-iz-trevogi">Решения из тревоги</a></div>
+<h1>Тест: какой риск вы выдерживаете</h1>
+<p class="lead">Тест показывает две вещи сразу: сколько риска вы можете себе позволить по обстоятельствам и сколько вы реально выдерживаете, когда деньги дешевеют.</p>
+<ol class="leadlist"><li>Первая часть про обстоятельства: возраст, срок до цели, резерв, обязательства, кто зависит от ваших денег.</li><li>Вторая часть про поведение: что вы делали при прошлых потерях и из какого состояния принимали решения.</li><li>В конце вы увидите разрыв между этими двумя частями. Именно в нём чаще всего и теряются деньги.</li></ol>
+<div class="note">Частый случай: по обстоятельствам человек может спокойно переждать просадку, а по состоянию не может и продаёт в худшей точке. Обратный случай встречается реже и стоит дороже.</div>
+<div class="how">Восемнадцать вопросов, около семи минут. Отвечайте про то, как есть сейчас, а не про то, как хотелось бы.</div>
+<div class="sec"><h2 id="sec-0">Тест</h2><div class="qz"><div class="qz-q"><div class="qz-t"><span class="qz-n">1.</span>Сколько вам лет?</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q0" value="0"><span>До 35</span></label><label class="qz-o"><input type="radio" name="q0" value="1"><span>От 35 до 45</span></label><label class="qz-o"><input type="radio" name="q0" value="2"><span>От 46 до 55</span></label><label class="qz-o"><input type="radio" name="q0" value="3"><span>56 и больше</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">2.</span>Через сколько лет вам понадобятся эти деньги: на жильё, обучение детей, жизнь без работы?</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q1" value="0"><span>Больше десяти лет</span></label><label class="qz-o"><input type="radio" name="q1" value="1"><span>От пяти до десяти лет</span></label><label class="qz-o"><input type="radio" name="q1" value="2"><span>От трёх до пяти лет</span></label><label class="qz-o"><input type="radio" name="q1" value="3"><span>Меньше трёх лет</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">3.</span>Сколько месяцев ваша семья проживёт на отложенные деньги, если доход прекратится завтра?</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q2" value="0"><span>Полгода и больше</span></label><label class="qz-o"><input type="radio" name="q2" value="1"><span>От трёх до шести месяцев</span></label><label class="qz-o"><input type="radio" name="q2" value="2"><span>Один или два месяца</span></label><label class="qz-o"><input type="radio" name="q2" value="3"><span>Меньше месяца, отложенного почти нет</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">4.</span>Насколько предсказуем ваш доход?</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q3" value="0"><span>Фиксированный, известен на месяцы вперёд</span></label><label class="qz-o"><input type="radio" name="q3" value="1"><span>В основном стабильный, колебания небольшие</span></label><label class="qz-o"><input type="radio" name="q3" value="2"><span>Сильно скачет от месяца к месяцу</span></label><label class="qz-o"><input type="radio" name="q3" value="3"><span>Заранее не знаю, будет ли доход в следующем месяце</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">5.</span>Какую часть свободных денег вы готовы вложить в то, что может подешеветь и вернуться нескоро?</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q4" value="0"><span>Меньше четверти</span></label><label class="qz-o"><input type="radio" name="q4" value="1"><span>Около трети</span></label><label class="qz-o"><input type="radio" name="q4" value="2"><span>Около половины</span></label><label class="qz-o"><input type="radio" name="q4" value="3"><span>Почти всё, что есть</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">6.</span>Сколько от вашего дохода уходит на кредиты и обязательные платежи?</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q5" value="0"><span>Кредитов нет</span></label><label class="qz-o"><input type="radio" name="q5" value="1"><span>До четверти дохода, платёж комфортный</span></label><label class="qz-o"><input type="radio" name="q5" value="2"><span>От четверти до половины</span></label><label class="qz-o"><input type="radio" name="q5" value="3"><span>Больше половины или есть просрочки</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">7.</span>Кто зависит от ваших денег?</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q6" value="0"><span>Только я</span></label><label class="qz-o"><input type="radio" name="q6" value="1"><span>Партнёр, и у него есть свой доход</span></label><label class="qz-o"><input type="radio" name="q6" value="2"><span>Дети или родители, частично</span></label><label class="qz-o"><input type="radio" name="q6" value="3"><span>Несколько человек полностью на мне</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">8.</span>Есть ли у вас деньги, которые приходят без вашей работы: аренда, проценты по вкладу, выплаты по бумагам?</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q7" value="0"><span>Да, они покрывают обязательные расходы</span></label><label class="qz-o"><input type="radio" name="q7" value="1"><span>Да, покрывают часть расходов</span></label><label class="qz-o"><input type="radio" name="q7" value="2"><span>Только начала это собирать</span></label><label class="qz-o"><input type="radio" name="q7" value="3"><span>Нет, весь доход идёт от моей работы</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">9.</span>Представьте, что вложенная сумма уменьшилась вдвое и вернётся нескоро. Что изменится в вашей жизни?</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q8" value="0"><span>Ничего, уровень жизни останется прежним</span></label><label class="qz-o"><input type="radio" name="q8" value="1"><span>Откажусь от крупных покупок в этом году</span></label><label class="qz-o"><input type="radio" name="q8" value="2"><span>Придётся менять привычный образ жизни</span></label><label class="qz-o"><input type="radio" name="q8" value="3"><span>Придётся занимать деньги</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">10.</span>Что у вас закрыто на случай болезни или потери работы?</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q9" value="0"><span>Есть страховка и отдельные деньги на этот случай</span></label><label class="qz-o"><input type="radio" name="q9" value="1"><span>Есть отдельные деньги</span></label><label class="qz-o"><input type="radio" name="q9" value="2"><span>Рассчитываю на помощь близких</span></label><label class="qz-o"><input type="radio" name="q9" value="3"><span>Ничего из этого нет</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">11.</span>Вложенные деньги за месяц подешевели на двадцать процентов. Что вы сделаете в первые дни?</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q10" value="0"><span>Сверю с планом и оставлю как есть</span></label><label class="qz-o"><input type="radio" name="q10" value="1"><span>Продам, чтобы не потерять остальное</span></label><label class="qz-o"><input type="radio" name="q10" value="2"><span>Закрою приложение и не буду смотреть</span></label><label class="qz-o"><input type="radio" name="q10" value="3"><span>Вложу ещё, чтобы быстрее вернуть своё</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">12.</span>Вспомните реальную потерю денег: неудачное вложение, закрытый бизнес, обман. Как вы поступили тогда?</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q11" value="0"><span>Разобрала причину и продолжила по своему плану</span></label><label class="qz-o"><input type="radio" name="q11" value="1"><span>Забрала остальное и больше к этому не возвращалась</span></label><label class="qz-o"><input type="radio" name="q11" value="2"><span>Долго не могла принимать никакие денежные решения</span></label><label class="qz-o"><input type="radio" name="q11" value="3"><span>Быстро пошла отыгрывать в другом месте</span></label><label class="qz-o"><input type="radio" name="q11" value="4"><span>Такого в моей жизни пока не было</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">13.</span>Сколько времени прошло от той потери до следующего решения о деньгах?</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q12" value="0"><span>Решения принимала спокойно и почти сразу</span></label><label class="qz-o"><input type="radio" name="q12" value="1"><span>Месяц или два</span></label><label class="qz-o"><input type="radio" name="q12" value="2"><span>Больше полугода</span></label><label class="qz-o"><input type="radio" name="q12" value="3"><span>В тот же день и на эмоциях</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">14.</span>Ваши деньги лежат и не растут уже год. Что вы чувствуете?</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q13" value="0"><span>Спокойствие, это часть плана</span></label><label class="qz-o"><input type="radio" name="q13" value="1"><span>Раздражение, деньги должны работать</span></label><label class="qz-o"><input type="radio" name="q13" value="2"><span>Тревогу, что упускаю время</span></label><label class="qz-o"><input type="radio" name="q13" value="3"><span>Стараюсь об этом не думать</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">15.</span>Как вы принимаете решение вложить крупную сумму?</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q14" value="0"><span>Заранее считаю, сколько готова потерять</span></label><label class="qz-o"><input type="radio" name="q14" value="1"><span>Смотрю на обещанную доходность и решаю быстро</span></label><label class="qz-o"><input type="radio" name="q14" value="2"><span>Долго тяну и часто не решаю вовсе</span></label><label class="qz-o"><input type="radio" name="q14" value="3"><span>Делаю так же, как знакомые</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">16.</span>Знакомый рассказал, что за месяц крупно заработал на вложении, о котором вы не знали. Первая мысль?</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q15" value="0"><span>Интересно, посмотрю, чем он при этом рискует</span></label><label class="qz-o"><input type="radio" name="q15" value="1"><span>Мне нужно срочно туда же</span></label><label class="qz-o"><input type="radio" name="q15" value="2"><span>Скорее всего, там обман</span></label><label class="qz-o"><input type="radio" name="q15" value="3"><span>Опять я всё пропустила</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">17.</span>Как часто вы проверяете свои вложения?</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q16" value="0"><span>Раз в квартал или реже, по плану</span></label><label class="qz-o"><input type="radio" name="q16" value="1"><span>Каждый день, с тревогой</span></label><label class="qz-o"><input type="radio" name="q16" value="2"><span>Не смотрю совсем, боюсь увидеть</span></label><label class="qz-o"><input type="radio" name="q16" value="3"><span>Смотрю постоянно и ищу, куда добавить</span></label></div></div><div class="qz-q"><div class="qz-t"><span class="qz-n">18.</span>Кому вы рассказываете о финансовой потере?</div><div class="qz-opts"><label class="qz-o"><input type="radio" name="q17" value="0"><span>Спокойно обсуждаю с близкими и со специалистом</span></label><label class="qz-o"><input type="radio" name="q17" value="1"><span>Не говорю никому, стыдно</span></label><label class="qz-o"><input type="radio" name="q17" value="2"><span>Говорю, но занижаю сумму</span></label><label class="qz-o"><input type="radio" name="q17" value="3"><span>Рассказываю как о временной неудаче и сразу о новом плане</span></label></div></div><div class="qz-bar"><button class="qz-go" type="button" disabled>Показать результат</button><span class="qz-prog">0 из 18</span></div><div class="qz-res" hidden></div></div><script type="application/json" id="qz-data">{"type": "quiz", "mode": "score", "cta": "Показать результат", "axes": [{"key": "Запас", "max": 30}, {"key": "Переносимость", "max": 24}], "band_axes": ["Запас"], "weak_labels": [], "gap_axis": "Переносимость", "score_label": "Ваш запас под риск: {n} из {m}", "position_label": "Как вы ведёте себя, когда деньги теряются", "gap_label": "Где у вас разрыв", "position_pool": ["Держит курс", "Выходит на просадке", "Замирает", "Отыгрывается"], "questions": [{"q": "Сколько вам лет?", "options": [{"t": "До 35", "s": {"Запас": 3}}, {"t": "От 35 до 45", "s": {"Запас": 2}}, {"t": "От 46 до 55", "s": {"Запас": 1}}, {"t": "56 и больше", "s": {"Запас": 0}}]}, {"q": "Через сколько лет вам понадобятся эти деньги: на жильё, обучение детей, жизнь без работы?", "options": [{"t": "Больше десяти лет", "s": {"Запас": 3}}, {"t": "От пяти до десяти лет", "s": {"Запас": 2}}, {"t": "От трёх до пяти лет", "s": {"Запас": 1}}, {"t": "Меньше трёх лет", "s": {"Запас": 0}}]}, {"q": "Сколько месяцев ваша семья проживёт на отложенные деньги, если доход прекратится завтра?", "options": [{"t": "Полгода и больше", "s": {"Запас": 3}}, {"t": "От трёх до шести месяцев", "s": {"Запас": 2}}, {"t": "Один или два месяца", "s": {"Запас": 1}}, {"t": "Меньше месяца, отложенного почти нет", "s": {"Запас": 0}}]}, {"q": "Насколько предсказуем ваш доход?", "options": [{"t": "Фиксированный, известен на месяцы вперёд", "s": {"Запас": 3}}, {"t": "В основном стабильный, колебания небольшие", "s": {"Запас": 2}}, {"t": "Сильно скачет от месяца к месяцу", "s": {"Запас": 1}}, {"t": "Заранее не знаю, будет ли доход в следующем месяце", "s": {"Запас": 0}}]}, {"q": "Какую часть свободных денег вы готовы вложить в то, что может подешеветь и вернуться нескоро?", "options": [{"t": "Меньше четверти", "s": {"Запас": 3}}, {"t": "Около трети", "s": {"Запас": 2}}, {"t": "Около половины", "s": {"Запас": 1}}, {"t": "Почти всё, что есть", "s": {"Запас": 0}}]}, {"q": "Сколько от вашего дохода уходит на кредиты и обязательные платежи?", "options": [{"t": "Кредитов нет", "s": {"Запас": 3}}, {"t": "До четверти дохода, платёж комфортный", "s": {"Запас": 2}}, {"t": "От четверти до половины", "s": {"Запас": 1}}, {"t": "Больше половины или есть просрочки", "s": {"Запас": 0}}]}, {"q": "Кто зависит от ваших денег?", "options": [{"t": "Только я", "s": {"Запас": 3}}, {"t": "Партнёр, и у него есть свой доход", "s": {"Запас": 2}}, {"t": "Дети или родители, частично", "s": {"Запас": 1}}, {"t": "Несколько человек полностью на мне", "s": {"Запас": 0}}]}, {"q": "Есть ли у вас деньги, которые приходят без вашей работы: аренда, проценты по вкладу, выплаты по бумагам?", "options": [{"t": "Да, они покрывают обязательные расходы", "s": {"Запас": 3}}, {"t": "Да, покрывают часть расходов", "s": {"Запас": 2}}, {"t": "Только начала это собирать", "s": {"Запас": 1}}, {"t": "Нет, весь доход идёт от моей работы", "s": {"Запас": 0}}]}, {"q": "Представьте, что вложенная сумма уменьшилась вдвое и вернётся нескоро. Что изменится в вашей жизни?", "options": [{"t": "Ничего, уровень жизни останется прежним", "s": {"Запас": 3}}, {"t": "Откажусь от крупных покупок в этом году", "s": {"Запас": 2}}, {"t": "Придётся менять привычный образ жизни", "s": {"Запас": 1}}, {"t": "Придётся занимать деньги", "s": {"Запас": 0}}]}, {"q": "Что у вас закрыто на случай болезни или потери работы?", "options": [{"t": "Есть страховка и отдельные деньги на этот случай", "s": {"Запас": 3}}, {"t": "Есть отдельные деньги", "s": {"Запас": 2}}, {"t": "Рассчитываю на помощь близких", "s": {"Запас": 1}}, {"t": "Ничего из этого нет", "s": {"Запас": 0}}]}, {"q": "Вложенные деньги за месяц подешевели на двадцать процентов. Что вы сделаете в первые дни?", "options": [{"t": "Сверю с планом и оставлю как есть", "s": {"Переносимость": 3, "Держит курс": 3}}, {"t": "Продам, чтобы не потерять остальное", "s": {"Переносимость": 0, "Выходит на просадке": 3}}, {"t": "Закрою приложение и не буду смотреть", "s": {"Переносимость": 1, "Замирает": 3}}, {"t": "Вложу ещё, чтобы быстрее вернуть своё", "s": {"Переносимость": 0, "Отыгрывается": 3}}]}, {"q": "Вспомните реальную потерю денег: неудачное вложение, закрытый бизнес, обман. Как вы поступили тогда?", "options": [{"t": "Разобрала причину и продолжила по своему плану", "s": {"Переносимость": 3, "Держит курс": 3}}, {"t": "Забрала остальное и больше к этому не возвращалась", "s": {"Переносимость": 1, "Выходит на просадке": 3}}, {"t": "Долго не могла принимать никакие денежные решения", "s": {"Переносимость": 0, "Замирает": 3}}, {"t": "Быстро пошла отыгрывать в другом месте", "s": {"Переносимость": 0, "Отыгрывается": 3}}, {"t": "Такого в моей жизни пока не было", "s": {"Переносимость": 2}}]}, {"q": "Сколько времени прошло от той потери до следующего решения о деньгах?", "options": [{"t": "Решения принимала спокойно и почти сразу", "s": {"Переносимость": 3, "Держит курс": 2}}, {"t": "Месяц или два", "s": {"Переносимость": 2}}, {"t": "Больше полугода", "s": {"Переносимость": 1, "Замирает": 2}}, {"t": "В тот же день и на эмоциях", "s": {"Переносимость": 0, "Отыгрывается": 2}}]}, {"q": "Ваши деньги лежат и не растут уже год. Что вы чувствуете?", "options": [{"t": "Спокойствие, это часть плана", "s": {"Переносимость": 3, "Держит курс": 2}}, {"t": "Раздражение, деньги должны работать", "s": {"Переносимость": 1, "Отыгрывается": 2}}, {"t": "Тревогу, что упускаю время", "s": {"Переносимость": 1, "Выходит на просадке": 1}}, {"t": "Стараюсь об этом не думать", "s": {"Переносимость": 0, "Замирает": 2}}]}, {"q": "Как вы принимаете решение вложить крупную сумму?", "options": [{"t": "Заранее считаю, сколько готова потерять", "s": {"Переносимость": 3, "Держит курс": 3}}, {"t": "Смотрю на обещанную доходность и решаю быстро", "s": {"Переносимость": 0, "Отыгрывается": 2}}, {"t": "Долго тяну и часто не решаю вовсе", "s": {"Переносимость": 1, "Замирает": 2}}, {"t": "Делаю так же, как знакомые", "s": {"Переносимость": 1, "Выходит на просадке": 1}}]}, {"q": "Знакомый рассказал, что за месяц крупно заработал на вложении, о котором вы не знали. Первая мысль?", "options": [{"t": "Интересно, посмотрю, чем он при этом рискует", "s": {"Переносимость": 3, "Держит курс": 2}}, {"t": "Мне нужно срочно туда же", "s": {"Переносимость": 0, "Отыгрывается": 3}}, {"t": "Скорее всего, там обман", "s": {"Переносимость": 1, "Выходит на просадке": 1}}, {"t": "Опять я всё пропустила", "s": {"Переносимость": 0, "Замирает": 1}}]}, {"q": "Как часто вы проверяете свои вложения?", "options": [{"t": "Раз в квартал или реже, по плану", "s": {"Переносимость": 3, "Держит курс": 2}}, {"t": "Каждый день, с тревогой", "s": {"Переносимость": 0, "Выходит на просадке": 2}}, {"t": "Не смотрю совсем, боюсь увидеть", "s": {"Переносимость": 0, "Замирает": 3}}, {"t": "Смотрю постоянно и ищу, куда добавить", "s": {"Переносимость": 1, "Отыгрывается": 2}}]}, {"q": "Кому вы рассказываете о финансовой потере?", "options": [{"t": "Спокойно обсуждаю с близкими и со специалистом", "s": {"Переносимость": 3, "Держит курс": 2}}, {"t": "Не говорю никому, стыдно", "s": {"Переносимость": 0, "Замирает": 2}}, {"t": "Говорю, но занижаю сумму", "s": {"Переносимость": 1, "Выходит на просадке": 1}}, {"t": "Рассказываю как о временной неудаче и сразу о новом плане", "s": {"Переносимость": 1, "Отыгрывается": 2}}]}], "bands": [{"min": 0, "title": "Запас под риск сейчас минимальный", "fields": [{"k": "Что показывает результат", "v": "По обстоятельствам у вас нет подушки, которая позволила бы спокойно пережить потерю вложенного. Обычно так складывается при нестабильном доходе, крупных обязательных платежах и людях, которые зависят от вас."}, {"k": "Что это значит для решений", "v": "Любая потеря сейчас бьёт по обычной жизни, а не по свободным деньгам. Пока это так, вопрос выбора инструментов вторичен."}, {"k": "Первый шаг", "v": "Соберите резерв на три месяца обязательных платежей: аренда или ипотека, еда, лекарства, транспорт, детский сад или школа. Держите его отдельно от рабочих денег."}]}, {"min": 11, "title": "Запас небольшой", "fields": [{"k": "Что показывает результат", "v": "Какая-то опора у вас есть, но она короткая. Одного неудачного года достаточно, чтобы пришлось менять привычный образ жизни."}, {"k": "Что это значит для решений", "v": "Вкладывать имеет смысл только те деньги, потеря которых не заставит вас занимать. Сроки при этом лучше держать короче, чем срок до вашей ближайшей крупной цели."}, {"k": "Первый шаг", "v": "Доведите резерв до шести месяцев расходов и посчитайте на бумаге сумму, потеря которой ничего не изменит в вашем месяце. Дальше отталкивайтесь от неё."}]}, {"min": 19, "title": "Запас средний", "fields": [{"k": "Что показывает результат", "v": "Обстоятельства позволяют вам переживать колебания без ущерба для семьи. Резерв есть, обязательства посильные, срок до цели не поджимает."}, {"k": "Что это значит для решений", "v": "У вас есть право на длинные решения, где деньги работают годами. Ограничение здесь чаще идёт от состояния, а не от цифр."}, {"k": "Первый шаг", "v": "Разделите деньги на три части и назовите каждую: жизнь на ближайший год, резерв, деньги под цели за горизонтом пяти лет. Решения принимайте отдельно по каждой части."}]}, {"min": 25, "title": "Запас большой", "fields": [{"k": "Что показывает результат", "v": "У вас есть резерв, предсказуемый доход и деньги, которые приходят без вашей работы. Потеря части вложенного не меняет уровень жизни."}, {"k": "Что это значит для решений", "v": "Обстоятельства позволяют держать длинные и более рискованные решения. Главный риск для вас сместился из цифр в поведение и в качество тех, кому вы доверяете деньги."}, {"k": "Первый шаг", "v": "Проверьте, что у вас записано заранее: при каком падении вы ничего не делаете и при каком выходите. Правило, написанное до события, работает, решение в моменте почти всегда хуже."}]}], "positions": {"Держит курс": {"title": "Вы держите курс", "fields": [{"k": "Как это выглядит", "v": "Вы заранее считаете, сколько готовы потерять, и в просадке сверяетесь с планом, а не с новостями. Потеря для вас событие, у которого есть причина и разбор."}, {"k": "Сильная сторона", "v": "Вы не выходите в худшей точке. Именно это чаще всего и отделяет тех, кто в итоге зарабатывает, от тех, кто теряет на том же самом инструменте."}, {"k": "На что смотреть", "v": "Спокойствие иногда прикрывает то, что вы просто не смотрите на цифры. Проверьте себя: назовите по памяти, сколько денег и где у вас сейчас лежит."}]}, "Выходит на просадке": {"title": "Вы выходите на просадке", "fields": [{"k": "Как это выглядит", "v": "Когда цифра идёт вниз, вы забираете остаток, чтобы не потерять больше. Решение принимается в тревоге и почти всегда в худшей точке."}, {"k": "Что за этим стоит", "v": "Обычно это опыт потери, который не был разобран. Тело помнит, чем всё кончилось в прошлый раз, и решает за вас раньше, чем вы посчитаете."}, {"k": "Первый шаг", "v": "Запишите на бумаге до вложения два числа: какое падение вы пережидаете и на каком выходите. В момент падения читайте эту запись, а не ленту."}]}, "Замирает": {"title": "Вы замираете", "fields": [{"k": "Как это выглядит", "v": "Вы перестаёте смотреть на счёт и откладываете решения. Деньги при этом никуда не деваются, но и не работают, а срок до вашей цели уходит."}, {"k": "Что за этим стоит", "v": "Страх увидеть цифру сильнее желания её изменить. Часто рядом лежит стыд за прошлую потерю, и в этом состоянии человек молчит даже с близкими."}, {"k": "Первый шаг", "v": "Назначьте один день в квартал и открывайте счета только в этот день. Одна встреча с цифрами по расписанию переносится легче, чем ежедневная тревога."}]}, "Отыгрывается": {"title": "Вы отыгрываетесь", "fields": [{"k": "Как это выглядит", "v": "После потери вы быстро идёте в новое вложение, чтобы вернуть своё. Решение принимается на эмоции и обычно крупнее предыдущего."}, {"k": "Что за этим стоит", "v": "Потеря переживается как поражение, а не как расход. Пока стоит задача отыграться, размер риска растёт с каждым разом, и одна такая попытка способна забрать капитал целиком."}, {"k": "Первый шаг", "v": "Введите себе правило паузы: после любой потери четырнадцать дней без новых вложений. Это единственное правило, которое работает против этой реакции."}]}}, "gap": {"aligned": {"title": "Ваши обстоятельства и ваше состояние сходятся", "fields": [{"k": "Что это значит", "v": "Вы держите примерно тот риск, который можете себе позволить. Решения не приходится потом переигрывать, и деньги не теряются на резких движениях."}, {"k": "Что дальше", "v": "Ваш рост сейчас идёт не от смелости, а от размера свободных денег и от срока. Работайте с ними: увеличивайте долю, которую откладываете, и удлиняйте горизонт."}]}, "capacity_higher": {"title": "Обстоятельства позволяют больше, чем ваше состояние", "fields": [{"k": "Что это значит", "v": "По цифрам вы можете спокойно пережить колебания, а по поведению выходите раньше времени или не решаетесь вовсе. Деньги при этом теряются дважды: на выходе в худшей точке и на годах, которые прошли впустую."}, {"k": "Где корень", "v": "Дело здесь не в знаниях о рынке. Решение принимается из состояния, а состояние обычно держится на прошлой потере, которая не была разобрана."}, {"k": "Первый шаг", "v": "Возьмите последнее решение, о котором жалеете, и восстановите по нему две вещи: что вы чувствовали в тот час и какая цифра была перед глазами. Это и есть ваша точка входа в работу."}]}, "tolerance_higher": {"title": "Ваше состояние позволяет больше, чем обстоятельства", "fields": [{"k": "Что это значит", "v": "Вы спокойно переносите риск, который по обстоятельствам вам сейчас не по карману: короткий резерв, обязательства, люди, которые зависят от ваших денег. Это самое дорогое сочетание из четырёх."}, {"k": "Почему это опасно", "v": "Спокойствие читается как опыт и как сила, поэтому предупреждение обычно не слышат. Пока запас маленький, одна неудача бьёт не по вложенным деньгам, а по обычной жизни семьи."}, {"k": "Первый шаг", "v": "Ограничьте себя суммой, потеря которой не заставит вас занимать, и держитесь её до тех пор, пока не соберёте резерв на шесть месяцев расходов. Это ограничение снимается цифрами, а не уверенностью."}]}, "both_low": {"title": "Обе части сейчас в минимуме", "fields": [{"k": "Что это значит", "v": "И обстоятельства, и поведение сейчас против вас: запаса на потерю нет, а решения принимаются из тревоги. В таком сочетании любое вложение с риском забирает деньги быстрее, чем приносит."}, {"k": "Почему это не приговор", "v": "Обе части поднимаются, и начинать нужно с обстоятельств. Резерв меняет не только цифры, он снимает часть тревоги, потому что появляется, на что жить, если что-то пойдёт не так."}, {"k": "Первый шаг", "v": "Посчитайте сумму обязательных платежей на один месяц: жильё, еда, лекарства, транспорт, дети. Соберите её на отдельном счёте и не трогайте. К вопросу о вложениях вернитесь, когда там будет три таких суммы."}]}}, "next": ["Выпишите два своих результата рядом: запас под риск и вашу реакцию на потерю. Дальше работайте с тем из них, который ниже. Поднимать риск, пока ниже стоит поведение, бесполезно, вы всё равно выйдете в худшей точке.", "Сделайте на этой неделе одно действие из карточки первого шага. Не план на год, а одно действие за семь дней."], "cut": {"title": "Что тест видит и чего не видит", "fields": [{"k": "Что вы уже получили", "v": "Ваш запас под риск по обстоятельствам, вашу реакцию на потерю и разрыв между ними. Этого достаточно, чтобы понять, где у вас сейчас узкое место."}, {"k": "Чего тест не видит", "v": "Он не подбирает вам инструменты и не называет доли вложений. Это работа с конкретными цифрами вашей жизни, и делается она лично, а не по результату теста."}, {"k": "Чего он не заменяет", "v": "За реакцией на потерю обычно стоит финансовый сценарий: человек ведёт себя так не потому, что не знает, как правильно, а потому что на этом месте у него старый опыт, страх или договорённость с собой. Это разбирается в личной работе."}]}}</script></div>
+<div class="cta"><span class="eyebrow"><i class="dot"></i>Следующий шаг</span><div class="ttl">Разбор финансовой идентичности с Ларисой Тернер</div><p class="sub">Кому подойдёт: доход есть, а накоплений нет; крупные решения о деньгах, вложить, взять кредит, помочь родным, принимаются на тревоге или откладываются годами.</p><p class="sub">Что получите: разберём, куда уходят ваши деньги, увидим сценарий, который этим управляет, и соберём первые шаги на ближайший месяц по резерву, долгам и накоплениям. Запись и подробности в Telegram у Ларисы.</p><a class="cta-btn" href="https://t.me/larisaturner">Запись на консультацию «Разбор финансовой идентичности»<span class="ar">&#8594;</span></a></div>
+</article>
+</main>
+<footer class="ft"><div class="ft-in"><a class="logo" href="/">Лариса<i class="sq"></i>Тернер</a><span class="sp"></span><nav class="ft-links"><a href="/">Все материалы</a><a href="/guide-uslugi/">Услуги</a><a href="/files/oferta/oferta-terner.pdf">Оферта</a><a href="/about/">Обо мне</a><a href="https://t.me/larisaturner">Запись на консультацию</a></nav></div><div class="ft-bot">Лариса Тернер · terner.money</div><div class="ft-law">Продавец: ИП Тернер Лариса Владимировна, ИНН 222210655492, ОГРНИП 325784700312500, larisa.terner@yandex.com, +7 981 905-22-99. Материалы сайта носят информационный характер и не являются индивидуальной инвестиционной рекомендацией или медицинской помощью.</div></footer>
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    navigator.clipboard.writeText(b.getAttribute('data-text')).then(function(){
+      var o=b.textContent;b.textContent='Скопировано';b.classList.add('done');
+      setTimeout(function(){b.textContent=o;b.classList.remove('done');},1600);
+    });
+  });
+});
+</script>
+
+<script>
+(function(){
+  var box=document.querySelector('.qz');if(!box)return;
+  var data=JSON.parse(document.getElementById('qz-data').textContent);
+  var opts=box.querySelectorAll('.qz-o');
+  var go=box.querySelector('.qz-go'),prog=box.querySelector('.qz-prog');
+  var res=box.querySelector('.qz-res');
+  var total=data.questions.length;
+
+  function answers(){
+    var out=[],i;
+    for(i=0;i<total;i++){
+      var el=box.querySelector('input[name="q'+i+'"]:checked');
+      out.push(el?parseInt(el.value,10):null);
+    }
+    return out;
+  }
+  function count(a){var n=0;a.forEach(function(v){if(v!==null)n++;});return n;}
+  function refresh(){
+    var n=count(answers());
+    prog.textContent=n+' из '+total;
+    go.disabled=n<total;
+  }
+  opts.forEach(function(l){
+    l.addEventListener('change',function(){
+      var name=l.querySelector('input').name;
+      box.querySelectorAll('input[name="'+name+'"]').forEach(function(i){
+        i.closest('.qz-o').classList.toggle('on',i.checked);
+      });
+      refresh();
+    });
+  });
+
+  // ties go to whichever name the author listed first, so the outcome is stable
+  // instead of depending on object key order in the browser
+  function top(pool,score){
+    var best=null,bv=0,i;
+    for(i=0;i<pool.length;i++){
+      var v=score[pool[i]]||0;
+      if(v>bv){bv=v;best=pool[i];}
+    }
+    return bv>0?{name:best,points:bv}:null;
+  }
+  // a result is a list of named fields (strategy, strengths, what limits, next level),
+  // so the card mirrors the structure of the author's own write-up instead of one blob
+  function fields(r){
+    if(r.text)return '<p>'+r.text+'</p>';
+    return (r.fields||[]).map(function(f){
+      var body=f.items
+        ? '<ul>'+f.items.map(function(i){return '<li>'+i+'</li>';}).join('')+'</ul>'
+        : '<p>'+f.v+'</p>';
+      return '<div class="qz-f"><div class="qz-fk">'+f.k+'</div>'+body+'</div>';
+    }).join('');
+  }
+  function card(lab,title,text,lead){
+    return '<div class="qz-card'+(lead?' qz-top':'')+'"><div class="qz-lab">'+lab+'</div>'+
+      '<h3>'+title+'</h3>'+text+'</div>';
+  }
+
+  function reset(){
+    box.querySelectorAll('input[type=radio]').forEach(function(i){i.checked=false;});
+    box.querySelectorAll('.qz-o.on').forEach(function(l){l.classList.remove('on');});
+    res.hidden=true;res.innerHTML='';
+    refresh();
+    box.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  go.addEventListener('click',function(){
+    var a=answers(),score={},readiness='',i;
+    for(i=0;i<total;i++){
+      var o=data.questions[i].options[a[i]];
+      if(!o)continue;
+      if(o.r)readiness=o.r;
+      var s=o.s||{};
+      for(var k in s){score[k]=(score[k]||0)+s[k];}
+    }
+    var html='';
+    // two scoring modes. "score": sum every axis, place the total on a band, then name the
+    // weakest links. default: pick the top-scoring name out of each pool.
+    if(data.mode==='score'){
+      var keys=data.axes.map(function(x){return x.key;});
+      // the band answers "is the working architecture covered", so it counts only the axes
+      // the author marked as load-bearing. Without band_axes every axis counts, as before.
+      var bandAxes=data.band_axes
+        ? data.axes.filter(function(x){return data.band_axes.indexOf(x.key)>=0;})
+        : data.axes;
+      var totalPts=0,maxPts=0;
+      bandAxes.forEach(function(x){totalPts+=score[x.key]||0;maxPts+=x.max;});
+      var band=data.bands[0];
+      for(i=0;i<data.bands.length;i++){if(totalPts>=data.bands[i].min)band=data.bands[i];}
+      html+=card(data.score_label.replace('{n}',totalPts).replace('{m}',maxPts),
+                 band.title,fields(band),true);
+      // leading axis: the one filled to the highest share of its own ceiling. Named first
+      // because the reader wants "what am I" before "what is missing".
+      if(data.lead){
+        var lead=data.axes.slice().sort(function(x,y){
+          var dx=(score[x.key]||0)/x.max,dy=(score[y.key]||0)/y.max;
+          return dy===dx?keys.indexOf(x.key)-keys.indexOf(y.key):dy-dx;
+        })[0];
+        // a run of all-zero answers has no leading role: naming one would be a lie
+        var lc=lead&&(score[lead.key]||0)>0&&data.lead[lead.key];
+        if(data.lead_hint)html+='<p class="qz-hint">'+data.lead_hint+'</p>';
+        if(lc)html+=card(data.lead_label||'Ваша ведущая роль',lc.title,fields(lc),false);
+        else if(data.lead_none)html+=card(data.lead_label||'Ваша ведущая роль',
+          data.lead_none.title,fields(data.lead_none),false);
+      }
+      // ties keep the author's axis order, so the advice is stable between runs
+      // a maxed-out axis is not a weak link, so a perfect run gets no "weakest" cards
+      // a missing axis is only a deficit among the axes a business must cover: an empty
+      // "Politician" is not a defect, an empty "Financier" is
+      var weakAxes=data.weak_axes
+        ? data.axes.filter(function(x){return data.weak_axes.indexOf(x.key)>=0;})
+        : data.axes;
+      var ranked=weakAxes.filter(function(x){return (score[x.key]||0)<x.max;})
+        .sort(function(x,y){
+          var dx=(score[x.key]||0)/x.max,dy=(score[y.key]||0)/y.max;
+          return dx===dy?keys.indexOf(x.key)-keys.indexOf(y.key):dx-dy;
+        });
+      var labs=data.weak_labels,shown=0;
+      for(i=0;i<Math.min(labs.length,ranked.length);i++){
+        var w=data.weak[ranked[i].key];
+        if(w){html+=card(labs[i],w.title,fields(w),false);shown++;}
+      }
+      // with nothing weak left, the default "start with your weakest link" advice would
+      // point at a card that is not on the page
+      // second, independent axis: questions scoring into data.position_pool keys
+      if(data.position_pool){
+        var pos=top(data.position_pool,score);
+        var pc=pos&&data.positions[pos.name];
+        if(pc)html+=card(data.position_label||'Ваша финансовая позиция',pc.title,fields(pc),false);
+      }
+      // the gap card: the band says what the numbers allow, gap_axis says what the person
+      // actually carries. The answer people need is the distance between the two, so it is
+      // read from shares of each own ceiling, never from raw points of different lengths.
+      if(data.gap&&data.gap_axis){
+        var gx=data.axes.filter(function(x){return x.key===data.gap_axis;})[0];
+        if(gx&&gx.max&&maxPts){
+          var cs=totalPts/maxPts,ts=(score[gx.key]||0)/gx.max,d=cs-ts;
+          // both shares near the floor is not a gap: calling it "you carry more than your
+          // numbers allow" would praise a person who is simply low on both axes
+          var gk=(cs<0.4&&ts<0.4&&data.gap.both_low)?'both_low'
+            :(d>0.2?'capacity_higher':(d<-0.2?'tolerance_higher':'aligned'));
+          var gc=data.gap[gk];
+          if(gc)html+=card(data.gap_label||'Разрыв между осями',gc.title,fields(gc),false);
+        }
+      }
+      var nx=shown?data.next:(data.next_full||data.next);
+      html+='<div class="qz-card"><div class="qz-lab">Что дальше</div>'+
+        nx.map(function(p){return '<p>'+p+'</p>';}).join('')+'</div>';
+      if(data.cut)html+=card('Честная граница этого теста',data.cut.title,fields(data.cut),false);
+      html+='<button class="qz-again" type="button">Пройти заново</button>';
+      res.innerHTML=html;res.hidden=false;
+      res.scrollIntoView({behavior:'smooth',block:'start'});
+      res.querySelector('.qz-again').addEventListener('click',reset);
+      return;
+    }
+    var id=top(data.identities,score),sc=top(data.scenarios,score);
+    if(id){
+      var r=data.results[id.name];
+      html+=card('Ваша финансовая идентичность',r.title,fields(r),true);
+    }
+    if(sc){
+      var r2=data.results[sc.name];
+      html+=card('Сценарий, который управляет деньгами',r2.title,fields(r2),false);
+      // the mechanic that HOLDS the scenario: emotional root plus secondary gain.
+      // without it the result names the loop but leaves the reader no handle on it.
+      var h=data.holds&&data.holds[sc.name];
+      if(h)html+=card('Что удерживает этот механизм',h.title,fields(h),false);
+    }else{
+      html+=card('Сценарий','Ярко выраженного сценария нет',
+        '<p>'+data.no_scenario+'</p>',false);
+    }
+    if(readiness)html+=card('Готовность к изменениям',readiness,'<p>'+data.readiness_note+'</p>',false);
+    html+='<div class="qz-card"><div class="qz-lab">Что дальше</div>'+
+      data.next.map(function(p){return '<p>'+p+'</p>';}).join('')+'</div>';
+    if(data.cut)html+=card('Честная граница этого теста',data.cut.title,fields(data.cut),false);
+    html+='<button class="qz-again" type="button">Пройти заново</button>';
+    res.innerHTML=html;
+    res.hidden=false;
+    res.scrollIntoView({behavior:'smooth',block:'start'});
+    res.querySelector('.qz-again').addEventListener('click',reset);
+  });
+
+  refresh();
+})();
+</script>
+</body></html>
