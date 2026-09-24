@@ -368,6 +368,17 @@ document.querySelectorAll('.copy').forEach(function(b){
       '<h3>'+title+'</h3>'+text+'</div>';
   }
 
+  // author's video under the result: text, watch button, then the booking call
+  function videoCard(v){
+    if(!v)return '';
+    var h='<div class="qz-card qz-top"><div class="qz-lab">'+v.label+'</div><h3>'+v.title+'</h3>'+
+      v.text.map(function(p){return '<p>'+p+'</p>';}).join('')+
+      '<p><a class="cta-btn" href="'+v.url+'" target="_blank" rel="noopener">'+v.button+'</a></p>'+
+      v.cta_text.map(function(p){return '<p>'+p+'</p>';}).join('')+
+      '<p><a class="cta-btn" href="'+v.cta_url+'" target="_blank" rel="noopener">'+v.cta_button+'</a></p></div>';
+    return h;
+  }
+
   function reset(){
     box.querySelectorAll('input[type=radio]').forEach(function(i){i.checked=false;});
     box.querySelectorAll('.qz-o.on').forEach(function(l){l.classList.remove('on');});
@@ -455,6 +466,7 @@ document.querySelectorAll('.copy').forEach(function(b){
           if(gc)html+=card(data.gap_label||'Разрыв между осями',gc.title,fields(gc),false);
         }
       }
+      html+=videoCard(data.video);
       var nx=shown?data.next:(data.next_full||data.next);
       html+='<div class="qz-card"><div class="qz-lab">Что дальше</div>'+
         nx.map(function(p){return '<p>'+p+'</p>';}).join('')+'</div>';
@@ -482,6 +494,7 @@ document.querySelectorAll('.copy').forEach(function(b){
         '<p>'+data.no_scenario+'</p>',false);
     }
     if(readiness)html+=card('Готовность к изменениям',readiness,'<p>'+data.readiness_note+'</p>',false);
+    html+=videoCard(data.video);
     html+='<div class="qz-card"><div class="qz-lab">Что дальше</div>'+
       data.next.map(function(p){return '<p>'+p+'</p>';}).join('')+'</div>';
     if(data.cut)html+=card('Честная граница этого теста',data.cut.title,fields(data.cut),false);
