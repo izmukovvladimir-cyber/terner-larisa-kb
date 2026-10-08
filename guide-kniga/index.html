@@ -299,6 +299,9 @@ border:1px solid var(--card-border);background:transparent;color:var(--text);ali
 a.hs-b:hover{box-shadow:0 0 0 2px #7a4b3a}
 .hs-b.soon{background:#efe6da;color:#6d625a;box-shadow:none}
 .hs-fd .hs-b{font-size:15px;padding:14px}
+.hs-row>.hs-b.wide{grid-column:1/-1}
+.hs-row .hs-b.big{font-size:18px;padding:18px 14px;box-shadow:0 0 0 2px #c9a57a}
+.hs-row .hs-b.big small{font-size:12px}
 .hs-link{display:block;background:#8a6a4f;padding:8px 10px;color:#fff;text-align:center;font-weight:700;font-size:13px}
 .hs-link small{display:block;font-weight:400;font-size:11px;opacity:.85}
 a.hs-link:hover{background:#7a5a40}
@@ -308,7 +311,7 @@ a.hs-link:hover{background:#7a5a40}
 .hs-fd{background:#5b4636;padding:14px 10px;border-radius:0 0 8px 8px}
 :root[data-theme=dark] .hs-zone,:root[data-theme=dark] .hs-zone.in{color:#d9b48f}
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]) .hs-zone{color:#d9b48f}}
-@media(max-width:400px){.hs-fl{padding:10px 8px}.hs-row{gap:6px}.hs-b{font-size:12px;padding:9px 4px}.hs-fd .hs-b{font-size:14px;padding:12px}}
+@media(max-width:400px){.hs-fl{padding:10px 8px}.hs-row{gap:6px}.hs-b{font-size:12px;padding:9px 4px}.hs-fd .hs-b{font-size:14px;padding:12px}.hs-row .hs-b.big{font-size:17px;padding:16px 12px}}
 .hero.about-hero{min-height:420px}.hero.about-hero .art{left:auto;right:0;width:50%;background:url('/files/img/larisa-about.jpg') right center/cover no-repeat;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 44%);mask-image:linear-gradient(90deg,transparent 0%,#000 44%)}.hero.about-hero .txt{max-width:50%;background:none}.hero.about-hero h1{font-size:32px;max-width:12ch}.hero.about-hero .desc{font-size:15px;max-width:30ch}@media(max-width:760px){.hero.about-hero{display:block;padding-top:210px}.hero.about-hero .art{left:0;right:0;width:100%;height:230px;background-position:center 22%;-webkit-mask-image:linear-gradient(180deg,#000 62%,transparent 100%);mask-image:linear-gradient(180deg,#000 62%,transparent 100%)}.hero.about-hero .txt{max-width:100%;padding-top:6px}.hero.about-hero h1{font-size:27px;max-width:none}.hero.about-hero .desc{max-width:none}}</style>
 <script>
 (function(){
