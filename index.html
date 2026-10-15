@@ -344,6 +344,33 @@ main,.ft{position:relative;z-index:1}
 body::after{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(120,160,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(120,160,255,.07) 1px,transparent 1px);background-size:56px 56px;pointer-events:none;z-index:0}
 .tgl{display:none}
 @media(prefers-reduced-motion:reduce){.hd-btn,.hs-roof,.logo .sq,h1,h2,.logo{animation:none!important}body::before{animation:none;opacity:.7}}
+</style><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap"><style id="mag">:root{--font-display:'Cormorant Garamond',Georgia,serif}
+.logo{font-family:'Cormorant Garamond',serif!important;font-weight:600!important;letter-spacing:.14em!important;text-transform:uppercase;font-size:20px!important}
+.logo .sq{display:inline-block!important;visibility:hidden!important;width:0!important;height:1px!important;animation:none!important}
+.hd-btn,.hd-btn .lb,.cta-btn,.read .lbl{font-family:Inter,sans-serif!important}
+h1,h2,.ttl,.ct,.hs-h{font-family:'Cormorant Garamond',Georgia,serif!important;font-weight:600!important;letter-spacing:0!important}
+.ct{font-size:1.32em!important;line-height:1.15!important}
+.hero h1{font-size:clamp(40px,5vw,64px)!important;line-height:1.02!important}
+.hs-h{font-size:clamp(30px,3.4vw,42px)!important}
+.ttl{font-size:clamp(32px,3.6vw,46px)!important}
+.hs-me{display:none!important}
+.cover{position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:620px;margin:28px 0 56px;border:1px solid rgba(212,175,55,.28);border-radius:22px;overflow:hidden;background:#0b1430}
+.cover .ph{min-height:420px}
+.cover .tx{display:flex;flex-direction:column;justify-content:center;padding:56px 56px 56px 60px}
+.cover .kk{font:600 12px/1.4 Inter,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#d4af37;margin:0 0 26px}
+.cover h1.c{font-family:'Cormorant Garamond',serif!important;font-weight:600!important;font-size:clamp(42px,4.6vw,66px)!important;line-height:1.02!important;color:#f4efe2;margin:0 0 22px}
+.cover h1.c em{font-style:italic;color:#e3c56a}
+.cover p.s{font:400 18px/1.55 Inter,sans-serif;color:rgba(236,232,220,.78);margin:0 0 34px;max-width:30em}
+.cover .rule{width:56px;height:1px;background:#d4af37;margin:0 0 26px}
+.cover .who{font:500 14px/1.4 Inter,sans-serif;color:rgba(236,232,220,.62);margin-top:30px}
+.cover .who b{color:#f4efe2;font-weight:600}
+.cover .who a{color:#e3c56a}
+.pq{margin:70px auto 64px;max-width:860px;text-align:center;padding:0 16px}
+.pq .q{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(34px,4.4vw,58px);line-height:1.12;color:#f4efe2;margin:0}
+.pq .q:before{content:'«';color:#d4af37}.pq .q:after{content:'»';color:#d4af37}
+.pq .rl{width:56px;height:1px;background:#d4af37;margin:30px auto 16px}
+.pq .sg{font:600 12px/1.4 Inter,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#d4af37}
+@media(max-width:860px){.cover{grid-template-columns:1fr;min-height:0}.cover .ph{min-height:440px;background-position:center 18%!important}.cover .tx{padding:34px 24px 38px}.cover p.s{font-size:16px}}
 </style>
 <script>
 (function(){
@@ -361,7 +388,9 @@ body::after{content:"";position:fixed;inset:0;background-image:linear-gradient(r
 </script>
 </head><body><header class="hd"><div class="hd-in"><a class="logo" href="/">Лариса<i class="sq"></i>Тернер</a><nav class="hd-nav"><a class="cur" href="/">Все материалы</a><a href="/guide-uslugi/">Услуги</a><a href="/files/oferta/oferta-terner.pdf">Оферта</a><a href="/about/">Обо мне</a></nav><span class="sp"></span><div class="tools"><button class="tgl" type="button" aria-label="Сменить тему"><svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"/></svg></button><a class="hd-btn" href="https://t.me/turnelarisa_bot?start=diagnostika"><span class="lb">Запись на консультацию</span><span class="ar">&#8594;</span></a></div></div></header>
 <main class="wrap">
+<section class="cover"><div class="ph" role="img" aria-label="Лариса Тернер" style="background:url('/files/img/larisa-about.jpg') center 22%/cover"></div><div class="tx"><p class="kk">Психология денег и личные финансы</p><h1 class="c">Доход, который становится <em>капиталом</em></h1><div class="rule"></div><p class="s">Для тех, кто уже умеет зарабатывать. Разберём, какие решения держат ваш доход на месте, и соберём систему, в которой деньги остаются и работают.</p><a class="hd-btn" href="https://t.me/turnelarisa_bot?start=diagnostika" style="align-self:flex-start"><span class="lb">Записаться на диагностику</span><span class="ar">&#8594;</span></a><p class="who"><b>Лариса Тернер</b>, автор методологии «LifeTime. Финансовая архитектура жизни». <a href="/about/">Обо мне</a></p></div></section>
 <section class="hs" id="house"><a class="hs-me" href="/about/"><img src="/files/img/larisa-about.jpg" alt="Лариса Тернер" width="86" height="86"><div><b>Лариса Тернер</b><span>автор методологии «LifeTime. Финансовая архитектура жизни»</span><i>Обо мне</i></div></a><h2 class="hs-h">Ваш финансовый дом</h2><p class="hs-sub">Нажмите на кирпич, чтобы пройти тест или прочитать разбор</p><div class="hs-roof"><span class="hs-t">Родовой капитал, наследие</span></div><p class="hs-zone">Деньги снаружи</p><div class="hs-fl t3"><p class="hs-lbl">Приумножение</p><div class="hs-row"><a class="hs-b" href="/guide-risk/">Фондовый рынок: акции<small>тест на риск</small></a><span class="hs-b soon">Внебиржевой рынок, Pre-IPO</span><span class="hs-b soon">Займы бизнесу, стартапы</span><span class="hs-b soon">Спекуляции</span></div></div><div class="hs-fl t2"><p class="hs-lbl">Сохранение</p><div class="hs-row"><span class="hs-b soon">Фондовый рынок: облигации</span><span class="hs-b soon">Недвижимость, земля</span><span class="hs-b soon">Золото</span></div></div><div class="hs-fl t1"><p class="hs-lbl">Защита</p><div class="hs-row"><a class="hs-b" href="/guide-opora/">Подушка безопасности<small>разбор</small></a><span class="hs-b soon">НСЖ</span><span class="hs-b soon">Рисковое страхование</span><span class="hs-b soon">Пассивный доход<small>начинать формировать чем раньше, тем лучше</small></span></div></div><div class="hs-link">Связка · инструменты под цель<small>у каждой цели свой инструмент: короткую цель долгим инструментом не решить</small><small></small></div><p class="hs-zone in">Фундамент · деньги внутри<small>как вы взаимодействуете с деньгами</small></p><div class="hs-fd"><div class="hs-row"><a class="hs-b" href="/guide-kniga/">Навык управления финансами<small>инструмент «Деньги без автопилота»</small></a><a class="hs-b" href="/guide-plan/">Личный финансовый план<small>разбор</small></a><a class="hs-b wide big" href="/guide-test/">Внутренний финансовый контур<small>пройти тест</small></a><a class="hs-b small" href="/guide-dostatochno/">Книга «Когда денег достаточно, или Почему высокий доход не приводит к финансовой свободе»<small>читать</small></a></div></div></section>
+<section class="pq"><p class="q">Заработать и сохранить это совершенно разные навыки.</p><div class="rl"></div><div class="sg">Лариса Тернер</div></section>
 <section class="hero"><div class="art"></div><div class="grid"></div><div class="glow"></div><div class="txt"><span class="eyebrow"><i class="dot"></i>Моя база знаний</span><h1>Финансовая архитектура жизни</h1><p class="desc">Здесь лежат материалы про то, как устроены ваши решения о деньгах. Тесты, разборы сценариев, инструменты для плана. Для тех, кто умеет зарабатывать и хочет, чтобы доход наконец превращался в капитал.</p><div class="read"><span class="circ">&#8594;</span><span class="lbl">Смотреть материалы</span></div></div></section>
 <div class="tabs" id="list">
 <button class="tab on" type="button" data-cat="all">Все материалы</button>
