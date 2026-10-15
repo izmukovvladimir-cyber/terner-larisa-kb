@@ -365,6 +365,8 @@ h1,h2,.ttl,.ct,.hs-h{font-family:'Cormorant Garamond',Georgia,serif!important;fo
 .cover .who{font:500 14px/1.4 Inter,sans-serif;color:rgba(236,232,220,.62);margin-top:30px}
 .cover .who b{color:#f4efe2;font-weight:600}
 .cover .who a{color:#e3c56a}
+/* the header .lb clips at 36vw; on the cover the call to action wraps instead of losing words */
+.cover .hd-btn{white-space:normal;max-width:100%}.cover .hd-btn .lb{max-width:none;white-space:normal;overflow:visible;text-overflow:clip;line-height:1.25}
 .pq{margin:70px auto 64px;max-width:860px;text-align:center;padding:0 16px}
 .pq .q{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(34px,4.4vw,58px);line-height:1.12;color:#f4efe2;margin:0}
 .pq .q:before{content:'«';color:#d4af37}.pq .q:after{content:'»';color:#d4af37}
