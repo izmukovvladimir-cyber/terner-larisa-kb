@@ -566,6 +566,12 @@ document.querySelectorAll('.copy').forEach(function(b){
       // without it the result names the loop but leaves the reader no handle on it.
       var h=data.holds&&data.holds[sc.name];
       if(h)html+=card('Что удерживает этот механизм',h.title,fields(h),false);
+      // the full write-up of the leading scenario lives in the bot: the link carries the
+      // scenario, so the reader gets their own text without choosing anything
+      var dc=data.decode,ds=dc&&dc.slugs[sc.name];
+      if(ds)html+='<div class="qz-card qz-top"><div class="qz-lab">'+dc.label+'</div><h3>'+dc.title+'</h3>'+
+        '<p>'+dc.text+'</p><p><a class="cta-btn" href="'+dc.base+ds+'" target="_blank" rel="noopener">'+
+        dc.button+'</a></p></div>';
     }else{
       html+=card('Сценарий','Ярко выраженного сценария нет',
         '<p>'+data.no_scenario+'</p>',false);
