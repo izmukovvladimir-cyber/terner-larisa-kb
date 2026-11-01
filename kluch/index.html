@@ -262,21 +262,24 @@ function result(){
 
    ${ready?`<p class="note" style="margin:0">Готовность к изменениям: ${esc(ready.r)}.</p>`:""}
 
-   <div class="callout stack" style="gap:12px"><div class="eyebrow">Дальше</div><h3>Разбор с Ларисой</h3>
+   ${GIFT?`<div class="callout stack" style="gap:12px"><div class="eyebrow">Дальше</div><h3>Разбор с Ларисой</h3>
     <p style="margin:0">Тест показывает, где вы сейчас.</p>
     <p style="margin:0">На разборе мы найдём, откуда это идёт и что поменять в первую очередь.</p>
-    <p style="margin:0">Сделайте скриншот этой страницы и пришлите его Ларисе перед консультацией.</p>
-    <p style="margin:0"><b>Стоимость теста вычтем из цены консультации.</b></p></div>
+    <p style="margin:0">Сделайте скриншот этой страницы и пришлите его Ларисе перед консультацией.</p></div>`:`<div class="callout stack" style="gap:12px"><div class="eyebrow">Приглашение</div><h3>Консультация со скидкой</h3>
+    <p style="margin:0">Тест показал, где вы сейчас. На консультации мы найдём, откуда это идёт и что поменять в первую очередь.</p>
+    <p style="margin:0"><b>Приглашаю вас на консультацию со скидкой: 1 010 ₽ вместо 2 000 ₽.</b> Стоимость теста мы вычитаем.</p>
+    <p style="margin:0">Сделайте скриншот этой страницы, он понадобится на встрече.</p>
+    <a class="btn" href="https://t.me/turnelarisa_bot?start=kluch_konsult" target="_blank" rel="noopener" style="text-align:center;text-decoration:none">Записаться за 1 010 ₽</a></div>`}
    <button class="btn ghost" id="again">Пройти заново</button></div>`;
   again.onclick=intro;
 }
-const KH=["ca1049cc1d494277e2749622d928b8560f6d2a77d9d446dad1976922052a8248", "19b7913ded3ed0743f380d8677b3ab364d2beca13498f2145689b0accd207050"];
+const KH=["ca1049cc1d494277e2749622d928b8560f6d2a77d9d446dad1976922052a8248", "19b7913ded3ed0743f380d8677b3ab364d2beca13498f2145689b0accd207050"];let GIFT=false;
 async function sha(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}
 async function unlocked(){
   let k=new URLSearchParams(location.search).get("k");
   if(!k){try{k=localStorage.getItem("kluch_k")}catch(e){}}
   if(!k)return false;
-  const ok=KH.includes(await sha(k));
+  const h=await sha(k);const ok=KH.includes(h);GIFT=(h==="19b7913ded3ed0743f380d8677b3ab364d2beca13498f2145689b0accd207050");
   if(ok){try{localStorage.setItem("kluch_k",k)}catch(e){}}
   return ok;
 }
@@ -293,7 +296,7 @@ function paywall(){
    <div class="callout stack" style="gap:10px">
      <div class="eyebrow">Стоимость</div>
      <h2 style="margin:0">990 ₽</h2>
-     <p style="margin:0">Если после теста решите прийти на консультацию к Ларисе, 990 ₽ вычтем из её стоимости.</p>
+     <p style="margin:0">После теста приглашаю вас на консультацию со скидкой: 990 ₽ за тест вычтем из её стоимости.</p>
    </div>
    <a class="btn" href="https://t.me/turnelarisa_bot?start=kluch" target="_blank" rel="noopener" style="text-align:center;text-decoration:none">Пройти тест за 990 ₽</a>
    <span class="note">Оплата в Telegram-боте Ларисы. Сразу после оплаты бот пришлёт вашу ссылку на тест.</span></div>`;
