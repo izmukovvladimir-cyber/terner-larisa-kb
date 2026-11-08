@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Финансовая опора Plus</title>
+<meta name="description" content="Программа Ларисы Тернер «Финансовая опора Plus»: 6 встреч для сложных финансовых ситуаций, долгов, потерь и нестабильного дохода.">
+<meta property="og:title" content="Финансовая опора Plus">
+<meta property="og:description" content="6 встреч с Ларисой Тернер: финансовая система с учётом вашей реальной ситуации и план на 30, 90 и 180 дней.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+:root{--navy:#0e1a3a;--navy2:#16285a;--gold:#b8924a;--gold2:#e6c98a;--ivory:#fbf8f2;--ink:#29324d;--muted:#5d6681;--line:rgba(184,146,74,.45);
+--display:'Cormorant Garamond',Georgia,serif;--body:'Manrope',system-ui,-apple-system,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--ivory);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:600;color:var(--navy);margin:0;text-wrap:balance}
+h2{font-size:clamp(30px,6vw,40px);line-height:1.08;margin-bottom:18px}
+h3{font-size:24px;line-height:1.15}
+p{margin:0 0 14px}
+b{color:var(--navy)}
+.wrap{max-width:720px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left))}
+.k{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:12px}
+.k::after{content:"";width:48px;height:1px;background:currentColor}
+section{padding:64px 0}
+.rule{width:80px;height:1px;background:var(--gold);margin:0 auto}
+/* hero */
+.hero{background:var(--navy) url(hero.jpg) right top/auto 100% no-repeat;color:#dfe4f1;position:relative;padding:0}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--navy) 0%,rgba(14,26,58,.85) 42%,rgba(14,26,58,0) 75%)}
+.hero .wrap{position:relative;min-height:620px;display:flex;flex-direction:column;justify-content:center;padding-top:56px;padding-bottom:56px}
+.hero .in{max-width:400px}
+.hero .k{color:var(--gold2)}
+.hero h1{color:#fff;font-size:clamp(44px,9vw,64px);line-height:1}
+.hero h1 i{font-weight:500;background:linear-gradient(100deg,#c79a4c,#f3dca4 50%,#c39446);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .sub{font-size:18px;margin:22px 0 28px;color:#d3d9ea}
+.hero .sub b{color:#fff}
+.btn{display:inline-block;background:linear-gradient(100deg,#c9a057,#ecd39b 55%,#c49647);color:var(--navy);font-weight:700;text-decoration:none;border-radius:40px;padding:16px 30px;font-size:16px;letter-spacing:.02em;box-shadow:0 8px 24px rgba(184,146,74,.25)}
+.btn:focus-visible{outline:3px solid var(--gold2);outline-offset:3px}
+.price-line{margin-top:16px;font-size:14px;color:#aab3cc;letter-spacing:.04em}
+@media (max-width:640px){
+ .hero{background-size:cover;background-position:72% top}
+ .hero::before{background:linear-gradient(0deg,var(--navy) 0%,rgba(14,26,58,.92) 48%,rgba(14,26,58,.15) 100%)}
+ .hero .wrap{min-height:760px;justify-content:flex-end}
+}
+/* recognition */
+.list-q{list-style:none;padding:0;margin:22px 0}
+.list-q li{padding:16px 0 16px 34px;border-bottom:1px solid var(--line);position:relative}
+.list-q li::before{content:"";position:absolute;left:4px;top:25px;width:14px;height:1px;background:var(--gold)}
+.quote{font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(24px,5vw,30px);line-height:1.25;color:var(--navy);text-align:center;margin:36px auto 0;max-width:560px}
+/* story */
+.dark{background:var(--navy);color:#e3e7f2}
+.dark h2{color:#fff}.dark b{color:var(--gold2)}.dark .k{color:var(--gold2)}
+.story{border:1px solid rgba(230,201,138,.5);padding:28px;position:relative;margin-top:8px}
+.story::before,.story::after{content:"";position:absolute;width:22px;height:22px;border:1px solid var(--gold2)}
+.story::before{top:8px;left:8px;border-right:0;border-bottom:0}
+.story::after{bottom:8px;right:8px;border-left:0;border-top:0}
+/* ab */
+.ab{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);background:#fff;margin-top:8px}
+.ab div{padding:24px}
+.ab div+div{border-left:1px solid var(--line);background:#fffdf8}
+.ab h3{font-size:22px;margin-bottom:12px}
+.ab ul{margin:0;padding-left:18px}.ab li{margin-bottom:8px;font-size:16px}
+@media (max-width:640px){.ab{grid-template-columns:1fr}.ab div+div{border-left:0;border-top:1px solid var(--line)}}
+/* steps */
+.steps{counter-reset:s;margin-top:8px}
+.step{display:grid;grid-template-columns:64px 1fr;gap:16px;padding:22px 0;border-bottom:1px solid var(--line)}
+.step .n{font-family:var(--display);font-size:44px;line-height:1;color:var(--gold)}
+.step h3{margin-bottom:6px}
+.step p{margin:0;color:var(--muted);font-size:16px}
+/* format */
+.fmt{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);margin:8px 0 28px}
+.fmt div{padding:22px 12px;text-align:center;font-size:14px;color:var(--muted)}
+.fmt div+div{border-left:1px solid var(--line)}
+.fmt b{display:block;font-family:var(--display);font-size:30px;font-weight:600;line-height:1.1;margin-bottom:4px}
+@media (max-width:520px){.fmt{grid-template-columns:1fr}.fmt div+div{border-left:0;border-top:1px solid var(--line)}}
+.res{list-style:none;padding:0;margin:0}
+.res li{padding:10px 0 10px 32px;position:relative}
+.res li::before{content:"";position:absolute;left:2px;top:17px;width:12px;height:12px;border:1px solid var(--gold);transform:rotate(45deg)}
+/* author */
+.author{display:grid;grid-template-columns:150px 1fr;gap:28px;align-items:center}
+.author img{width:150px;height:150px;border-radius:50%;object-fit:cover;object-position:62% 18%;border:1px solid var(--gold)}
+@media (max-width:560px){.author{grid-template-columns:1fr;text-align:center}.author img{margin:0 auto}}
+/* price */
+.price{background:#fff;border:1px solid var(--gold);padding:40px 28px;text-align:center;position:relative}
+.price .sum{font-family:var(--display);font-size:56px;font-weight:600;color:var(--navy);line-height:1;margin:10px 0 6px}
+.price .note{font-size:15px;color:var(--muted);margin-bottom:26px}
+.price .alt{font-size:15px;color:var(--muted);margin-top:22px}
+/* faq */
+details{border-bottom:1px solid var(--line);padding:18px 0}
+summary{cursor:pointer;font-family:var(--display);font-size:22px;font-weight:600;color:var(--navy);list-style:none;position:relative;padding-right:30px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:4px;top:-2px;color:var(--gold);font-size:26px}
+details[open] summary::after{content:"−"}
+details p{margin:12px 0 0;color:var(--muted)}
+footer{text-align:center;padding:40px 16px 60px;font-size:13px;color:var(--muted)}
+footer .mono{font-family:var(--display);letter-spacing:.5em;color:var(--gold);font-size:16px;margin-bottom:8px}
+.topbar{position:absolute;top:0;left:0;right:0;z-index:5}
+.topbar .wrap{display:flex!important;flex-direction:row!important;justify-content:space-between!important;align-items:center;min-height:0!important;padding-top:18px!important;padding-bottom:18px!important}
+.topbar a{text-decoration:none;color:var(--gold2);font-family:var(--display);letter-spacing:.28em;font-size:15px;text-transform:uppercase}
+.topbar a.all{font-family:var(--body);letter-spacing:.08em;font-size:13px;color:#cfd6ea;text-transform:none}
+.hero{position:relative}
+footer a{color:var(--gold);text-decoration:none}
+</style></head>
+<body>
+<header class="hero"><nav class="topbar"><div class="wrap"><a href="/">Лариса Тернер</a><a class="all" href="/guide-uslugi/">Все услуги</a></div></nav><div class="wrap"><div class="in">
+ <div class="k">Программа · 6 встреч</div>
+ <h1>Финансовая опора <i>Plus</i></h1>
+ <p class="sub">Для тех, у кого за деньгами стоит <b>непростая история</b>: долги, потери, нестабильный доход, неудачный опыт в бизнесе. Мы идём глубже и <b>собираем систему под вашу реальную ситуацию</b>, а не под идеальную.</p>
+ <a class="btn" href="https://t.me/larisaturner">Оставить заявку</a>
+ <div class="price-line">6–8 недель · онлайн · 60&nbsp;000&nbsp;₽</div>
+</div></div></header>
+
+<section><div class="wrap">
+ <div class="k">Узнаёте себя?</div>
+ <h2>Когда четырёх встреч мало</h2>
+ <ul class="list-q">
+  <li>Есть <b>долги или кредиты</b>, и кажется, что пока их не закроешь, думать о капитале бессмысленно.</li>
+  <li>Был бизнес или вложение, которое <b>закончилось потерей</b>, и с тех пор страшно принимать крупные решения.</li>
+  <li>Доход <b>то густо, то пусто</b>: хороший месяц сменяется пустым, и невозможно ничего планировать.</li>
+  <li>Деньги в семье это <b>тема для споров</b>, а не для общих решений.</li>
+  <li>Вы уже пробовали «взять себя в руки» с деньгами, но <b>через пару месяцев всё возвращалось</b>.</li>
+ </ul>
+ <p>В такой ситуации обычные советы «откладывайте 10%» не работают. Не потому, что вы что-то делаете не так. <b>Сначала нужно разобрать то, что тянет назад</b>: страх после потерь, привычку закрывать одну дыру другой, границы в отношениях. Тогда система держится.</p>
+ <div class="quote">Самый дорогой риск в деньгах это ничего не сохранять. Начать можно с любой суммы и из любой точки.</div>
+</div></section>
+
+<section class="dark"><div class="wrap">
+ <div class="k">Из практики</div>
+ <h2>Долг 10 миллионов и новое дело</h2>
+ <div class="story">
+  <p>Ко мне пришёл бывший военный. После краха бизнеса у него был <b>долг 10 миллионов</b>, а жена не принимала его новое дело. Мы начали с психотерапевтической работы, и отношения в семье стали налаживаться: жена начала к нему прислушиваться.</p>
+  <p style="margin:0">Сейчас у них <b>совместный бизнес</b>, он освоил новую профессию, его доход вырос <b>на 10 000 долларов в месяц</b>, а капитал <b>больше 100 000 долларов</b>.</p>
+ </div>
+</div></section>
+
+<section><div class="wrap">
+ <div class="k">Что изменится</div>
+ <h2>Из точки А в точку Б</h2>
+ <div class="ab">
+  <div><h3>Сейчас</h3><ul>
+   <li>долги и обязательства давят, решения откладываются</li>
+   <li>после потерь страшно рисковать и страшно стоять на месте</li>
+   <li>доход скачет, планировать невозможно</li>
+   <li>в семье о деньгах спорят или молчат</li></ul></div>
+  <div><h3>После программы</h3><ul>
+   <li><b>понятный план</b> по долгам, резерву и накоплениям одновременно</li>
+   <li><b>свой уровень риска</b> и правила крупных решений</li>
+   <li>резерв, который <b>выдерживает пустые месяцы</b></li>
+   <li>финансовые границы и <b>общие правила в семье</b></li></ul></div>
+ </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+ <div class="k">Как проходит работа</div>
+ <h2>Всё, что есть в «Опоре», и ещё глубже</h2>
+ <p style="color:var(--muted)">Сначала четыре опоры: финансовая карта, денежные привычки, эмоциональные решения и план. Затем две встречи на то, что делает вашу ситуацию сложной.</p>
+ <div class="steps">
+  <div class="step"><div class="n">I</div><div><h3>Финансовая карта</h3><p>Доходы, расходы, долги, обязательства и накопления. Реальная картина без стыда и оценок.</p></div></div>
+  <div class="step"><div class="n">II</div><div><h3>Денежные привычки</h3><p>Семейные установки и сценарии, из-за которых история с деньгами повторяется.</p></div></div>
+  <div class="step"><div class="n">III</div><div><h3>Эмоциональные решения</h3><p>Страх после потерь, тревога, импульсивные траты. Чтобы решения перестали приниматься на автомате.</p></div></div>
+  <div class="step"><div class="n">IV</div><div><h3>Цели и приоритеты</h3><p>Что важнее сейчас: долги, резерв или накопления, и в каком порядке двигаться, чтобы не выбирать одно вместо другого.</p></div></div>
+  <div class="step"><div class="n">V</div><div><h3>Резерв, риск и границы</h3><p>Резерв на пустые месяцы, допустимый для вас уровень риска, финансовые границы в отношениях и правила крупных покупок.</p></div></div>
+  <div class="step"><div class="n">VI</div><div><h3>Ваша система движения к капиталу</h3><p>Собираем всё в личную систему и план действий на 30, 90 и 180 дней.</p></div></div>
+ </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+ <div class="k">Формат</div>
+ <div class="fmt">
+  <div><b>6</b>онлайн-встреч по 75–90 минут</div>
+  <div><b>6–8</b>недель с домашними заданиями и сопровождением</div>
+  <div><b>180</b>дней плана в итоговом документе</div>
+ </div>
+ <h3 style="margin-bottom:10px">В финале у вас на руках</h3>
+ <ul class="res">
+  <li>полная картина ваших денег, включая долги и обязательства;</li>
+  <li>сценарий, который повторялся, и чем вы его заменили;</li>
+  <li>ваш уровень риска и правила крупных решений;</li>
+  <li>финансовые границы и договорённости в отношениях;</li>
+  <li><b>расширенный документ с вашей финансовой системой и планом на 30, 90 и 180 дней</b>;</li>
+  <li>сопровождение всё время программы.</li>
+ </ul>
+</div></section>
+<section class="dark"><div class="wrap">
+ <div class="author">
+  <img src="hero.jpg" alt="Лариса Тернер">
+  <div>
+   <div class="k">Кто ведёт</div>
+   <h2 style="margin-bottom:12px">Лариса Тернер</h2>
+   <p>Врач-психотерапевт с <b>27-летней практикой</b> и специалист по личному финансовому планированию. Последние 7 лет работаю с деньгами людей.</p>
+   <p style="margin:0">Психологи работают со страхами, но редко помогают собрать капитал. Финансисты считают цифры, но не видят, что стоит за решениями. <b>Я вижу и цифры, и состояние, в котором вы с ними обращаетесь.</b> Поэтому рост у моих клиентов идёт без обнулений.</p>
+  </div>
+ </div>
+</div></section>
+
+<section><div class="wrap">
+ <div class="price">
+  <div class="k" style="justify-content:center">Участие</div>
+  <h2 style="margin:0">Финансовая опора Plus</h2>
+  <div class="sum">60 000 ₽</div>
+  <div class="note">6 встреч · 6–8 недель · план на 30, 90 и 180 дней</div>
+  <a class="btn" href="https://t.me/larisaturner">Оставить заявку</a>
+  <div class="alt">Ситуация проще и долгов нет? Подойдёт <b>«Финансовая опора»</b>, 4 встречи, 45&nbsp;000&nbsp;₽. Напишите, и вместе выберем формат.</div>
+ </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+ <div class="k">Вопросы</div>
+ <details><summary>Есть смысл, пока у меня долги?</summary><p>Да, именно тогда. Мы строим план, в котором долги закрываются и параллельно появляется резерв. Иначе после последнего платежа всё начинается заново.</p></details>
+ <details><summary>Чем Plus отличается от «Опоры»?</summary><p>В Plus две дополнительные встречи и больше времени на вашу ситуацию: цели и приоритеты, резерв, риск, границы в отношениях, правила крупных покупок. И план не на 90, а на 30, 90 и 180 дней.</p></details>
+ <details><summary>У меня был неудачный опыт в бизнесе. Мне подходит?</summary><p>Да. Страх после потерь одна из главных тем этой программы. Мы разбираем его, чтобы вы снова могли принимать решения, а не откладывать их.</p></details>
+ <details><summary>Что будет после программы?</summary><p>Останется ваша финансовая система и план на полгода. Если захотите идти дальше, к личной системе капитала, есть наставничество LifeTime.</p></details>
+</div></section>
+
+<footer><div class="mono">L · T</div>Лариса Тернер · Масштаб личности в масштаб капитала<br><br><a href="/guide-uslugi/">Все услуги</a> · <a href="/">Главная</a> · <a href="/policy/">Политика конфиденциальности</a></footer>
+</body></html>
