@@ -5,66 +5,101 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Фокусная диагностика</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,800;0,900;1,700;1,800&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#1f1d1b;--ink2:#2a2724;--paper:#f5f1ea;--muted:#8d857b;--copper:#b0703f;--line:rgba(176,112,63,.35)}
+:root{--bg:#0a0a0a;--bg2:#141414;--fg:#f4f4ef;--mut:#9a9a92;--acc:#d0ff00;--vio:#8116e0;--hair:rgba(244,244,239,.12);--paper:#f4f4ef}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--paper);color:var(--ink);font:400 18px/1.55 Manrope,system-ui,sans-serif}
-h1,h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-height:1.08}
-h2{font-size:40px;margin-bottom:22px}
-h2 em,h1 em{font-style:italic;color:var(--copper);font-weight:500}
-.wrap{max-width:720px;margin:0 auto;padding:0 22px}
-section{padding:72px 0;position:relative}
-.dark{background:var(--ink);color:var(--paper)}
-.dark .muted{color:#b8afa3}
-.kicker{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--copper);margin-bottom:14px;font-weight:600}
-.muted{color:var(--muted)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font:500 17px/1.6 Montserrat,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+/* texture 1: film grain over the whole page */
+body:after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:50;opacity:.09;mix-blend-mode:overlay;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* texture 3: blueprint grid on dark blocks */
+.grid{position:relative}
+.grid:before{content:"";position:absolute;inset:0;pointer-events:none;
+ background-image:linear-gradient(var(--hair) 1px,transparent 1px),linear-gradient(90deg,var(--hair) 1px,transparent 1px);background-size:56px 56px;opacity:.35;
+ -webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,#000 30%,transparent 80%);mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,#000 30%,transparent 80%)}
+/* texture 2: focus glow */
+.glow{position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(208,255,0,.22),rgba(208,255,0,0) 65%);filter:blur(10px);pointer-events:none}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px;position:relative;z-index:1}
+section{padding:96px 0;position:relative;overflow:hidden}
+.idx{display:flex;align-items:center;gap:14px;font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--mut);margin-bottom:26px}
+.idx b{color:var(--acc);font-weight:800}
+.idx:after{content:"";flex:1;height:1px;background:var(--hair)}
+h1,h2,h3{font-weight:900;letter-spacing:-.03em;line-height:.98}
+h2{font-size:clamp(34px,7vw,56px);margin-bottom:28px}
+em{font-style:italic;font-weight:800;color:var(--acc)}
+p+p{margin-top:16px}
+.lead{font-size:20px;line-height:1.5;color:var(--fg)}
+.mut{color:var(--mut)}
 /* hero */
-.hero{background:var(--ink);color:var(--paper);padding:56px 0 64px;overflow:hidden}
-.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 58%,var(--line) 58.2%,transparent 58.6%),linear-gradient(115deg,transparent 72%,rgba(176,112,63,.18) 72.2%,transparent 72.5%);pointer-events:none}
-.hero h1{font-size:54px;margin:8px 0 16px}
-.hero p.sub{font-size:20px;color:#d9d1c6;max-width:520px}
-.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:36px}
-.duo figure{position:relative}
-.duo img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;}
-.duo figcaption{margin-top:10px;font-size:15px;color:#d9d1c6}
-.duo figcaption b{display:block;color:var(--paper);font-weight:600;font-size:16px}
-/* lists */
-ul.check{list-style:none}
-ul.check li{padding:14px 0 14px 34px;border-bottom:1px solid rgba(31,29,27,.1);position:relative}
-ul.check li:before{content:"";position:absolute;left:0;top:24px;width:18px;height:1px;background:var(--copper)}
-.dark ul.check li{border-color:rgba(245,241,234,.12)}
+.hero{padding:72px 0 80px;min-height:100svh}
+.hero .glow{top:-120px;right:-160px}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);margin-bottom:64px}
+.top span:last-child{color:var(--acc)}
+.hero h1{font-size:clamp(52px,14vw,124px);text-transform:uppercase}
+.hero h1 em{display:block;text-transform:none;font-size:.62em;letter-spacing:-.02em;margin-top:6px}
+.hero .lead{max-width:520px;margin-top:28px;color:#d6d6cf}
+.badge{display:inline-flex;align-items:center;gap:10px;margin-top:30px;padding:10px 16px;border:1px solid rgba(208,255,0,.4);border-radius:999px;font-size:14px;font-weight:600}
+.badge:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--acc);box-shadow:0 0 12px var(--acc)}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:56px}
+.duo figure{position:relative;border-radius:22px;overflow:hidden}
+.duo img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+.duo figcaption{position:absolute;left:0;right:0;bottom:0;padding:44px 16px 16px;background:linear-gradient(transparent,rgba(0,0,0,.85));font-size:13px;color:#cfcfc8}
+.duo figcaption b{display:block;font-size:17px;font-weight:800;color:#fff;letter-spacing:-.01em}
+/* pain rows */
+.rows{list-style:none;counter-reset:r;border-top:1px solid var(--hair)}
+.rows li{counter-increment:r;display:grid;grid-template-columns:56px 1fr;gap:8px;padding:20px 0;border-bottom:1px solid var(--hair);font-size:18px}
+.rows li:before{content:counter(r,decimal-leading-zero);font-weight:900;font-size:22px;color:transparent;-webkit-text-stroke:1px var(--acc)}
+/* light block */
+.light{background:var(--paper);color:#0b0b0b}
+.light .idx{color:#6b6b64}.light .idx:after{background:rgba(0,0,0,.12)}
+.light em{color:var(--vio)}
+.light .rows{border-color:rgba(0,0,0,.12)}.light .rows li{border-color:rgba(0,0,0,.12)}
+.light .rows li:before{-webkit-text-stroke:1px var(--vio)}
 /* schema */
-.schema{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:30px 0;font-weight:600;font-size:16px;text-align:center}
-.schema span{flex:1;padding:16px 6px;border:1px solid var(--line);border-radius:12px}
-.schema span.mid{background:var(--copper);color:#fff;border-color:var(--copper)}
-.schema i{color:var(--copper);font-style:normal}
-blockquote{font-family:"Cormorant Garamond",serif;font-size:26px;line-height:1.3;font-style:italic;border-left:2px solid var(--copper);padding-left:18px;margin:26px 0}
-.out{display:grid;gap:12px;margin-top:22px}
-.out div{background:var(--ink2);padding:18px 20px;border-left:2px solid var(--copper);border-radius:0 12px 12px 0}
-.note{margin-top:24px;font-size:16px}
+.schema{display:grid;grid-template-columns:1fr auto 1.3fr auto 1fr;align-items:center;gap:8px;margin:40px 0;font-weight:700;font-size:15px;text-align:center}
+.schema span{padding:18px 6px;border:1px solid var(--hair);border-radius:999px}
+.schema span.mid{background:var(--acc);color:#0b0b0b;border-color:var(--acc);box-shadow:0 0 40px rgba(208,255,0,.35)}
+.schema i{color:var(--acc);font-style:normal}
+.quote{font-size:clamp(22px,4.4vw,30px);font-weight:800;font-style:italic;line-height:1.3;letter-spacing:-.01em;margin:44px 0 18px;padding-left:22px;border-left:3px solid var(--acc)}
+/* maze */
+.maze{padding:0}
+.maze figure{position:relative;margin:0}
+.maze figure img{width:100%;height:min(150vw,1100px);object-fit:cover;display:block}
+.maze figure:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,rgba(10,10,10,0) 18%,rgba(10,10,10,0) 62%,var(--bg) 100%);z-index:1}
+.maze figcaption{position:absolute;left:0;right:0;bottom:28px;z-index:2;text-align:center;font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--acc)}
+.maze .wrap{padding:8px 22px 96px}
+.out{display:grid;gap:12px;margin:36px 0 22px}
+.out div{display:flex;gap:18px;align-items:center;padding:22px;border:1px solid var(--hair);border-radius:20px;background:rgba(20,20,20,.75);backdrop-filter:blur(6px);font-weight:700;font-size:18px}
+.out div b{font-size:34px;font-weight:900;color:var(--acc);min-width:44px}
+/* who */
 .who{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-.who img{width:100%;aspect-ratio:1/1;object-fit:cover;}
-.who h3{font-family:"Cormorant Garamond",serif;font-size:26px;margin:14px 0 6px}
-.who p{font-size:16px;margin-bottom:6px}
-.teaser{border:1px solid var(--line);border-radius:16px;padding:22px;margin-top:8px;font-size:17px}
-.steps{counter-reset:s;list-style:none;margin:20px 0 30px}
-.steps li{counter-increment:s;padding:12px 0 12px 46px;position:relative}
-.steps li:before{content:counter(s);position:absolute;left:0;top:8px;width:32px;height:32px;border:1px solid var(--copper);color:var(--copper);display:grid;place-items:center;font-weight:600}
-.btn{display:block;text-align:center;border-radius:16px;box-shadow:0 10px 24px rgba(0,0,0,.18);background:var(--copper);color:#fff;text-decoration:none;font-weight:600;font-size:19px;padding:20px;letter-spacing:.02em}
-.btn small{display:block;font-weight:400;font-size:14px;opacity:.85;margin-top:4px}
-.todo{background:#fff3cd;color:#5c4400;font-size:13px;padding:2px 6px}
-footer{padding:28px 0;font-size:13px;color:var(--muted);text-align:center}
-@media (max-width:520px){h2{font-size:33px}.hero h1{font-size:44px}.who{grid-template-columns:1fr}.schema{font-size:14px}}
+.who img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:22px;display:block}
+.who h3{font-size:24px;margin:18px 0 10px}
+.who p{font-size:15px;color:var(--mut);padding:8px 0;border-top:1px solid var(--hair)}
+.teaser{margin-top:44px;padding:26px;border-radius:22px;border:1px dashed rgba(208,255,0,.45);font-size:17px}
+/* steps + cta */
+.cta .glow{left:50%;bottom:-200px;transform:translateX(-50%);width:760px;height:760px}
+.steps{list-style:none;counter-reset:s;margin:10px 0 40px}
+.steps li{counter-increment:s;display:flex;gap:18px;align-items:center;padding:16px 0;border-bottom:1px solid var(--hair);font-size:18px;font-weight:600}
+.steps li:before{content:counter(s);flex:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--acc);color:var(--acc);display:grid;place-items:center;font-weight:900}
+.btn{display:block;text-align:center;border-radius:999px;background:var(--acc);color:#0b0b0b;text-decoration:none;font-weight:900;font-size:20px;letter-spacing:.01em;padding:22px;box-shadow:0 0 0 1px var(--acc),0 18px 60px rgba(208,255,0,.35);transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn small{display:block;font-weight:600;font-size:13px;opacity:.7;margin-top:2px}
+.sticky{position:fixed;left:12px;right:12px;bottom:12px;z-index:40;padding:16px;font-size:16px;display:none}
+footer{padding:36px 0 110px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);text-align:center}
+@media (max-width:560px){.who{grid-template-columns:1fr}.schema{font-size:13px}.sticky{display:block}section{padding:80px 0}}
 </style>
 </head>
 <body>
 
-<section class="hero">
+<section class="hero grid">
+ <div class="glow"></div>
  <div class="wrap">
-  <div class="kicker">Бесплатный разбор для экспертов</div>
-  <h1>Фокусная <em>диагностика</em></h1>
-  <p class="sub">Куда уходят силы и что собрать из того, что у тебя уже есть</p>
+  <h1>Фокусная<em>диагностика</em></h1>
+  <p class="lead">Куда уходят силы и что собрать из того, что у тебя уже есть</p>
+  <div class="badge">Разбор один на один для экспертов</div>
   <div class="duo">
    <figure><img src="img/lar.jpg" alt="Лариса Тернер"><figcaption><b>Лариса Тернер</b>психология денег и дохода</figcaption></figure>
    <figure><img src="img/joh.jpg" alt="Джонни"><figcaption><b>Джонни</b>продюсер</figcaption></figure>
@@ -74,86 +109,108 @@ footer{padding:28px 0;font-size:13px;color:var(--muted);text-align:center}
 
 <section>
  <div class="wrap">
-  <div class="kicker">Знакомая история?</div>
+  <div class="idx"><b>01</b>Знакомая история?</div>
   <h2>Продукт есть. Клиенты есть. <em>А чек стоит на месте.</em></h2>
-  <ul class="check">
+  <ol class="rows">
    <li>Заявки приходят волнами: месяц густо, месяц тишина.</li>
    <li>Каждая продажа требует тебя целиком.</li>
    <li>Идея дорогого продукта есть, а собрать её некогда.</li>
    <li>Деньги на трафик уходят, а заявок столько же.</li>
    <li>Продукт за 20-30 тысяч, а по содержанию тянет на сильно больше.</li>
    <li>Хочется заниматься своим делом, и маркетинг в этот план не входит.</li>
-  </ul>
+  </ol>
  </div>
 </section>
 
-<section class="dark">
+<section class="grid">
+ <div class="glow" style="left:-220px;top:30%"></div>
  <div class="wrap">
-  <div class="kicker">Почему так</div>
-  <h2>Люди приходят <em>и проходят мимо</em></h2>
-  <p>Между человеком и твоим продуктом нет конвертора: системы, которая превращает чужого человека в твоего клиента.</p>
+  <div class="idx"><b>02</b>Почему так</div>
+  <h2>Посчитай <em>сам</em></h2>
+  <p class="lead">Вспомни последний месяц. Сколько человек увидели твои посты? Сколько из них тебе написали? А сколько купили?</p>
+  <p>Между «увидел» и «купил» лежит путь. Когда его никто не проложил, человек идёт по нему сам и почти всегда сворачивает на полдороге.</p>
+  <p>Этот путь и есть конвертор: система, которая ведёт чужого человека до покупки, пока ты занимаешься своим делом.</p>
   <div class="schema"><span>человек</span><i>→</i><span class="mid">конвертор</span><i>→</i><span>клиент</span></div>
-  <blockquote>Лампочка освещает всю комнату и почти не греет. Тот же свет, собранный линзой в точку, прожигает бумагу.</blockquote>
-  <p class="muted">Твои силы сейчас разлиты по комнате. Диагностика собирает их в точку.</p>
+  <div class="quote">Лампочка освещает всю комнату и почти не греет. Тот же свет, собранный линзой в точку, прожигает бумагу.</div>
+  <p class="mut">Твои силы сейчас разлиты по комнате. Конвертор собирает их в точку.</p>
+ </div>
+</section>
+
+<section class="light">
+ <div class="wrap">
+  <div class="idx"><b style="color:var(--vio)">03</b>Проверь себя</div>
+  <h2>Где теряются <em>твои люди?</em></h2>
+  <ol class="rows">
+   <li>На каком шаге человек замолкает: после поста, после ответа, после цены?</li>
+   <li>Что он должен понять о тебе до того, как купит?</li>
+   <li>Что из того, что у тебя уже есть, готово стать частью конвертора?</li>
+  </ol>
+  <p style="margin-top:28px">Если хотя бы на один вопрос нет точного ответа, ты видишь только часть картины. Изнутри своей ситуации её целиком не видит никто.</p>
  </div>
 </section>
 
 <section>
  <div class="wrap">
-  <div class="kicker">Что это</div>
+  <div class="idx"><b>04</b>Что это</div>
   <h2>Разбор твоей ситуации <em>один на один</em></h2>
-  <p>Бесплатно. Смотрим, куда сейчас уходят внимание и силы и где ты застрял. Находим, что из твоего продукта, опыта и аудитории уже работает.</p>
-  <section class="dark" style="padding:26px 22px;margin-top:26px">
-   <div class="kicker">На выходе у тебя</div>
-   <div class="out">
-    <div>Майнд-карта твоей ситуации</div>
-    <div>Понимание, какой конвертор нужен тебе сейчас</div>
-    <div>Первый шаг, с которого начать</div>
-   </div>
-  </section>
-  <p class="note muted">Карта остаётся у тебя, что бы ты ни решил дальше.</p>
+  <p class="lead">Бесплатно. Смотрим, куда сейчас уходят внимание и силы и где ты застрял. Находим, что из твоего продукта, опыта и аудитории уже работает.</p>
  </div>
 </section>
 
-<section class="dark">
+<section class="maze">
+ <figure><img src="img/maze_close.jpg" alt="Лабиринт из живой изгороди, вид сверху"><figcaption>Изнутри видно только стены. Сверху виден путь</figcaption></figure>
  <div class="wrap">
-  <div class="kicker">Как мы работаем</div>
+  <div class="quote">Внутри лабиринта ты видишь только стены и ближайший поворот, и каждый тупик проверяешь собой. Сверху тот же лабиринт читается за минуту: где выход, где тупики и какой поворот твой.</div>
+  <p class="lead">Майнд-карта и есть этот взгляд сверху. Больше не нужно искать путь вслепую: на одном листе видно, где теряются люди, что уже работает и какой конвертор собрать первым.</p>
+  <div class="out">
+   <div><b>01</b>Майнд-карта твоей ситуации</div>
+   <div><b>02</b>Понимание, какой конвертор нужен тебе сейчас</div>
+   <div><b>03</b>Первый шаг, с которого начать</div>
+  </div>
+  <p class="mut">Карта остаётся у тебя, что бы ты ни решил дальше.</p>
+ </div>
+</section>
+
+<section class="grid">
+ <div class="wrap">
+  <div class="idx"><b>05</b>Как мы работаем</div>
   <h2>Ничего нового <em>учить не нужно</em></h2>
-  <p>Мы берём то, что у тебя уже есть: продукт, опыт, людей, которые тебя читают.</p>
-  <blockquote>Как в шкафу, где вещей полно, а надеть нечего. Покупать новое не нужно: собираем образы из того, что уже висит.</blockquote>
-  <p class="muted">Так у эксперта появляется система, которая приводит клиентов без ручного режима, и время на любимое дело.</p>
+  <p class="lead">Мы берём то, что у тебя уже есть: продукт, опыт, людей, которые тебя читают.</p>
+  <div class="quote">Как в шкафу, где вещей полно, а надеть нечего. Покупать новое не нужно: собираем образы из того, что уже висит.</div>
+  <p class="mut">Так у эксперта появляется система, которая приводит клиентов без ручного режима, и время на любимое дело.</p>
  </div>
 </section>
 
-<section>
+<section class="light">
  <div class="wrap">
-  <div class="kicker">Для кого</div>
+  <div class="idx"><b style="color:var(--vio)">06</b>Для кого</div>
   <h2>Подойдёт, <em>если</em></h2>
-  <ul class="check">
-   <li>у тебя есть продукт и первые продажи;</li>
-   <li>ты психолог, коуч, нутрициолог или другой эксперт;</li>
-   <li>упёрся в потолок чека и устал тащить всё на себе.</li>
-  </ul>
-  <p class="note muted">Пока рано, если продаж ещё нет. Тогда сначала продукт и первые клиенты, а к диагностике вернёмся позже.</p>
+  <ol class="rows">
+   <li>У тебя есть продукт и первые продажи.</li>
+   <li>Ты психолог, коуч, нутрициолог или другой эксперт.</li>
+   <li>Упёрся в потолок чека и устал тащить всё на себе.</li>
+  </ol>
+  <p style="margin-top:28px;color:#55554f">Пока рано, если продаж ещё нет. Тогда сначала продукт и первые клиенты, а к диагностике вернёмся позже.</p>
  </div>
 </section>
 
-<section class="dark">
+<section class="grid">
+ <div class="glow" style="right:-240px;top:10%"></div>
  <div class="wrap">
-  <div class="kicker">Частые истории клиентов</div>
+  <div class="idx"><b>07</b>Частые истории клиентов</div>
   <h2>Клиентка подняла цену <em>в 10 раз</em></h2>
-  <p>и перестала всё тащить на себе.</p>
-  <ul class="check" style="margin-top:18px">
-   <li>освобождается время;</li>
-   <li>уходит рутина;</li>
-   <li>система работает без ручного режима.</li>
-  </ul>
+  <p class="lead">и перестала всё тащить на себе.</p>
+  <ol class="rows" style="margin-top:28px">
+   <li>Освобождается время.</li>
+   <li>Уходит рутина.</li>
+   <li>Система работает без ручного режима.</li>
+  </ol>
  </div>
 </section>
 
 <section>
  <div class="wrap">
-  <div class="kicker">Кто мы</div>
+  <div class="idx"><b>08</b>Кто мы</div>
   <div class="who">
    <div><img src="img/lar_sq.jpg" alt="Лариса Тернер"><h3>Лариса Тернер</h3>
     <p>Врач-психотерапевт, 27 лет в психологии.</p>
@@ -164,13 +221,14 @@ footer{padding:28px 0;font-size:13px;color:var(--muted);text-align:center}
     <p>Работаю и с микроблогами на старте, и с крупными экспертами.</p>
     <p>Собираю команду и координирую её работу в проекте клиента.</p></div>
   </div>
-  <div class="teaser" style="margin-top:36px">Если захочешь собрать конвертор вместе, у нас есть формат на два месяца: группа из пяти человек и личная работа с каждым. Подробности на созвоне.</div>
+  <div class="teaser">Если захочешь собрать конвертор вместе, у нас есть формат на два месяца: группа из пяти человек и личная работа с каждым. Подробности на созвоне.</div>
  </div>
 </section>
 
-<section class="dark">
+<section class="cta grid" id="cta">
+ <div class="glow"></div>
  <div class="wrap">
-  <div class="kicker">Что дальше</div>
+  <div class="idx"><b>09</b>Что дальше</div>
   <h2>Три шага <em>до карты</em></h2>
   <ol class="steps">
    <li>Напиши Ларисе в личные сообщения слово ФОКУС.</li>
@@ -178,10 +236,11 @@ footer{padding:28px 0;font-size:13px;color:var(--muted);text-align:center}
    <li>Разберём твою ситуацию и соберём карту.</li>
   </ol>
   <a class="btn" href="https://t.me/larisaturner?text=%D0%A4%D0%9E%D0%9A%D0%A3%D0%A1">Написать ФОКУС<small>в личку @larisaturner</small></a>
-  <p class="note muted">Карта останется у тебя, даже если дальше пойдёшь сам.</p>
+  <p class="mut" style="margin-top:22px;text-align:center">Карта останется у тебя, даже если дальше пойдёшь сам.</p>
  </div>
 </section>
 
 <footer>Лариса Тернер · Джонни</footer>
+<a class="btn sticky" href="https://t.me/larisaturner?text=%D0%A4%D0%9E%D0%9A%D0%A3%D0%A1">Написать ФОКУС</a>
 </body>
 </html>
