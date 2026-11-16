@@ -67,6 +67,13 @@ a.btn{display:inline-block;text-decoration:none;text-align:center;margin-top:18p
 .glass p{margin:6px 0 0;font-size:16px;font-weight:600}
 .outro{font-size:15px;color:var(--muted);margin:10px 0 0}
 img.emoji{height:1em;width:1em;margin:0 .05em 0 .1em;vertical-align:-0.1em}
+.fires{display:flex;gap:8px;margin-top:6px}
+.fire{font-size:30px;line-height:1;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:10px 0;flex:1;cursor:pointer;filter:grayscale(1);opacity:.45;transition:all .15s}
+.fire.on{filter:none;opacity:1;border-color:var(--accent)}
+.fire img.emoji{height:30px;width:30px}
+.err{margin-top:12px;font-size:14px;font-weight:700;color:#d63a3a}
+textarea.bad,input.bad{border-color:#d63a3a}
+.btn.ghost2{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@15.1.0/dist/twemoji.min.js" crossorigin="anonymous"></script>
 </head>
@@ -82,7 +89,7 @@ img.emoji{height:1em;width:1em;margin:0 .05em 0 .1em;vertical-align:-0.1em}
 </div><div class="saved" id="saved"></div></div>
 <script>
 var HOOK="https://api.chatplace.io/hooks/01a1e5445c2b71c6bbd1183090abe683b55929c62e3b3b7024e0f079cc2b0a1e2f393a003088b865";
-var FOKUS="https://terner-larisa.ru/fokus/";
+var FOKUS="https://terner-larisa.ru/fokus/", BOOK="https://t.me/larisaturner?text=%D0%A4%D0%9E%D0%9A%D0%A3%D0%A1";
 function Q(id,l,h){return{t:"q",id:id,l:l,h:h}}
 function K(id,l,h){return{t:"q",key:1,id:id,l:l,h:h}}
 function D(big,small){return{t:"div",big:big,small:small}}
@@ -103,21 +110,20 @@ var S=[
  Q("q10","Что уже пробовалось, чтобы это решить? Что сработало, а что нет?"),
  Q("q11","Знаешь свои цифры? Сколько нужно переписок, созвонов и продаж, чтобы выйти на нужную сумму?","Если пока не считается, так и напиши, это нормально."),
  Q("q12","Твой продукт уже кто-то просил или покупал? Что подсказывает, что он людям нужен?"),
- D("Половина пути 🔥","Следующие вопросы самые <em>честные</em>. На них обычно и находится ответ."),
+ D("Половина пути 🔥","Следующие вопросы направлены <em>в глубину</em>. Там обычно и находятся настоящие ответы."),
  K("q13","Допустим, задача решена. Что ты почувствуешь? Опиши честно, без «будет хорошо».","Первое, что приходит в голову, обычно поверхностно. Попробуй копнуть глубже: какое именно чувство или эмоция, как ощущается в теле, в какой момент дня. Эти слова потом многое дают при наполнении нашей программы."),
  K("q14","А если ничего не поменяется и следующие полгода будут как сейчас? Что тогда?","Неприятный вопрос, знаем. Но именно он показывает, сколько стоит «оставить как есть»: в деньгах, во времени, в силах. Ответь себе честно, тут никто не оценивает."),
  Q("q15","Сколько хочется зарабатывать через 3 месяца? И какая сумма была бы прям «вау»?"),
  K("q16","Как думаешь, что останавливает прямо сейчас? Время, деньги, страх, сомнения, что-то ещё?","Тормоз почти никогда не один. Выпиши всё, что приходит, даже если звучит странно. Названный страх сразу становится меньше."),
- Q("q17","Был период, когда всё шло легче? Что тогда было по-другому?"),
  D("Почти финиш ✨","Осталось всего четыре коротких вопроса."),
  Q("q18","Какие обучения или наставники уже были? Что понравилось, а что раздражало?"),
  Q("q19","Было, что обучение не оправдало ожиданий? Что тогда пошло не так?"),
  Q("q20","Каким должно быть обучение или наставничество, чтобы сразу было «да, беру»?"),
- Q("q21","И последнее: как тебе это интервью? Было что-то неудобно или некомфортно?"),
+ {t:"rate",id:"q21",l:"И последнее: как тебе это интервью?"},
  {t:"done"}
 ];
-var TOTAL=21, last=S.length-1;
-var qnum={}, n=1; S.forEach(function(s,i){ if(s.t==="name"||s.t==="q") qnum[i]=n++; });
+var TOTAL=20, last=S.length-1;
+var qnum={}, n=1; S.forEach(function(s,i){ if(s.t==="name"||s.t==="q"||s.t==="rate") qnum[i]=n++; });
 var KEY="kastdev_v2", st={i:0,a:{}};
 try{var sv=JSON.parse(localStorage.getItem(KEY)||"null"); if(sv&&sv.a) st=sv;}catch(e){}
 var params=new URLSearchParams(location.search), who=params.get("name")||"";
@@ -132,8 +138,7 @@ function render(){
       '<div class="facts"><div class="fact"><b>⏱</b>15 минут, в своём темпе</div><div class="fact"><b>🔒</b>Ответы видим только мы</div><div class="fact"><b>📊</b>Итоги исследования участникам первыми</div></div>';
   } else if(s.t==="gift"){
     h='<span class="gift-badge">🎁 В конце тебя ждёт подарок</span>'+
-      '<div class="gift-h">Фокусная диагностика: <span class="mark">глубокий</span> разбор твоей ситуации один на один</div>'+
-      '<p class="gift-free">Бесплатно для участников исследования</p>'+
+      '<div class="gift-h">Фокусная диагностика: <span class="mark">глубокий персональный разбор</span> твоей ситуации</div>'+
       '<p class="gift-lead">Выходишь со встречи с ясной головой: видно, куда утекают силы и деньги, и понятно, что делать уже завтра.</p>'+
       '<div class="take">Что заберёшь с собой</div><div class="cards">'+
       '<div class="card"><div class="ic">🗺️</div><p><b>Майнд-карту своей ситуации</b>На одном листе видно, где теряются люди, что уже работает и куда уходят силы.</p></div>'+
@@ -156,11 +161,24 @@ function render(){
       (s.h?(s.key?'<div class="why">'+esc(s.h)+'</div>':'<div class="hint">'+esc(s.h)+'</div>'):'')+
       '<textarea data-id="'+s.id+'" placeholder="Твой ответ"></textarea>';
     h=s.key?'<div class="keybox"><span class="keytag">🔑 вопрос-ключ</span>'+inner+'</div>':inner;
+  } else if(s.t==="rate"){
+    var v=+(st.a[s.id+"_score"]||0), stars="";
+    for(var k=1;k<=5;k++) stars+='<button type="button" class="fire'+(k<=v?' on':'')+'" data-v="'+k+'">🔥</button>';
+    h='<div class="qn">ВОПРОС '+qnum[st.i]+' ИЗ '+TOTAL+'</div><div class="ql">'+esc(s.l)+'</div><div class="hint">Оцени от 1 до 5 огоньков.</div>'+
+      '<div class="fires" id="fires">'+stars+'</div>'+
+      '<div class="hint" style="margin-top:18px">Что можно сделать удобнее? <span style="opacity:.7">(по желанию)</span></div>'+
+      '<textarea data-id="'+s.id+'" data-opt="1" placeholder="Пара слов, если хочется" style="min-height:90px"></textarea>';
   } else if(s.t==="div"){
     h='<div class="big">'+s.big+'</div><p class="sub">'+s.small+'</p>';
   } else if(s.t==="done"){
-    h='<div class="big">Спасибо, что так <em>честно</em> 💜</div><p class="sub">Мы прочитаем каждое слово. Итогами исследования поделимся с тобой первыми.</p>'+
-      '<p>Хочется разобрать свою ситуацию лично, вживую? Приходи на Фокусную диагностику.</p><a class="btn" href="'+FOKUS+'">Записаться на диагностику</a>';
+    h='<div class="big">Спасибо за время и за твою <em>честность</em> 💜</div><p class="sub">Мы ценим твой вклад и прочитаем каждое слово.</p>'+
+      '<p class="sub">Самое интересное из итогов исследования расскажем на разборе. Спойлер: причина, по которой знания не превращаются в деньги, чаще всего лежит в неожиданном месте.</p>'+
+      '<div class="glass"><span class="emo">🎁</span><p style="font-size:19px;font-weight:800;margin:0 0 6px">Твой подарок ждёт</p>'+
+      '<p style="font-weight:700">Фокусная диагностика: <span class="mark">глубокий персональный разбор</span> твоей ситуации.</p>'+
+      '<p style="font-weight:500">Твои ответы уже у нас, поэтому на встрече начнём сразу с главного: где теряются люди и силы, что уже работает и на каком ближайшем шаге нужно сфокусироваться, чтобы это принесло тебе больше денег.</p></div>'+
+      '<p class="outro" style="margin-bottom:6px">Лучше выбрать время сейчас, пока всё, о чём ты думал в этих ответах, ещё свежо.</p>'+
+      '<a class="btn" href="'+BOOK+'" target="_blank" rel="noopener" style="display:block">Записаться на диагностику</a>'+
+      '<a class="btn ghost2" href="'+FOKUS+'" target="_blank" rel="noopener" style="display:block;margin-top:10px">Узнать подробнее</a>';
   }
   stage.innerHTML='<div class="scr">'+h+'</div>';
   if(window.twemoji) try{twemoji.parse(stage,{folder:'svg',ext:'.svg'})}catch(e){}
@@ -168,7 +186,8 @@ function render(){
     el.value=st.a[el.dataset.id]||"";
     el.addEventListener("input",function(){st.a[el.dataset.id]=el.value; clearTimeout(window._t); window._t=setTimeout(save,400);});
   });
-  var inQ=qnum[st.i]!==undefined || s.t==="div";
+  var fs=document.getElementById("fires");
+  if(fs) fs.querySelectorAll(".fire").forEach(function(b){ b.onclick=function(){ st.a[s.id+"_score"]=b.dataset.v; save(); fs.querySelectorAll(".fire").forEach(function(x){ x.classList.toggle("on", +x.dataset.v<=+b.dataset.v); }); var e=document.getElementById("err"); if(e) e.remove(); }; });
   var done=0; Object.keys(qnum).forEach(function(i){ if(+i<st.i) done++; });
   document.getElementById("bar").style.visibility=(st.i>=3&&st.i<last)?"visible":"hidden";
   document.getElementById("bari").style.width=(done/TOTAL*100)+"%";
@@ -181,10 +200,24 @@ function render(){
 }
 backB.onclick=function(){st.i--; save(); render();};
 nextB.onclick=function(){
-  if(S[st.i].t==="name" && !(st.a.q1t||"").trim() && !(st.a.q1n||"").trim()){alert("Напиши, пожалуйста, имя и ник в Telegram, чтобы мы знали, кому ответить."); return;}
+  if(!valid()) return;
   if(st.i===last-1){send(); return;}
   st.i++; save(); render();
 };
+function err(msg,el){
+  var old=document.getElementById("err"); if(old) old.remove();
+  var d=document.createElement("div"); d.id="err"; d.className="err"; d.textContent=msg;
+  stage.querySelector(".scr").appendChild(d);
+  if(el){ el.classList.add("bad"); el.focus(); el.addEventListener("input",function f(){ el.classList.remove("bad"); var e=document.getElementById("err"); if(e) e.remove(); el.removeEventListener("input",f); }); }
+}
+function valid(){
+  var s=S[st.i];
+  if(s.t==="rate"){ if(!st.a[s.id+"_score"]){ err("Выбери, пожалуйста, от 1 до 5 огоньков"); return false; } return true; }
+  if(s.t!=="name" && s.t!=="q") return true;
+  var els=stage.querySelectorAll("[data-id]:not([data-opt])");
+  for(var i=0;i<els.length;i++){ if(!(st.a[els[i].dataset.id]||"").trim()){ err(s.t==="name"?"Напиши, пожалуйста, имя и ник в Telegram, чтобы мы знали, кому ответить":"Напиши хотя бы пару слов, без ответа дальше не пускает",els[i]); return false; } }
+  return true;
+}
 function send(){
   nextB.disabled=true; nextB.textContent="Отправляем…";
   var p={src:"kastdev",who:who,sent:new Date().toISOString()}; Object.keys(st.a).forEach(function(k){p[k]=st.a[k]});
