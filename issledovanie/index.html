@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Сколько стоит твоя экспертиза на самом деле?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f5f2;--card:#fff;--ink:#141414;--muted:#6f6f6f;--line:#e6e3dd;--accent:#ff6a1a;--accent2:#ffe9db;--key:#fff1e6;--field:#fff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0f0f10;--card:#18181a;--ink:#f3f3f3;--muted:#9b9b9b;--line:#2b2b2e;--accent:#ff7a2e;--accent2:#33200f;--key:#21160e;--field:#141416}}
+:root[data-theme="dark"]{--bg:#0f0f10;--card:#18181a;--ink:#f3f3f3;--muted:#9b9b9b;--line:#2b2b2e;--accent:#ff7a2e;--accent2:#33200f;--key:#21160e;--field:#141416}
+*{box-sizing:border-box}html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.5 Manrope,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+.app{max-width:620px;margin:0 auto;min-height:100%;display:flex;flex-direction:column;padding:0 16px}
+.top{display:flex;align-items:center;justify-content:space-between;padding:16px 0 8px}
+.count{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.02em}
+.theme{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:7px 13px;font:600 13px Manrope,sans-serif;cursor:pointer}
+.bar{height:3px;background:var(--line);border-radius:3px;overflow:hidden;visibility:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .45s cubic-bezier(.2,.8,.2,1)}
+.stage{flex:1;display:flex;flex-direction:column;justify-content:center;padding:24px 0 130px}
+.scr{animation:in .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.eyebrow{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{font-size:40px;line-height:1.05;font-weight:800;letter-spacing:-.025em;margin:0 0 14px}
+h1 em{font-style:normal;color:var(--accent)}
+.sub{font-size:19px;color:var(--muted);margin:0 0 26px;font-weight:500}
+.facts{display:grid;grid-template-columns:1fr;gap:10px;margin:0 0 8px}
+.fact{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;font-weight:600;font-size:16px}
+.fact b{font-size:22px;line-height:1}
+.qn{font-size:13px;font-weight:800;color:var(--accent);letter-spacing:.04em;margin-bottom:10px}
+.ql{font-size:24px;line-height:1.25;font-weight:800;letter-spacing:-.01em;margin:0 0 12px}
+.hint{font-size:15px;color:var(--muted);margin:0 0 16px}
+.keybox{background:var(--key);border:1px solid var(--accent2);border-radius:22px;padding:22px 18px}
+.keytag{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#fff;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;border-radius:999px;padding:5px 11px;margin-bottom:14px}
+.why{font-size:14px;line-height:1.45;color:var(--ink);opacity:.78;border-left:3px solid var(--accent);padding-left:12px;margin:0 0 16px}
+textarea,input{width:100%;border:1.5px solid var(--line);background:var(--field);color:var(--ink);border-radius:14px;padding:14px 16px;font:500 17px/1.5 Manrope,sans-serif;outline:none;resize:none;transition:border-color .2s}
+textarea{min-height:150px}
+.keybox textarea{min-height:190px}
+textarea:focus,input:focus{border-color:var(--accent)}
+input+input{margin-top:10px}
+.big{font-size:32px;line-height:1.15;font-weight:800;letter-spacing:-.02em;margin:0 0 10px}
+.big em{font-style:normal;color:var(--accent)}
+.cards{display:grid;gap:10px;margin-top:6px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;gap:14px;align-items:flex-start}
+.card .ic{font-size:24px;line-height:1}
+.card p{margin:0;font-size:15.5px}
+.card p b{display:block;font-size:16.5px;margin-bottom:2px}
+.nav{position:fixed;left:0;right:0;bottom:0;background:linear-gradient(to top,var(--bg) 72%,transparent);padding:18px 16px calc(16px + env(safe-area-inset-bottom))}
+.nav .in{max-width:620px;margin:0 auto;display:flex;gap:10px}
+.btn{flex:1;border:0;border-radius:16px;padding:17px 18px;font:800 17px Manrope,sans-serif;cursor:pointer;background:var(--accent);color:#fff;transition:transform .1s}
+.btn:active{transform:scale(.98)}
+.btn.ghost{flex:0 0 58px;background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.btn:disabled{opacity:.6}
+.saved{text-align:center;font-size:12px;color:var(--muted);margin-top:8px;height:14px}
+a.btn{display:inline-block;text-decoration:none;text-align:center;margin-top:18px}
+.sub em{font-style:normal;color:var(--accent);font-weight:700}
+img.emoji{height:1em;width:1em;margin:0 .05em 0 .1em;vertical-align:-0.1em}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@twemoji/api@15.1.0/dist/twemoji.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="app">
+  <div class="top"><div class="count" id="count">Исследование</div><button class="theme" id="theme" type="button">☾ Ночь</button></div>
+  <div class="bar" id="bar"><i id="bari"></i></div>
+  <div class="stage" id="stage"></div>
+</div>
+<div class="nav" id="nav"><div class="in">
+  <button class="btn ghost" id="back" type="button" aria-label="Назад">←</button>
+  <button class="btn" id="next" type="button">Начать</button>
+</div><div class="saved" id="saved"></div></div>
+<script>
+var HOOK="https://api.chatplace.io/hooks/01a1e5445c2b71c6bbd1183090abe683b55929c62e3b3b7024e0f079cc2b0a1e2f393a003088b865";
+var FOKUS="https://terner-larisa.ru/fokus/";
+function Q(id,l,h){return{t:"q",id:id,l:l,h:h}}
+function K(id,l,h){return{t:"q",key:1,id:id,l:l,h:h}}
+function D(big,small){return{t:"div",big:big,small:small}}
+var S=[
+ {t:"cover"},
+ {t:"how"},
+ {t:"name"},
+ Q("q2","Расскажи немного о себе: сколько тебе лет, откуда ты, есть ли дети?","Можно в одну строчку."),
+ Q("q3","Чем занимаешься сейчас? Как и когда вообще начался твой путь в онлайне?"),
+ Q("q4","Сколько примерно удаётся заработать в месяц, если взять последние полгода и поделить поровну? И сколько часов в день на это сейчас уходит?","Можно вилкой, «от 50 до 80». Точная цифра не нужна, хватит примерной картинки."),
+ Q("q5","Откуда ты о нас узнал и давно ли читаешь? Что откликается в том, что мы пишем?"),
+ Q("q6","Чего не хватает или что непонятно? Чего хочется видеть больше в нашем контенте, чтобы прям зацепило?"),
+ D("Знакомство позади 👏","Дальше <em>самое интересное</em>: что сейчас буксует и почему."),
+ Q("q7","Что сейчас больше всего крутится в голове? Если бы можно было решить одну задачу в работе, какую?"),
+ K("q8","Представь: прошло 2 месяца, и всё решилось. Что конкретно поменялось? В работе, в деньгах, в обычном дне?","Опиши как можно подробнее, как будто рассказываешь про реальный день. Чем точнее картинка, тем понятнее, к чему идти и с чего начинать."),
+ Q("q9","Где сейчас буксует сильнее всего? Опиши своими словами."),
+ Q("q10","Что уже пробовалось, чтобы это решить? Что сработало, а что нет?"),
+ Q("q11","Знаешь свои цифры? Сколько нужно переписок, созвонов и продаж, чтобы выйти на нужную сумму?","Если пока не считается, так и напиши, это нормально."),
+ Q("q12","Твой продукт уже кто-то просил или покупал? Что подсказывает, что он людям нужен?"),
+ D("Половина пути 🔥","Следующие вопросы самые <em>честные</em>. На них обычно и находится ответ."),
+ K("q13","Допустим, задача решена. Что ты почувствуешь? Опиши честно, без «будет хорошо».","Первое, что приходит в голову, обычно поверхностно. Попробуй копнуть глубже: какое именно чувство или эмоция, как ощущается в теле, в какой момент дня. Эти слова потом многое дают при наполнении нашей программы."),
+ K("q14","А если ничего не поменяется и следующие полгода будут как сейчас? Что тогда?","Неприятный вопрос, знаем. Но именно он показывает, сколько стоит «оставить как есть»: в деньгах, во времени, в силах. Ответь себе честно, тут никто не оценивает."),
+ Q("q15","Сколько хочется зарабатывать через 3 месяца? И какая сумма была бы прям «вау»?"),
+ K("q16","Как думаешь, что останавливает прямо сейчас? Время, деньги, страх, сомнения, что-то ещё?","Тормоз почти никогда не один. Выпиши всё, что приходит, даже если звучит странно. Названный страх сразу становится меньше."),
+ Q("q17","Был период, когда всё шло легче? Что тогда было по-другому?"),
+ D("Почти финиш ✨","Осталось всего четыре коротких вопроса."),
+ Q("q18","Какие обучения или наставники уже были? Что понравилось, а что раздражало?"),
+ Q("q19","Было, что обучение не оправдало ожиданий? Что тогда пошло не так?"),
+ Q("q20","Каким должно быть обучение или наставничество, чтобы сразу было «да, беру»?"),
+ Q("q21","И последнее: как тебе это интервью? Было что-то неудобно или некомфортно?"),
+ {t:"done"}
+];
+var TOTAL=21, last=S.length-1;
+var qnum={}, n=1; S.forEach(function(s,i){ if(s.t==="name"||s.t==="q") qnum[i]=n++; });
+var KEY="kastdev_v2", st={i:0,a:{}};
+try{var sv=JSON.parse(localStorage.getItem(KEY)||"null"); if(sv&&sv.a) st=sv;}catch(e){}
+var params=new URLSearchParams(location.search), who=params.get("name")||"";
+var stage=document.getElementById("stage"), nextB=document.getElementById("next"), backB=document.getElementById("back"), savedEl=document.getElementById("saved");
+function esc(x){return String(x).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st)); savedEl.textContent="Ответы сохранены";}catch(e){}}
+function render(){
+  var s=S[st.i], h="";
+  if(s.t==="cover"){
+    h='<span class="eyebrow">Исследование одного парадокса</span><h1>Сколько стоит твоя экспертиза <em>на самом деле?</em></h1>'+
+      '<p class="sub">Почему одни эксперты растут в доходе ровно, а другие с теми же знаниями годами стоят на месте? Мы решили разобраться и надеемся на твою помощь.</p>'+
+      '<div class="facts"><div class="fact"><b>⏱</b>15 минут, в своём темпе</div><div class="fact"><b>🔒</b>Ответы видим только мы</div><div class="fact"><b>📊</b>Итоги исследования участникам первыми</div></div>';
+  } else if(s.t==="how"){
+    h='<div class="big">Здесь нет <em>правильных</em> ответов</div><p class="sub">Пиши как есть, как другу на кухне: коротко или длинно, с ошибками и смайликами.</p>'+
+      '<div class="cards">'+
+      '<div class="card"><div class="ic">🔑</div><p><b>Вопросы-ключи</b>Отмечены цветом. На них стоит потратить пару лишних минут: когда описываешь задачу словами, она перестаёт быть размытой.</p></div>'+
+      '<div class="card"><div class="ic">🧠</div><p><b>Картинка результата</b>Когда в деталях представляешь, что всё получилось, мозг начинает видеть в этом цель, к которой можно прийти.</p></div>'+
+      '<div class="card"><div class="ic">💾</div><p><b>Ничего не пропадёт</b>Ответы сохраняются. Отвлечёшься, вернёшься и продолжишь с того же места.</p></div></div>';
+  } else if(s.t==="name"){
+    h='<div class="qn">ВОПРОС '+qnum[st.i]+' ИЗ '+TOTAL+'</div><div class="ql">Как тебя зовут? И оставь свой ник в Telegram, чтобы мы могли написать.</div>'+
+      '<input data-id="q1n" placeholder="Имя"><input data-id="q1t" placeholder="@ник в Telegram">';
+  } else if(s.t==="q"){
+    var inner='<div class="qn">ВОПРОС '+qnum[st.i]+' ИЗ '+TOTAL+'</div><div class="ql">'+esc(s.l)+'</div>'+
+      (s.h?(s.key?'<div class="why">'+esc(s.h)+'</div>':'<div class="hint">'+esc(s.h)+'</div>'):'')+
+      '<textarea data-id="'+s.id+'" placeholder="Твой ответ"></textarea>';
+    h=s.key?'<div class="keybox"><span class="keytag">🔑 вопрос-ключ</span>'+inner+'</div>':inner;
+  } else if(s.t==="div"){
+    h='<div class="big">'+s.big+'</div><p class="sub">'+s.small+'</p>';
+  } else if(s.t==="done"){
+    h='<div class="big">Спасибо, что так <em>честно</em> 🧡</div><p class="sub">Мы прочитаем каждое слово. Итогами исследования поделимся с тобой первыми.</p>'+
+      '<p>Хочется разобрать свою ситуацию лично, вживую? Приходи на Фокусную диагностику.</p><a class="btn" href="'+FOKUS+'">Записаться на диагностику</a>';
+  }
+  stage.innerHTML='<div class="scr">'+h+'</div>';
+  if(window.twemoji) try{twemoji.parse(stage,{folder:'svg',ext:'.svg'})}catch(e){}
+  stage.querySelectorAll("[data-id]").forEach(function(el){
+    el.value=st.a[el.dataset.id]||"";
+    el.addEventListener("input",function(){st.a[el.dataset.id]=el.value; clearTimeout(window._t); window._t=setTimeout(save,400);});
+  });
+  var inQ=qnum[st.i]!==undefined || s.t==="div";
+  var done=0; Object.keys(qnum).forEach(function(i){ if(+i<st.i) done++; });
+  document.getElementById("bar").style.visibility=(st.i>=2&&st.i<last)?"visible":"hidden";
+  document.getElementById("bari").style.width=(done/TOTAL*100)+"%";
+  document.getElementById("count").textContent=(st.i>=2&&st.i<last)?("Готово "+done+" из "+TOTAL):"Исследование";
+  backB.style.display=(st.i>0&&st.i<last)?"block":"none";
+  document.getElementById("nav").style.display=st.i===last?"none":"block";
+  nextB.disabled=false;
+  nextB.textContent=st.i===0?"Участвую":st.i===1?"Начинаем":st.i===last-1?"Отправить":(s.t==="div"?"Продолжить":"Дальше");
+  window.scrollTo(0,0);
+}
+backB.onclick=function(){st.i--; save(); render();};
+nextB.onclick=function(){
+  if(S[st.i].t==="name" && !(st.a.q1t||"").trim() && !(st.a.q1n||"").trim()){alert("Напиши, пожалуйста, имя и ник в Telegram, чтобы мы знали, кому ответить."); return;}
+  if(st.i===last-1){send(); return;}
+  st.i++; save(); render();
+};
+function send(){
+  nextB.disabled=true; nextB.textContent="Отправляем…";
+  var p={src:"kastdev",who:who,sent:new Date().toISOString()}; Object.keys(st.a).forEach(function(k){p[k]=st.a[k]});
+  fetch(HOOK,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify(p)})
+  .then(function(r){if(!r.ok) throw 0; st.i=last; st.sent=true; save(); render();})
+  .catch(function(){nextB.disabled=false; nextB.textContent="Отправить ещё раз"; alert("Не получилось отправить. Проверь интернет и нажми ещё раз, ответы сохранены.");});
+}
+var root=document.documentElement, tb=document.getElementById("theme");
+function dark(){var t=root.getAttribute("data-theme"); return t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches;}
+function paint(){tb.textContent=dark()?"☀ День":"☾ Ночь";}
+try{var th=localStorage.getItem("kastdev_theme"); if(th) root.setAttribute("data-theme",th);}catch(e){}
+paint(); tb.onclick=function(){var t=dark()?"light":"dark"; root.setAttribute("data-theme",t); try{localStorage.setItem("kastdev_theme",t)}catch(e){} paint();};
+if(st.sent) st.i=last;
+if(params.get("s")) st.i=+params.get("s");
+render();
+</script>
+</body>
+</html>
