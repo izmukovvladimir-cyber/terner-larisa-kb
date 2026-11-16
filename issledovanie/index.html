@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f6f5f2;--card:#fff;--ink:#141414;--muted:#6f6f6f;--line:#e6e3dd;--accent:#ff6a1a;--accent2:#ffe9db;--key:#fff1e6;--field:#fff}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0f0f10;--card:#18181a;--ink:#f3f3f3;--muted:#9b9b9b;--line:#2b2b2e;--accent:#ff7a2e;--accent2:#33200f;--key:#21160e;--field:#141416}}
-:root[data-theme="dark"]{--bg:#0f0f10;--card:#18181a;--ink:#f3f3f3;--muted:#9b9b9b;--line:#2b2b2e;--accent:#ff7a2e;--accent2:#33200f;--key:#21160e;--field:#141416}
+:root{--bg:#f4f4ef;--card:#fff;--ink:#0b0b0b;--muted:#6b6b64;--line:#dedcd3;--accent:#8116e0;--accent2:#e6d4fa;--key:#f3ebfd;--field:#fff;--lime:#d0ff00;--glass:rgba(255,255,255,.55)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0b0b0b;--card:#161616;--ink:#f4f4ef;--muted:#9a9a92;--line:#2a2a2a;--accent:#9a3cf5;--accent2:#3a1f5c;--key:#1a1225;--field:#121212;--lime:#d0ff00;--glass:rgba(255,255,255,.06)}}
+:root[data-theme="dark"]{--bg:#0b0b0b;--card:#161616;--ink:#f4f4ef;--muted:#9a9a92;--line:#2a2a2a;--accent:#9a3cf5;--accent2:#3a1f5c;--key:#1a1225;--field:#121212;--lime:#d0ff00;--glass:rgba(255,255,255,.06)}
 *{box-sizing:border-box}html,body{margin:0;height:100%}
 body{background:var(--bg);color:var(--ink);font:400 17px/1.5 Manrope,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
 .app{max-width:620px;margin:0 auto;min-height:100%;display:flex;flex-direction:column;padding:0 16px}
@@ -25,6 +25,7 @@ body{background:var(--bg);color:var(--ink);font:400 17px/1.5 Manrope,system-ui,-
 .eyebrow{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
 h1{font-size:40px;line-height:1.05;font-weight:800;letter-spacing:-.025em;margin:0 0 14px}
 h1 em{font-style:normal;color:var(--accent)}
+.mark{background:var(--lime);color:#0b0b0b;border-radius:8px;padding:0 6px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .sub{font-size:19px;color:var(--muted);margin:0 0 26px;font-weight:500}
 .facts{display:grid;grid-template-columns:1fr;gap:10px;margin:0 0 8px}
 .fact{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;font-weight:600;font-size:16px}
@@ -33,7 +34,7 @@ h1 em{font-style:normal;color:var(--accent)}
 .ql{font-size:24px;line-height:1.25;font-weight:800;letter-spacing:-.01em;margin:0 0 12px}
 .hint{font-size:15px;color:var(--muted);margin:0 0 16px}
 .keybox{background:var(--key);border:1px solid var(--accent2);border-radius:22px;padding:22px 18px}
-.keytag{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#fff;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;border-radius:999px;padding:5px 11px;margin-bottom:14px}
+.keytag{display:inline-flex;align-items:center;gap:6px;background:var(--lime);color:#0b0b0b;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;border-radius:999px;padding:5px 11px;margin-bottom:14px}
 .why{font-size:14px;line-height:1.45;color:var(--ink);opacity:.78;border-left:3px solid var(--accent);padding-left:12px;margin:0 0 16px}
 textarea,input{width:100%;border:1.5px solid var(--line);background:var(--field);color:var(--ink);border-radius:14px;padding:14px 16px;font:500 17px/1.5 Manrope,sans-serif;outline:none;resize:none;transition:border-color .2s}
 textarea{min-height:150px}
@@ -56,6 +57,15 @@ input+input{margin-top:10px}
 .saved{text-align:center;font-size:12px;color:var(--muted);margin-top:8px;height:14px}
 a.btn{display:inline-block;text-decoration:none;text-align:center;margin-top:18px}
 .sub em{font-style:normal;color:var(--accent);font-weight:700}
+.gift-badge{display:inline-flex;align-items:center;gap:8px;background:var(--lime);color:#0b0b0b;font-weight:800;font-size:13px;letter-spacing:.04em;text-transform:uppercase;border-radius:999px;padding:7px 14px;margin-bottom:16px}
+.gift-h{font-size:30px;line-height:1.12;font-weight:800;letter-spacing:-.02em;margin:0 0 8px}
+.gift-free{font-size:14px;font-weight:700;color:var(--accent);margin:0 0 14px}
+.gift-lead{font-size:18px;font-weight:500;margin:0 0 20px}
+.take{font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.glass{position:relative;margin:22px 0 14px;padding:22px 18px 18px 18px;border-radius:20px;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 8px 30px rgba(129,22,224,.10)}
+.glass .emo{position:absolute;top:-22px;left:14px;font-size:40px;transform:rotate(-14deg);line-height:1}
+.glass p{margin:6px 0 0;font-size:16px;font-weight:600}
+.outro{font-size:15px;color:var(--muted);margin:10px 0 0}
 img.emoji{height:1em;width:1em;margin:0 .05em 0 .1em;vertical-align:-0.1em}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@15.1.0/dist/twemoji.min.js" crossorigin="anonymous"></script>
@@ -79,6 +89,7 @@ function D(big,small){return{t:"div",big:big,small:small}}
 var S=[
  {t:"cover"},
  {t:"how"},
+ {t:"gift"},
  {t:"name"},
  Q("q2","Расскажи немного о себе: сколько тебе лет, откуда ты, есть ли дети?","Можно в одну строчку."),
  Q("q3","Чем занимаешься сейчас? Как и когда вообще начался твой путь в онлайне?"),
@@ -119,6 +130,18 @@ function render(){
     h='<span class="eyebrow">Исследование одного парадокса</span><h1>Сколько стоит твоя экспертиза <em>на самом деле?</em></h1>'+
       '<p class="sub">Почему одни эксперты растут в доходе ровно, а другие с теми же знаниями годами стоят на месте? Мы решили разобраться и надеемся на твою помощь.</p>'+
       '<div class="facts"><div class="fact"><b>⏱</b>15 минут, в своём темпе</div><div class="fact"><b>🔒</b>Ответы видим только мы</div><div class="fact"><b>📊</b>Итоги исследования участникам первыми</div></div>';
+  } else if(s.t==="gift"){
+    h='<span class="gift-badge">🎁 В конце тебя ждёт подарок</span>'+
+      '<div class="gift-h">Фокусная диагностика: <span class="mark">глубокий</span> разбор твоей ситуации один на один</div>'+
+      '<p class="gift-free">Бесплатно для участников исследования</p>'+
+      '<p class="gift-lead">Выходишь со встречи с ясной головой: видно, куда утекают силы и деньги, и понятно, что делать уже завтра.</p>'+
+      '<div class="take">Что заберёшь с собой</div><div class="cards">'+
+      '<div class="card"><div class="ic">🗺️</div><p><b>Майнд-карту своей ситуации</b>На одном листе видно, где теряются люди, что уже работает и куда уходят силы.</p></div>'+
+      '<div class="card"><div class="ic">🎯</div><p><b>Что собрать первым</b>Понимание, с чего начать, чтобы знания начали приносить деньги.</p></div>'+
+      '<div class="card"><div class="ic">👣</div><p><b>Первый шаг</b>Конкретное действие, которое можно сделать уже на этой неделе.</p></div></div>'+
+      '<p class="sub" style="margin-top:18px">Причём твои ответы здесь могут стать основой разбора. Нам не придётся тратить первую половину встречи на «расскажи о себе»: придёшь, и сразу приступаем к делу.</p>'+
+      '<div class="glass"><span class="emo">💡</span><p>Так что эти 15 минут работают на тебя дважды. Пока отвечаешь, многое становится яснее само. А на диагностике мы покажем, что с этим делать.</p></div>'+
+      '<p class="outro">Такой взгляд со стороны экономит месяцы проб и ошибок.</p>';
   } else if(s.t==="how"){
     h='<div class="big">Здесь нет <em>правильных</em> ответов</div><p class="sub">Пиши как есть, как другу на кухне: коротко или длинно, с ошибками и смайликами.</p>'+
       '<div class="cards">'+
@@ -136,7 +159,7 @@ function render(){
   } else if(s.t==="div"){
     h='<div class="big">'+s.big+'</div><p class="sub">'+s.small+'</p>';
   } else if(s.t==="done"){
-    h='<div class="big">Спасибо, что так <em>честно</em> 🧡</div><p class="sub">Мы прочитаем каждое слово. Итогами исследования поделимся с тобой первыми.</p>'+
+    h='<div class="big">Спасибо, что так <em>честно</em> 💜</div><p class="sub">Мы прочитаем каждое слово. Итогами исследования поделимся с тобой первыми.</p>'+
       '<p>Хочется разобрать свою ситуацию лично, вживую? Приходи на Фокусную диагностику.</p><a class="btn" href="'+FOKUS+'">Записаться на диагностику</a>';
   }
   stage.innerHTML='<div class="scr">'+h+'</div>';
@@ -147,13 +170,13 @@ function render(){
   });
   var inQ=qnum[st.i]!==undefined || s.t==="div";
   var done=0; Object.keys(qnum).forEach(function(i){ if(+i<st.i) done++; });
-  document.getElementById("bar").style.visibility=(st.i>=2&&st.i<last)?"visible":"hidden";
+  document.getElementById("bar").style.visibility=(st.i>=3&&st.i<last)?"visible":"hidden";
   document.getElementById("bari").style.width=(done/TOTAL*100)+"%";
-  document.getElementById("count").textContent=(st.i>=2&&st.i<last)?("Готово "+done+" из "+TOTAL):"Исследование";
+  document.getElementById("count").textContent=(st.i>=3&&st.i<last)?("Готово "+done+" из "+TOTAL):"Исследование";
   backB.style.display=(st.i>0&&st.i<last)?"block":"none";
   document.getElementById("nav").style.display=st.i===last?"none":"block";
   nextB.disabled=false;
-  nextB.textContent=st.i===0?"Участвую":st.i===1?"Начинаем":st.i===last-1?"Отправить":(s.t==="div"?"Продолжить":"Дальше");
+  nextB.textContent=st.i===0?"Участвую":st.i===1?"Дальше":st.i===2?"Забираю, начинаем":st.i===last-1?"Отправить":(s.t==="div"?"Продолжить":"Дальше");
   window.scrollTo(0,0);
 }
 backB.onclick=function(){st.i--; save(); render();};
