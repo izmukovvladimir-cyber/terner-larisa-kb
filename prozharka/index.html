@@ -1,0 +1,222 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Прожарка х2</title>
+<meta name="description" content="Прожарка х2: живая встреча в Zoom с денежным психологом и продюсером и неделя сопровождения в чате. Разбираем бизнес с двух сторон: деньги внутри и маркетинг снаружи.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0807;--bg2:#151009;--fg:#f6efe6;--mut:#a89d92;--acc:#ff6a1f;--acc2:#ffb070;--hair:rgba(246,239,230,.12)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--fg);font:500 17px/1.6 Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px;position:relative;z-index:3}
+section{padding:88px 0;position:relative;overflow:hidden}
+.alt{background:var(--bg2)}
+.idx{display:flex;align-items:center;gap:14px;font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--mut);margin-bottom:24px}
+.idx b{color:var(--acc)}.idx:after{content:"";flex:1;height:1px;background:var(--hair)}
+h2{font-family:Unbounded,sans-serif;font-weight:800;letter-spacing:-.02em;line-height:1.05;font-size:clamp(26px,6.6vw,46px);margin-bottom:26px}
+em{font-style:normal;font-weight:800;color:var(--acc)}
+p+p{margin-top:14px}.lead{font-size:19px;line-height:1.5}.mut{color:var(--mut)}
+ol.rows{list-style:none;counter-reset:r}
+ol.rows li{counter-increment:r;display:flex;gap:18px;padding:18px 0;border-top:1px solid var(--hair)}
+ol.rows li:last-child{border-bottom:1px solid var(--hair)}
+ol.rows li:before{content:counter(r,decimal-leading-zero);font-weight:900;color:var(--acc);min-width:28px}
+ul.dots{list-style:none}ul.dots li{padding:14px 0 14px 26px;border-top:1px solid var(--hair);position:relative}
+ul.dots li:before{content:"";position:absolute;left:0;top:24px;width:9px;height:9px;border-radius:50%;background:var(--acc);box-shadow:0 0 10px var(--acc)}
+.btn{font-family:Unbounded,sans-serif;letter-spacing:.01em;display:block;text-align:center;margin:34px auto 0;max-width:420px;padding:20px 26px;border-radius:60px;font-weight:700;font-size:17px;color:#160803;text-decoration:none;
+ background:linear-gradient(180deg,#ff9248,#ff5a14);box-shadow:0 0 0 1px rgba(255,160,90,.5),0 10px 40px rgba(255,90,20,.45)}
+.btn small{display:block;font-weight:600;font-size:13px;opacity:.75}
+/* hero */
+.hero{min-height:932px;padding:40px 0 40px;background:#000 url(lava_bg.jpg) center bottom/cover no-repeat;text-align:center}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,0) 35%,rgba(0,0,0,.2) 70%,rgba(0,0,0,.75));z-index:1}
+.x2{position:relative;z-index:2;font-family:Manrope,sans-serif;font-style:italic;font-weight:800;color:var(--acc);font-size:44px;line-height:1;text-shadow:0 0 30px rgba(255,106,31,.7)}
+.word{position:relative;z-index:2;font-family:Unbounded,sans-serif;font-weight:900;color:var(--fg);letter-spacing:-.02em;line-height:.9;font-size:min(15vw,124px);text-transform:uppercase;margin-top:6px;text-shadow:0 6px 50px rgba(0,0,0,.5)}
+.word span{display:block}
+.duo{position:relative;z-index:3;height:340px;margin-top:-22px}
+.duo img{position:absolute;bottom:0;height:330px;filter:sepia(.12) saturate(1.05) brightness(.97) drop-shadow(0 0 6px rgba(255,110,40,.45)) drop-shadow(0 0 1px rgba(255,170,100,.7));
+ -webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent)}
+.duo .l{left:50%;transform:translateX(-80%);height:314px;z-index:2}.duo .r{left:50%;transform:translateX(-28%);height:318px;z-index:1;bottom:30px;filter:brightness(.72) saturate(.9) drop-shadow(0 0 6px rgba(255,110,40,.35))}
+.names{position:relative;z-index:4;display:flex;justify-content:space-between;max-width:400px;margin:-20px auto 0;font-size:13px;color:var(--mut);text-align:left}
+.names b{display:block;color:var(--fg);font-size:15px}
+.hero .sub{position:relative;z-index:4;font-family:Unbounded,sans-serif;font-weight:700;font-size:19px;line-height:1.25;margin-top:26px}
+.hero .sub2{position:relative;z-index:4;color:var(--acc2);font-weight:600;margin-top:10px}
+.ember{position:absolute;z-index:2;width:5px;height:5px;border-radius:50%;background:#ffc08a;box-shadow:0 0 10px 3px rgba(255,120,40,.85)}
+.schema{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:30px 0 6px}
+.schema span{border:1px solid var(--hair);border-radius:40px;padding:10px 16px;font-weight:800;font-size:14px}
+.schema i{color:var(--acc);font-style:normal;font-weight:900}
+.schema .mid{background:var(--acc);color:#160803;border:0;box-shadow:0 0 30px rgba(255,106,31,.5)}
+.crack{height:130px;background:url(lava_strip.jpg) center/cover;-webkit-mask-image:linear-gradient(180deg,transparent,#000 40%,#000 60%,transparent);mask-image:linear-gradient(180deg,transparent,#000 40%,#000 60%,transparent)}
+.card{border:1px solid var(--hair);border-radius:20px;padding:22px;margin-top:14px;background:rgba(255,255,255,.02)}
+.card b.n{font-family:Unbounded,sans-serif;color:var(--acc);font-size:24px;font-weight:800;display:block;line-height:1;margin-bottom:8px}
+.who{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.who img{width:100%;aspect-ratio:1;object-fit:cover;object-position:top;border-radius:18px;background:#1c1410;filter:sepia(.1)}
+.who h3{font-weight:900;font-size:18px;margin:10px 0 6px}.who p{font-size:14px;color:var(--mut)}
+.case{border-left:3px solid var(--acc);padding:4px 0 4px 18px;margin-top:26px}
+.case .t{font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--acc)}
+.small{font-size:12px;color:var(--mut);margin-top:22px}
+.price{background:#000 url(lava_strip.jpg) center bottom/100% auto no-repeat;padding-bottom:230px}
+.big{font-family:Unbounded,sans-serif;font-size:58px;font-weight:800;color:var(--acc);line-height:1;text-shadow:0 0 40px rgba(255,106,31,.5)}
+.gift{display:none;border:1px dashed rgba(255,160,90,.6);border-radius:18px;padding:18px 20px;margin-top:26px;background:rgba(255,106,31,.07);font-size:15px}
+.faq dt{font-weight:800;margin-top:22px}.faq dd{color:var(--mut);margin-top:6px}
+.final{text-align:center;background:#000 url(lava_bg.jpg) center bottom/cover;padding:110px 0 120px}
+.final h2{font-size:clamp(20px,5.2vw,36px);line-height:1.15}
+footer{padding:40px 0 60px;text-align:center;font-size:12px;color:var(--mut)}
+footer nav a{color:var(--fg);margin:0 10px}
+</style><style>
+.gift.on{display:block}
+.sbar{display:none;position:fixed;left:0;right:0;top:0;z-index:60;background:linear-gradient(90deg,#ff5a14,#ff9248);color:#160803;text-align:center;font:700 14px/1.3 Manrope,sans-serif;padding:9px 12px}
+.sbar b{font-family:Unbounded,sans-serif}.sale-on .sbar{display:block}.sale-on{padding-top:38px}
+.big s{display:block;color:var(--mut);font-size:.45em;text-shadow:none;margin-bottom:8px;text-decoration-thickness:3px}
+.stimer{display:none;margin-top:14px;font-weight:700;color:var(--acc2)}.sale-on .stimer{display:block}
+
+.ember{animation:rise linear infinite;opacity:0;bottom:-10px;top:auto!important}
+@keyframes rise{0%{transform:translate(0,0);opacity:0}12%{opacity:1}80%{opacity:.8}100%{transform:translate(24px,-80vh);opacity:0}}
+@media (max-width:560px){.duo{height:262px;margin-top:40px}.duo img{height:222px}.duo .l{left:-3%;transform:none}.duo .r{left:auto;right:-14%;transform:none;height:262px;bottom:24px}}
+@media (prefers-reduced-motion:reduce){.ember{animation:none;opacity:.8}}
+.word{will-change:transform}
+</style></head><body>
+
+<section class="hero">
+ <i class="ember" style="left:15%;width:4px;height:4px;animation-duration:9.6s;animation-delay:0.6s"></i><i class="ember" style="left:15%;width:3px;height:3px;animation-duration:10.3s;animation-delay:0.5s"></i><i class="ember" style="left:76%;width:4px;height:4px;animation-duration:7.7s;animation-delay:2.0s"></i><i class="ember" style="left:84%;width:5px;height:5px;animation-duration:10.5s;animation-delay:0.6s"></i><i class="ember" style="left:78%;width:3px;height:3px;animation-duration:9.4s;animation-delay:8.8s"></i><i class="ember" style="left:9%;width:3px;height:3px;animation-duration:10.3s;animation-delay:1.2s"></i><i class="ember" style="left:57%;width:5px;height:5px;animation-duration:7.9s;animation-delay:1.1s"></i><i class="ember" style="left:43%;width:3px;height:3px;animation-duration:10.4s;animation-delay:6.1s"></i><i class="ember" style="left:17%;width:4px;height:4px;animation-duration:10.5s;animation-delay:5.8s"></i><i class="ember" style="left:51%;width:5px;height:5px;animation-duration:7.6s;animation-delay:6.4s"></i><i class="ember" style="left:76%;width:3px;height:3px;animation-duration:7.4s;animation-delay:1.9s"></i><i class="ember" style="left:91%;width:5px;height:5px;animation-duration:10.2s;animation-delay:7.0s"></i><i class="ember" style="left:63%;width:3px;height:3px;animation-duration:10.5s;animation-delay:4.1s"></i><i class="ember" style="left:42%;width:3px;height:3px;animation-duration:8.5s;animation-delay:1.6s"></i>
+ <div class="x2">х2</div>
+ <div class="word"><span>Про</span><span>жарка</span></div>
+ <div class="duo"><img class="l" src="lar_bust.png" alt="Лариса Тернер"><img class="r" src="joh_bust.png" alt="Джонни"></div>
+ <div class="wrap">
+  <div class="names"><div><b>Лариса Тернер</b>денежный психолог</div><div style="text-align:right"><b>Джонни</b>продюсер</div></div>
+  <p class="sub">Жарим твой бизнес с двух сторон: деньги внутри и маркетинг снаружи</p>
+  <p class="sub2">Живая встреча в Zoom и неделя сопровождения в чате</p>
+  <a class="btn" href="https://lifetime.payform.ru/?do=pay&amp;products[0][name]=%D0%9F%D1%80%D0%BE%D0%B6%D0%B0%D1%80%D0%BA%D0%B0%20%D1%852%3A%20%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%B5%D0%B3%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F%20%D1%81%D0%B5%D1%81%D1%81%D0%B8%D1%8F%20%D1%81%20%D0%BC%D0%B0%D1%80%D0%BA%D0%B5%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%BE%D0%BC%20%D0%B8%20%D0%B4%D0%B5%D0%BD%D0%B5%D0%B6%D0%BD%D1%8B%D0%BC%20%D0%BF%D1%81%D0%B8%D1%85%D0%BE%D0%BB%D0%BE%D0%B3%D0%BE%D0%BC&amp;products[0][price]=7000&amp;products[0][quantity]=1&amp;products[0][paid_content]=%D0%A1%D0%BF%D0%B0%D1%81%D0%B8%D0%B1%D0%BE%20%D0%B7%D0%B0%20%D0%BE%D0%BF%D0%BB%D0%B0%D1%82%D1%83%21%20%D0%A1%D0%BB%D0%B5%D0%B4%D1%83%D1%8E%D1%89%D0%B8%D0%B9%20%D1%88%D0%B0%D0%B3:%20%D0%BD%D0%B0%D0%BF%D0%B8%D1%88%D0%B8%D1%82%D0%B5%20%D0%9B%D0%B0%D1%80%D0%B8%D1%81%D0%B5%20%D1%81%D0%BB%D0%BE%D0%B2%D0%BE%20%D0%9F%D0%A0%D0%9E%D0%96%D0%90%D0%A0%D0%9A%D0%90%20https://t.me/larisaturner%3Ftext%3D%25D0%259F%25D0%25A0%25D0%259E%25D0%2596%25D0%2590%25D0%25A0%25D0%259A%25D0%2590%20%2C%20%D0%BF%D1%80%D0%B8%D1%88%D0%BB%D1%91%D0%BC%20%D0%B0%D0%BD%D0%BA%D0%B5%D1%82%D1%83%20%D0%B8%D0%B7%204%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2%20%D0%B8%20%D0%B2%D1%80%D0%B5%D0%BC%D1%8F%20%D0%B4%D0%BB%D1%8F%20%D0%B2%D1%81%D1%82%D1%80%D0%B5%D1%87%D0%B8." target="_blank" rel="noopener">Заказать прожарку</a>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <div class="idx"><b>01</b>Знакомо?</div>
+  <h2>Знаний много, а продаж <em>меньше, чем знаний?</em></h2>
+  <ol class="rows">
+   <li>Пройдено множество обучений, а доход остался прежним.</li>
+   <li>Поднимаешь цену, но на первое «дорого» тут же даёшь скидку.</li>
+   <li>Подписчики благодарят, но покупают у других.</li>
+   <li>Месяц густо, месяц пусто, и непонятно, от чего это зависит.</li>
+  </ol>
+ </div>
+</section>
+
+<div class="crack"></div>
+
+<section class="alt">
+ <div class="wrap">
+  <div class="idx"><b>02</b>Почему так?</div>
+  <h2>Рост тормозят <em>два фиксатора</em></h2>
+  <div class="card"><b class="n">Внутри</b>Страх назвать цену, неловкость при продаже, откат после удачного месяца.</div>
+  <div class="card"><b class="n">Снаружи</b>Непонятно, что именно ты продаёшь и кому, нет чёткого пути от поста до покупки.</div>
+  <p class="lead" style="margin-top:26px">Работа с одним фиксатором не решит проблему: новая воронка упирается в старую цену, смелая цена — в пустую воронку.</p>
+  <p><b>Поэтому нас двое.</b> Психолог исследует внутренние блоки, маркетолог — внешние стратегии.</p>
+  <div class="schema"><span>маркетинг</span><i>+</i><span>внутренние опоры</span><i>=</i><span class="mid">рост без отката</span></div>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <div class="idx"><b>03</b>Как проходит?</div>
+  <h2>Это живая встреча, <em>а не запись</em></h2>
+  <ol class="rows">
+   <li>До встречи: 4 коротких вопроса и ссылки на твой блог и продукты. Мы готовимся заранее.</li>
+   <li>60 минут в Zoom: разбираем твою ситуацию с двух сторон и сразу собираем выводы.</li>
+   <li>Неделя в рабочем чате: ты внедряешь шаги, мы отвечаем на вопросы. Индивидуальный интенсив.</li>
+   <li>Финальный созвон (20 минут): смотрим, что получилось, и корректируем шаги.</li>
+  </ol>
+  <a class="btn" href="https://lifetime.payform.ru/?do=pay&amp;products[0][name]=%D0%9F%D1%80%D0%BE%D0%B6%D0%B0%D1%80%D0%BA%D0%B0%20%D1%852%3A%20%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%B5%D0%B3%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F%20%D1%81%D0%B5%D1%81%D1%81%D0%B8%D1%8F%20%D1%81%20%D0%BC%D0%B0%D1%80%D0%BA%D0%B5%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%BE%D0%BC%20%D0%B8%20%D0%B4%D0%B5%D0%BD%D0%B5%D0%B6%D0%BD%D1%8B%D0%BC%20%D0%BF%D1%81%D0%B8%D1%85%D0%BE%D0%BB%D0%BE%D0%B3%D0%BE%D0%BC&amp;products[0][price]=7000&amp;products[0][quantity]=1&amp;products[0][paid_content]=%D0%A1%D0%BF%D0%B0%D1%81%D0%B8%D0%B1%D0%BE%20%D0%B7%D0%B0%20%D0%BE%D0%BF%D0%BB%D0%B0%D1%82%D1%83%21%20%D0%A1%D0%BB%D0%B5%D0%B4%D1%83%D1%8E%D1%89%D0%B8%D0%B9%20%D1%88%D0%B0%D0%B3:%20%D0%BD%D0%B0%D0%BF%D0%B8%D1%88%D0%B8%D1%82%D0%B5%20%D0%9B%D0%B0%D1%80%D0%B8%D1%81%D0%B5%20%D1%81%D0%BB%D0%BE%D0%B2%D0%BE%20%D0%9F%D0%A0%D0%9E%D0%96%D0%90%D0%A0%D0%9A%D0%90%20https://t.me/larisaturner%3Ftext%3D%25D0%259F%25D0%25A0%25D0%259E%25D0%2596%25D0%2590%25D0%25A0%25D0%259A%25D0%2590%20%2C%20%D0%BF%D1%80%D0%B8%D1%88%D0%BB%D1%91%D0%BC%20%D0%B0%D0%BD%D0%BA%D0%B5%D1%82%D1%83%20%D0%B8%D0%B7%204%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2%20%D0%B8%20%D0%B2%D1%80%D0%B5%D0%BC%D1%8F%20%D0%B4%D0%BB%D1%8F%20%D0%B2%D1%81%D1%82%D1%80%D0%B5%D1%87%D0%B8." target="_blank" rel="noopener">Заказать прожарку</a>
+ </div>
+</section>
+
+<section class="alt">
+ <div class="wrap">
+  <div class="idx"><b>04</b>Что останется у тебя?</div>
+  <div class="card"><b class="n">01</b>Карта бизнеса: продукт, аудитория, привлечение и продажи на одной картине.</div>
+  <div class="card"><b class="n">02</b>Карта внутренних опор и денежных сценариев: что тебя держит и что тормозит.</div>
+  <div class="card"><b class="n">03</b>От 1 до 3 шагов, с которых стоит начать.</div>
+  <p class="lead" style="margin-top:28px">Мы не обещаем удвоения дохода за час. <b>Мы обещаем ясность:</b> что мешает именно тебе и что делать первым.</p>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <div class="idx"><b>05</b>Для кого?</div>
+  <h2>Подойдёт, <em>если</em></h2>
+  <ul class="dots">
+   <li>У тебя есть продукт и первые продажи.</li>
+   <li>Ты психолог, коуч, нутрициолог, консультант или другой помогающий специалист.</li>
+   <li>Чек давно не растёт.</li>
+  </ul>
+  <p class="mut" style="margin-top:22px">Если продаж ещё нет, мы честно скажем об этом и подскажем, с чего начать.</p>
+ </div>
+</section>
+
+<section class="alt">
+ <div class="wrap">
+  <div class="idx"><b>06</b>Кто мы</div>
+  <div class="who">
+   <div><img src="lar_cut.png" alt=""><h3>Лариса Тернер</h3><p>Врач-психотерапевт: 27 лет в психологии и 7 лет в финансах, автор методологии «Финансовая архитектура жизни LifeTime». Убираю внутренние потолки дохода, из-за которых эксперты теряют продажи и боятся называть цену.</p></div>
+   <div><img src="joh_cut.png" alt=""><h3>Джонни, продюсер</h3><p>Создаю продукты с нуля и строю долгосрочные стратегии вместо разовых запусков. Работаю как с начинающими, так и с крупными экспертами.</p></div>
+  </div>
+  <div class="case"><div class="t">Кейс Ларисы</div><p>Клиентка с теми же знаниями и опытом стала зарабатывать <b>в 12 раз больше</b>. Изменилось отношение к своей цене и решениям о деньгах.</p></div>
+  <div class="case"><div class="t">Кейс Джонни</div><p>Один пост психолога собрал <b>11 человек</b> в бесплатную мини-группу. Двое купили продукты по 3 000 ₽, одна участница пришла в личное сопровождение за <b>90 000 ₽ в месяц</b>.</p></div>
+  <p class="small">Результаты зависят от ситуации и действий каждого.</p>
+ </div>
+</section>
+
+<section class="price" id="cta">
+ <div class="wrap">
+  <div class="idx"><b>07</b>Цена</div>
+  <h2>Прожарка х2</h2>
+  <div class="big">7 000 ₽</div>
+  <div class="stimer">Цена после видео действует ещё <span class="tleft">24:00:00</span></div>
+  <p class="lead" style="margin-top:18px">60 минут с двумя специалистами + неделя ответов в рабочем чате + финальный созвон (20 минут).</p>
+  <p class="each"><b>Это меньше 3 500 ₽ на каждого из нас, а работаем мы с тобой целую неделю.</b></p>
+  <a class="btn" href="https://lifetime.payform.ru/?do=pay&amp;products[0][name]=%D0%9F%D1%80%D0%BE%D0%B6%D0%B0%D1%80%D0%BA%D0%B0%20%D1%852%3A%20%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%B5%D0%B3%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F%20%D1%81%D0%B5%D1%81%D1%81%D0%B8%D1%8F%20%D1%81%20%D0%BC%D0%B0%D1%80%D0%BA%D0%B5%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%BE%D0%BC%20%D0%B8%20%D0%B4%D0%B5%D0%BD%D0%B5%D0%B6%D0%BD%D1%8B%D0%BC%20%D0%BF%D1%81%D0%B8%D1%85%D0%BE%D0%BB%D0%BE%D0%B3%D0%BE%D0%BC&amp;products[0][price]=7000&amp;products[0][quantity]=1&amp;products[0][paid_content]=%D0%A1%D0%BF%D0%B0%D1%81%D0%B8%D0%B1%D0%BE%20%D0%B7%D0%B0%20%D0%BE%D0%BF%D0%BB%D0%B0%D1%82%D1%83%21%20%D0%A1%D0%BB%D0%B5%D0%B4%D1%83%D1%8E%D1%89%D0%B8%D0%B9%20%D1%88%D0%B0%D0%B3:%20%D0%BD%D0%B0%D0%BF%D0%B8%D1%88%D0%B8%D1%82%D0%B5%20%D0%9B%D0%B0%D1%80%D0%B8%D1%81%D0%B5%20%D1%81%D0%BB%D0%BE%D0%B2%D0%BE%20%D0%9F%D0%A0%D0%9E%D0%96%D0%90%D0%A0%D0%9A%D0%90%20https://t.me/larisaturner%3Ftext%3D%25D0%259F%25D0%25A0%25D0%259E%25D0%2596%25D0%2590%25D0%25A0%25D0%259A%25D0%2590%20%2C%20%D0%BF%D1%80%D0%B8%D1%88%D0%BB%D1%91%D0%BC%20%D0%B0%D0%BD%D0%BA%D0%B5%D1%82%D1%83%20%D0%B8%D0%B7%204%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2%20%D0%B8%20%D0%B2%D1%80%D0%B5%D0%BC%D1%8F%20%D0%B4%D0%BB%D1%8F%20%D0%B2%D1%81%D1%82%D1%80%D0%B5%D1%87%D0%B8." target="_blank" rel="noopener">Заказать прожарку<small>оплата 7 000 ₽</small></a>
+  <div class="gift"><img src="gift.svg" alt="" style="height:1.1em;vertical-align:-.18em;margin:0 4px"> Если тебе пришло приглашение в наше исследование, Прожарку ты можешь получить <b>в подарок</b>: оплачивать ничего не нужно, после интервью мы сами договоримся о времени.</div>
+ </div>
+</section>
+
+<section class="alt">
+ <div class="wrap">
+  <div class="idx"><b>08</b>Вопросы</div>
+  <dl class="faq">
+   <dt>Мне нужно что-то готовить?</dt><dd>Только ответить на 4 вопроса до встречи, остальное делаем вместе.</dd>
+   <dt>А если у меня ещё нет продукта?</dt><dd>Тогда рано, честно скажем об этом на этапе анкеты.</dd>
+   <dt>Вы будете что-то продавать на встрече?</dt><dd>Встреча про твою ситуацию. Если увидим, что тебе подходит наша мастер-группа, расскажем в конце. Решение за тобой.</dd>
+   <dt>Что если я не успею внедрить шаги за неделю?</dt><dd>Для этого неделя в чате и финальный созвон: поправим шаги под твой темп.</dd>
+  </dl>
+ </div>
+</section>
+
+<section class="final">
+ <div class="wrap">
+  <h2>Возможно, тебе не нужно ещё одно обучение. <em>Нужно увидеть, что уже есть, и собрать.</em></h2>
+  <a class="btn" href="https://lifetime.payform.ru/?do=pay&amp;products[0][name]=%D0%9F%D1%80%D0%BE%D0%B6%D0%B0%D1%80%D0%BA%D0%B0%20%D1%852%3A%20%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%B5%D0%B3%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F%20%D1%81%D0%B5%D1%81%D1%81%D0%B8%D1%8F%20%D1%81%20%D0%BC%D0%B0%D1%80%D0%BA%D0%B5%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%BE%D0%BC%20%D0%B8%20%D0%B4%D0%B5%D0%BD%D0%B5%D0%B6%D0%BD%D1%8B%D0%BC%20%D0%BF%D1%81%D0%B8%D1%85%D0%BE%D0%BB%D0%BE%D0%B3%D0%BE%D0%BC&amp;products[0][price]=7000&amp;products[0][quantity]=1&amp;products[0][paid_content]=%D0%A1%D0%BF%D0%B0%D1%81%D0%B8%D0%B1%D0%BE%20%D0%B7%D0%B0%20%D0%BE%D0%BF%D0%BB%D0%B0%D1%82%D1%83%21%20%D0%A1%D0%BB%D0%B5%D0%B4%D1%83%D1%8E%D1%89%D0%B8%D0%B9%20%D1%88%D0%B0%D0%B3:%20%D0%BD%D0%B0%D0%BF%D0%B8%D1%88%D0%B8%D1%82%D0%B5%20%D0%9B%D0%B0%D1%80%D0%B8%D1%81%D0%B5%20%D1%81%D0%BB%D0%BE%D0%B2%D0%BE%20%D0%9F%D0%A0%D0%9E%D0%96%D0%90%D0%A0%D0%9A%D0%90%20https://t.me/larisaturner%3Ftext%3D%25D0%259F%25D0%25A0%25D0%259E%25D0%2596%25D0%2590%25D0%25A0%25D0%259A%25D0%2590%20%2C%20%D0%BF%D1%80%D0%B8%D1%88%D0%BB%D1%91%D0%BC%20%D0%B0%D0%BD%D0%BA%D0%B5%D1%82%D1%83%20%D0%B8%D0%B7%204%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2%20%D0%B8%20%D0%B2%D1%80%D0%B5%D0%BC%D1%8F%20%D0%B4%D0%BB%D1%8F%20%D0%B2%D1%81%D1%82%D1%80%D0%B5%D1%87%D0%B8." target="_blank" rel="noopener">Заказать прожарку <img src="fire.svg" alt="" style="height:1.1em;vertical-align:-.18em;margin:0 4px"></a>
+ </div>
+</section>
+
+<footer><div class="wrap">Лариса Тернер · Джонни<br><nav style="margin:14px 0"><a href="/files/oferta/oferta-terner.pdf">Оферта</a><a href="/policy/">Политика конфиденциальности</a></nav>Продавец: ИП Тернер Лариса Владимировна, ИНН 222210655492, ОГРНИП 325784700312500, larisa.terner@yandex.com, +7 981 905-22-99. Материалы сайта носят информационный характер и не являются индивидуальной инвестиционной рекомендацией.</div></footer>
+<script>
+(function(){try{if(new URLSearchParams(location.search).has('gift')){var g=document.querySelector('.gift');if(g)g.classList.add('on')}}catch(e){}
+var w=document.querySelector('.word');if(!w||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+var t=false;addEventListener('scroll',function(){if(t)return;t=true;requestAnimationFrame(function(){var y=scrollY;if(y<1000)w.style.transform='translateY('+(y*0.28)+'px)';t=false})},{passive:true})})();
+
+(function(){try{
+var q=new URLSearchParams(location.search);if(!q.has('sale'))return;
+var now=Date.now(),v=parseInt(q.get('sale'),10),until=0;
+if(v>1e9){until=v*1000}else{var k='pz_sale_until';try{until=parseInt(localStorage.getItem(k),10)||0}catch(e){}
+ if(!until){until=now+864e5;try{localStorage.setItem(k,String(until))}catch(e){}}}
+if(now>=until)return;
+document.body.classList.add('sale-on');
+var bar=document.createElement('div');bar.className='sbar';bar.innerHTML='Цена после видео <b>3 900 ₽</b> вместо 7 000 ₽, осталось <span class="tleft"></span>';document.body.prepend(bar);
+var big=document.querySelector('.price .big');if(big){big.innerHTML='<s>7\u00a0000\u00a0₽</s><span style="white-space:nowrap">3\u00a0900\u00a0₽</span>';}
+document.querySelectorAll('.btn small').forEach(function(x){x.textContent=x.textContent.replace(/7[\s\u00a0]000/,'3\u00a0900')});
+var e=document.querySelector('.price .each');if(e)e.innerHTML='<b>Это меньше 2 000 ₽ на каждого из нас, а работаем мы с тобой целую неделю.</b>';
+document.querySelectorAll('a[href*="payform.ru"]').forEach(function(a){a.href=a.href.replace('products[0][price]=7000','products[0][price]=3900').replace('products%5B0%5D%5Bprice%5D=7000','products%5B0%5D%5Bprice%5D=3900')});
+function tick(){var d=Math.max(0,until-Date.now());if(!d){location.href=location.pathname;return}
+var h=Math.floor(d/36e5),m=Math.floor(d%36e5/6e4),c=Math.floor(d%6e4/1e3),t=(h<10?'0':'')+h+':'+(m<10?'0':'')+m+':'+(c<10?'0':'')+c;
+document.querySelectorAll('.tleft').forEach(function(x){x.textContent=t})}
+tick();setInterval(tick,1000);
+}catch(e){}})();
+</script></body></html>
