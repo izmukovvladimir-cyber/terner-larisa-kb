@@ -48,10 +48,10 @@ function mount(el,o){
     if(!name) return err("Напиши имя",f("name"));
     if(!/^[A-Za-z0-9_]{4,32}$/.test(tg)) return err("Проверь ник в Telegram: латиница, цифры и _",f("tg"));
     go.disabled=true; go.textContent="Отправляем…";
-    var p={src:"zayavka",page:o.page,gift:!!o.gift,task:task,slot:slot,name:name,tg:"@"+tg,ts:new Date().toISOString()};
+    var p={src:"zayavka",page:o.page,gift:!!o.gift,paid:!!o.paid,task:task,slot:slot,name:name,tg:"@"+tg,ts:new Date().toISOString()};
     if(test) p.test=true;
     if(GS) try{fetch(GS,{method:"POST",mode:"no-cors",body:JSON.stringify({form:"Заявки на встречу",
-      "Страница":o.page,"Подарок":o.gift?"да":"нет","Задача":task,"Время":slot,"Имя":name,"Ник":"@"+tg,"Тест":test?"да":""})})}catch(e){}
+      "Страница":o.page,"Подарок":o.gift?"да":"нет","Оплачено":o.paid?"да":"","Задача":task,"Время":slot,"Имя":name,"Ник":"@"+tg,"Тест":test?"да":""})})}catch(e){}
     fetch(HOOK,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify(p)})
     .then(function(r){ if(!r.ok) throw 0;
       el.innerHTML='<div class="bk-ok"><b>Заявка принята</b><p>Напишем тебе в Telegram в течение часа и подтвердим время.</p></div>';
