@@ -4,6 +4,7 @@
    straight to the owner's Google Sheet, so a copy exists outside the server. */
 (function(){
 var HOOK="https://api.chatplace.io/hooks/01a1e5445c2b71c6bbd1183090abe683b55929c62e3b3b7024e0f079cc2b0a1e2f393a003088b865";
+var GS_ME="https://script.google.com/macros/s/AKfycbw2iYnAv4ysLUnojFJoK9JmOxL6TzM8OewQtbxdcB0sY6XvYzsF30JJIpKEywHLcQYk/exec"; // Larisa personal sheet: intervyu bookings
 var GS="https://script.google.com/macros/s/AKfycbwOtnTL-X1l8wKfX0IJEzhCsdBb5Zh_2reDmysJIu-N1vRJNFzAENajVpICWZxROQvZ/exec";
 var WD=["Вс","Пн","Вт","Ср","Чт","Пт","Сб"], MON=["янв","фев","мар","апр","мая","июн","июл","авг","сен","окт","ноя","дек"];
 function esc(x){return String(x).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
@@ -54,7 +55,8 @@ function mount(el,o){
     go.disabled=true; go.textContent="Отправляем…";
     var p={src:"zayavka",page:o.page,gift:!!o.gift,paid:!!o.paid,task:task,slot:slot,name:name,tg:"@"+tg,ts:new Date().toISOString()};
     if(test) p.test=true;
-    if(GS&&o.page!=="intervyu") try{fetch(GS,{method:"POST",mode:"no-cors",body:JSON.stringify({form:"Заявки на встречу",
+    var gs=o.page==="intervyu"?GS_ME:GS;
+    if(gs) try{fetch(gs,{method:"POST",mode:"no-cors",body:JSON.stringify({form:"Заявки на встречу",
       "Страница":o.page,"Подарок":o.gift?"да":"нет","Оплачено":o.paid?"да":"","Задача":task,"Время":slot,"Имя":name,"Ник":"@"+tg,"Тест":test?"да":""})})}catch(e){}
     fetch(HOOK,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify(p)})
     .then(function(r){ if(!r.ok) throw 0;
