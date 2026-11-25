@@ -97,6 +97,8 @@ footer a:hover{color:var(--acc)}
 footer .ft-law{max-width:620px;margin:22px auto 0;font-size:12px;line-height:1.5;opacity:.8}
 @media (max-width:560px){.who{grid-template-columns:1fr}.schema{font-size:13px}.sticky{display:block}section{padding:80px 0}}
 </style>
+<link rel="stylesheet" href="/files/booking.css">
+<style>.fk-bk.bk{--bk-acc:#d0ff00;--bk-on:#0b0b0b;--bk-card:#141414;font-family:inherit;max-width:620px;margin:0 auto}#zapis{scroll-margin-top:24px}</style>
 </head>
 <body>
 
@@ -247,11 +249,11 @@ footer .ft-law{max-width:620px;margin:22px auto 0;font-size:12px;line-height:1.5
   <div class="idx"><b>09</b>Что дальше</div>
   <h2>Три шага <em>до карты</em></h2>
   <ol class="steps">
-   <li>Напиши Ларисе в личные сообщения слово ФОКУС.</li>
-   <li>Выберем время для диагностики.</li>
+   <li>Оставь заявку ниже: задача и удобное время.</li>
+   <li>Подтвердим время в личных сообщениях Telegram.</li>
    <li>Разберём твою ситуацию и соберём карту.</li>
   </ol>
-  <a class="btn" href="https://t.me/larisaturner?text=%D0%A4%D0%9E%D0%9A%D0%A3%D0%A1">Написать ФОКУС<small>в личку @larisaturner</small></a>
+  <div id="zapis" class="fk-bk"></div>
   <p class="mut" style="margin-top:22px;text-align:center">Карта останется у тебя, даже если дальше продолжишь самостоятельно.</p>
  </div>
 </section>
@@ -263,6 +265,12 @@ footer .ft-law{max-width:620px;margin:22px auto 0;font-size:12px;line-height:1.5
   <div class="ft-law">Продавец: ИП Тернер Лариса Владимировна, ИНН 222210655492, ОГРНИП 325784700312500, larisa.terner@yandex.com, +7 981 905-22-99. Материалы сайта носят информационный характер и не являются индивидуальной инвестиционной рекомендацией или медицинской помощью.</div>
  </div>
 </footer>
-<a class="btn sticky" href="https://t.me/larisaturner?text=%D0%A4%D0%9E%D0%9A%D0%A3%D0%A1">Написать ФОКУС</a>
+<a class="btn sticky" href="#zapis">Записаться на диагностику</a>
+<script src="/files/booking.js"></script>
+<script>
+Booking.mount(document.getElementById("zapis"),{page:"fokus",gift:false,cta:"Оставить заявку"});
+(function(){var st=document.querySelector(".sticky"),z=document.getElementById("zapis");
+ if(st&&z&&window.IntersectionObserver) new IntersectionObserver(function(e){st.style.visibility=e[0].isIntersecting?"hidden":"visible";}).observe(z);})();
+</script>
 </body>
 </html>

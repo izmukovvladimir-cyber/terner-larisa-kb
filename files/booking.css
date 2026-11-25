@@ -1,0 +1,25 @@
+/* Shared booking form. Each page sets --bk-* on .bk (accent, text, card, field, line). */
+.bk{--bk-acc:#ff6a1f;--bk-on:#fff;--bk-fg:#f4f4ef;--bk-mut:#9a9a92;--bk-card:#141414;--bk-field:#0f0f0f;--bk-line:rgba(244,244,239,.14);
+  background:var(--bk-card);border:1px solid var(--bk-line);border-radius:22px;padding:20px 18px;color:var(--bk-fg);text-align:left}
+.bk *{box-sizing:border-box}
+.bk-l{display:block;font-size:14px;font-weight:800;margin:18px 0 8px;color:var(--bk-fg)}
+.bk-l:first-child{margin-top:0}
+.bk-l small{font-weight:500;color:var(--bk-mut);margin-left:6px}
+.bk textarea,.bk input{width:100%;background:var(--bk-field);border:1.5px solid var(--bk-line);border-radius:14px;padding:13px 14px;color:var(--bk-fg);font-family:inherit;font-size:16px;font-weight:500;line-height:1.45;outline:none;resize:none;margin:0}
+.bk textarea{min-height:88px}
+.bk textarea:focus,.bk input:focus{border-color:var(--bk-acc)}
+.bk .bad{border-color:#e5484d!important}
+.bk-day{display:flex;align-items:center;gap:8px;padding:9px 0;border-top:1px solid var(--bk-line)}
+.bk-day:first-child{border-top:0;padding-top:0}
+.bk-dn{flex:0 0 66px;font-size:14px;font-weight:800;line-height:1.2}
+.bk-dn small{display:block;font-weight:500;color:var(--bk-mut);font-size:12.5px}
+.bk-slots{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.bk-s{border:1.5px solid var(--bk-line);background:transparent;color:var(--bk-fg);border-radius:12px;padding:10px 0;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s}
+.bk-s.on{background:var(--bk-acc);border-color:var(--bk-acc);color:var(--bk-on)}
+.bk-go{display:block;width:100%;margin-top:20px;border:0;border-radius:999px;padding:17px;background:var(--bk-acc);color:var(--bk-on);font-family:inherit;font-size:17px;font-weight:800;cursor:pointer;transition:transform .1s}
+.bk-go:active{transform:scale(.98)}.bk-go:disabled{opacity:.6}
+.bk-note{font-size:13px;color:var(--bk-mut);text-align:center;margin:12px 0 0;line-height:1.45}
+.bk-err{font-size:14px;font-weight:700;color:#ff6b6b;margin-top:12px;text-align:center}
+.bk-ok{text-align:center;padding:14px 4px}
+.bk-ok b{display:block;font-size:24px;line-height:1.2;margin-bottom:10px}
+.bk-ok p{margin:0;color:var(--bk-mut);font-size:16px}

@@ -74,7 +74,17 @@ img.emoji{height:1em;width:1em;margin:0 .05em 0 .1em;vertical-align:-0.1em}
 .err{margin-top:12px;font-size:14px;font-weight:700;color:#d63a3a}
 textarea.bad,input.bad{border-color:#d63a3a}
 .btn.ghost2{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+body.fin{--bg:#0b0b0b;--card:#161616;--ink:#f4f4ef;--muted:#9a9a92;--line:#2a2a2a;--accent:#ff6a1f;--field:#121212;--glass:rgba(255,255,255,.06)}
+body.fin .theme{visibility:hidden}
+.price{display:flex;align-items:baseline;gap:12px;margin:2px 0 12px}.price s{color:var(--muted);font-size:20px;font-weight:600}.price b{color:var(--accent);font-size:30px;font-weight:800}
+.fin-lead{font-size:16px;line-height:1.55;margin:0 0 18px;font-weight:500}
+.pz{display:block;width:100%;height:auto;border-radius:18px;margin:0 0 18px}
+.timer{display:flex;justify-content:space-between;align-items:center;gap:12px;border:1.5px solid var(--accent);border-radius:16px;padding:12px 16px;margin:0 0 18px}
+.timer span{font-size:13px;color:var(--muted);line-height:1.35}.timer b{font-size:26px;font-weight:800;color:var(--accent);letter-spacing:.03em;font-variant-numeric:tabular-nums}
+.fin-more{text-align:center;margin:16px 0 0;font-size:14px}.fin-more a{color:var(--muted)}
 </style>
+<link rel="stylesheet" href="/files/booking.css">
+<script src="/files/booking.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@15.1.0/dist/twemoji.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -89,7 +99,6 @@ textarea.bad,input.bad{border-color:#d63a3a}
 </div><div class="saved" id="saved"></div></div>
 <script>
 var HOOK="https://api.chatplace.io/hooks/01a1e5445c2b71c6bbd1183090abe683b55929c62e3b3b7024e0f079cc2b0a1e2f393a003088b865";
-var FOKUS="https://terner-larisa.ru/fokus/", BOOK="https://t.me/larisaturner?text=%D0%A4%D0%9E%D0%9A%D0%A3%D0%A1";
 function Q(id,l,h){return{t:"q",id:id,l:l,h:h}}
 function K(id,l,h){return{t:"q",key:1,id:id,l:l,h:h}}
 function D(big,small){return{t:"div",big:big,small:small}}
@@ -138,14 +147,15 @@ function render(){
       '<div class="facts"><div class="fact"><b>⏱</b>15 минут, в своём темпе</div><div class="fact"><b>🔒</b>Ответы видим только мы</div><div class="fact"><b>💡</b>Польза уже по ходу: пока отвечаешь, многое становится яснее</div></div>';
   } else if(s.t==="gift"){
     h='<span class="gift-badge">🎁 В конце тебя ждёт подарок</span>'+
-      '<div class="gift-h">Фокусная диагностика: <span class="mark">глубокий персональный разбор</span> твоей ситуации</div>'+
-      '<p class="gift-lead">Выходишь со встречи с ясной головой: видно, куда утекают силы и деньги, и понятно, что делать уже завтра.</p>'+
+      '<div class="gift-h">Прожарка: <span class="mark">60 минут разбираем твой бизнес</span> с двух сторон</div>'+
+      '<p class="gift-free">Обычно 7 000 ₽, участникам исследования бесплатно</p>'+
+      '<p class="gift-lead">Деньги внутри и маркетинг снаружи. Выходишь со встречи с ясной головой: видно, куда утекают силы и деньги, и понятно, что делать уже завтра.</p>'+
       '<div class="take">Что заберёшь с собой</div><div class="cards">'+
-      '<div class="card"><div class="ic">🗺️</div><p><b>Майнд-карту своей ситуации</b>На одном листе видно, где теряются люди, что уже работает и куда уходят силы.</p></div>'+
-      '<div class="card"><div class="ic">🎯</div><p><b>Что собрать первым</b>Понимание, с чего начать, чтобы знания начали приносить деньги.</p></div>'+
-      '<div class="card"><div class="ic">👣</div><p><b>Первый шаг</b>Конкретное действие, которое можно сделать уже на этой неделе.</p></div></div>'+
+      '<div class="card"><div class="ic">🗺️</div><p><b>Карту своего бизнеса</b>На одном листе видно, где теряются люди, что уже работает и куда уходят силы.</p></div>'+
+      '<div class="card"><div class="ic">🎯</div><p><b>1-3 шага к росту дохода</b>С чего начать, чтобы знания начали приносить деньги.</p></div>'+
+      '<div class="card"><div class="ic">💬</div><p><b>Неделю обратной связи</b>После встречи мы на связи и помогаем довести первые шаги до результата.</p></div></div>'+
       '<p class="sub" style="margin-top:18px">Причём твои ответы здесь могут стать основой разбора. Нам не придётся тратить первую половину встречи на «расскажи о себе»: придёшь, и сразу приступаем к делу.</p>'+
-      '<div class="glass"><span class="emo">💡</span><p>Так что эти 15 минут работают на тебя дважды. Пока отвечаешь, многое становится яснее само. А на диагностике мы покажем, что с этим делать.</p></div>'+
+      '<div class="glass"><span class="emo">💡</span><p>Так что эти 15 минут работают на тебя дважды. Пока отвечаешь, многое становится яснее само. А на Прожарке мы покажем, что с этим делать.</p></div>'+
       '<p class="outro">Такой взгляд со стороны экономит месяцы проб и ошибок.</p>';
   } else if(s.t==="how"){
     h='<div class="big">Здесь нет <em>правильных</em> ответов</div><p class="sub">Пиши как есть, как другу на кухне: коротко или длинно, с ошибками и смайликами.</p>'+
@@ -171,13 +181,13 @@ function render(){
   } else if(s.t==="div"){
     h='<div class="big">'+s.big+'</div><p class="sub">'+s.small+'</p>';
   } else if(s.t==="done"){
-    h='<div class="big">Спасибо за время и за твою <em>честность</em> 💜</div><p class="sub">Мы ценим твой вклад и прочитаем каждое слово. А итогами исследования мы можем поделиться с тобой, если ты дойдёшь до разбора.</p>'+
-      '<div class="glass"><span class="emo">🎁</span><p style="font-size:19px;font-weight:800;margin:0 0 6px">Твой подарок ждёт</p>'+
-      '<p style="font-weight:700">Фокусная диагностика: <span class="mark">глубокий персональный разбор</span> твоей ситуации.</p>'+
-      '<p style="font-weight:500">Твои ответы уже у нас, поэтому на встрече начнём сразу с главного: где теряются люди и силы, что уже работает и на каком ближайшем шаге нужно сфокусироваться, чтобы это принесло тебе больше денег.</p></div>'+
-      '<p class="outro" style="margin-bottom:6px">Лучше выбрать время сейчас, пока всё, о чём ты думал в этих ответах, ещё свежо.</p>'+
-      '<a class="btn" href="'+BOOK+'" target="_blank" rel="noopener" style="display:block">Записаться на диагностику</a>'+
-      '<a class="btn ghost2" href="'+FOKUS+'" target="_blank" rel="noopener" style="display:block;margin-top:10px">Узнать подробнее</a>';
+    h='<span class="eyebrow">Спасибо за честность 💜</span><h1>Прожарка <em>в подарок. Только 24 часа</em></h1>'+
+      '<div class="price"><s>7 000 ₽</s><b>0 ₽</b></div>'+
+      '<p class="fin-lead">60 минут мы разбираем твой бизнес с двух сторон: деньги внутри и маркетинг снаружи. Ты уходишь с картой бизнеса, 1-3 шагами, которые дадут рост дохода, и неделей обратной связи.</p>'+
+      '<img class="pz" src="pz_title.jpg" alt="Прожарка x2: Лариса Тернер и продюсер" width="780" height="1050">'+
+      '<p class="sub">Ответы ты уже дал. Дальше обычно так: закрыл вкладку, покивал сам себе и живёшь как раньше. Если задача правда горит, оставь заявку сейчас.</p>'+
+      '<div class="timer"><span id="tmsg">Подарок сгорит<br>через</span><b id="tm">24:00:00</b></div>'+
+      '<div id="bk"></div><p class="fin-more"><a href="/prozharka/?gift=1">Что такое Прожарка</a></p>';
   }
   stage.innerHTML='<div class="scr">'+h+'</div>';
   if(window.twemoji) try{twemoji.parse(stage,{folder:'svg',ext:'.svg'})}catch(e){}
@@ -195,7 +205,22 @@ function render(){
   document.getElementById("nav").style.display=st.i===last?"none":"block";
   nextB.disabled=false;
   nextB.textContent=st.i===0?"Участвую":st.i===1?"Дальше":st.i===2?"Забираю, начинаем":st.i===last-1?"Отправить":(s.t==="div"?"Продолжить":"Дальше");
+  document.body.classList.toggle("fin",s.t==="done");
+  if(s.t==="done"){ if(window.Booking) Booking.mount(document.getElementById("bk"),{page:"issledovanie",gift:true,cta:"Забрать Прожарку"}); timer(); }
   window.scrollTo(0,0);
+}
+function timer(){
+  var t0=0, K="kastdev_fin_t0";
+  try{ t0=+localStorage.getItem(K)||0; if(!t0){ t0=Date.now(); localStorage.setItem(K,t0); } }catch(e){ t0=t0||Date.now(); }
+  function z(n){return (n<10?"0":"")+n}
+  function tick(){
+    var el=document.getElementById("tm"); if(!el) return;
+    var left=Math.max(0,Math.floor((t0+864e5-Date.now())/1000));
+    el.textContent=z(Math.floor(left/3600))+":"+z(Math.floor(left%3600/60))+":"+z(left%60);
+    if(!left){ document.getElementById("tmsg").innerHTML="Время вышло, но заявку<br>ещё можно оставить"; return; }
+    setTimeout(tick,1000);
+  }
+  tick();
 }
 backB.onclick=function(){st.i--; save(); render();};
 nextB.onclick=function(){
