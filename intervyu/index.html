@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Интервью перед консультацией</title>
+<meta name="theme-color" content="#0a1430">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a1430;--card:#111e42;--ink:#eef1f8;--muted:#a9b6d3;--line:rgba(230,199,102,.22);--accent:#e6c766;--accent2:rgba(230,199,102,.35);--key:#0f1c40;--field:#0d1838;--lime:#e6c766;--glass:rgba(17,30,66,.75);--gold:linear-gradient(110deg,#c9a03a 0%,#e6c766 30%,#fff6d2 45%,#e6c766 60%,#b8892a 100%)}
+*{box-sizing:border-box}html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.5 Manrope,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+.app{max-width:620px;margin:0 auto;min-height:100%;display:flex;flex-direction:column;padding:0 16px}
+.top{display:flex;align-items:center;justify-content:space-between;padding:16px 0 8px}
+.count{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.02em}
+.theme{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:7px 13px;font:600 13px Manrope,sans-serif;cursor:pointer}
+.bar{height:3px;background:var(--line);border-radius:3px;overflow:hidden;visibility:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .45s cubic-bezier(.2,.8,.2,1)}
+.stage{flex:1;display:flex;flex-direction:column;justify-content:center;padding:24px 0 130px}
+.scr{animation:in .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.eyebrow{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{font-size:40px;line-height:1.05;font-weight:800;letter-spacing:-.025em;margin:0 0 14px}
+h1 em{font-style:normal;color:var(--accent)}
+.mark{background:var(--lime);color:#0b0b0b;border-radius:8px;padding:0 6px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.sub{font-size:19px;color:var(--muted);margin:0 0 26px;font-weight:500}
+.facts{display:grid;grid-template-columns:1fr;gap:10px;margin:0 0 8px}
+.fact{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;font-weight:600;font-size:16px}
+.fact b{font-size:22px;line-height:1}
+.qn{font-size:13px;font-weight:800;color:var(--accent);letter-spacing:.04em;margin-bottom:10px}
+.ql{font-size:24px;line-height:1.25;font-weight:800;letter-spacing:-.01em;margin:0 0 12px}
+.hint{font-size:15px;color:var(--muted);margin:0 0 16px}
+.keybox{background:var(--key);border:1px solid var(--accent2);border-radius:22px;padding:22px 18px}
+.keytag{display:inline-flex;align-items:center;gap:6px;background:var(--lime);color:#0b0b0b;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;border-radius:999px;padding:5px 11px;margin-bottom:14px}
+.why{font-size:14px;line-height:1.45;color:var(--ink);opacity:.78;border-left:3px solid var(--accent);padding-left:12px;margin:0 0 16px}
+textarea,input{width:100%;border:1.5px solid var(--line);background:var(--field);color:var(--ink);border-radius:14px;padding:14px 16px;font:500 17px/1.5 Manrope,sans-serif;outline:none;resize:none;transition:border-color .2s}
+textarea{min-height:150px}
+.keybox textarea{min-height:190px}
+textarea:focus,input:focus{border-color:var(--accent)}
+input+input{margin-top:10px}
+.big{font-size:32px;line-height:1.15;font-weight:800;letter-spacing:-.02em;margin:0 0 10px}
+.big em{font-style:normal;color:var(--accent)}
+.cards{display:grid;gap:10px;margin-top:6px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;gap:14px;align-items:flex-start}
+.card .ic{font-size:24px;line-height:1}
+.card p{margin:0;font-size:15.5px}
+.card p b{display:block;font-size:16.5px;margin-bottom:2px}
+.nav{position:fixed;left:0;right:0;bottom:0;background:linear-gradient(to top,var(--bg) 72%,transparent);padding:18px 16px calc(16px + env(safe-area-inset-bottom))}
+.nav .in{max-width:620px;margin:0 auto;display:flex;gap:10px}
+.btn{flex:1;border:0;border-radius:16px;padding:17px 18px;font:800 17px Manrope,sans-serif;cursor:pointer;background:var(--accent);color:#fff;transition:transform .1s}
+.btn:active{transform:scale(.98)}
+.btn.ghost{flex:0 0 58px;background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.btn:disabled{opacity:.6}
+.saved{text-align:center;font-size:12px;color:var(--muted);margin-top:8px;height:14px}
+a.btn{display:inline-block;text-decoration:none;text-align:center;margin-top:18px}
+.sub em{font-style:normal;color:var(--accent);font-weight:700}
+.gift-badge{display:inline-flex;align-items:center;gap:8px;background:var(--lime);color:#0b0b0b;font-weight:800;font-size:13px;letter-spacing:.04em;text-transform:uppercase;border-radius:999px;padding:7px 14px;margin-bottom:16px}
+.gift-h{font-size:30px;line-height:1.12;font-weight:800;letter-spacing:-.02em;margin:0 0 8px}
+.gift-free{font-size:14px;font-weight:700;color:var(--accent);margin:0 0 14px}
+.gift-lead{font-size:18px;font-weight:500;margin:0 0 20px}
+.take{font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.glass{position:relative;margin:22px 0 14px;padding:22px 18px 18px 18px;border-radius:20px;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 8px 30px rgba(129,22,224,.10)}
+.glass .emo{position:absolute;top:-22px;left:14px;font-size:40px;transform:rotate(-14deg);line-height:1}
+.glass p{margin:6px 0 0;font-size:16px;font-weight:600}
+.outro{font-size:15px;color:var(--muted);margin:10px 0 0}
+img.emoji{height:1em;width:1em;margin:0 .05em 0 .1em;vertical-align:-0.1em}
+.fires{display:flex;gap:8px;margin-top:6px}
+.fire{font-size:30px;line-height:1;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:10px 0;flex:1;cursor:pointer;filter:grayscale(1);opacity:.45;transition:all .15s}
+.fire.on{filter:none;opacity:1;border-color:var(--accent)}
+.fire img.emoji{height:30px;width:30px}
+.err{margin-top:12px;font-size:14px;font-weight:700;color:#d63a3a}
+textarea.bad,input.bad{border-color:#d63a3a}
+.btn.ghost2{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.opts{display:grid;gap:10px;margin-top:4px}
+.opt{text-align:left;background:var(--card);color:var(--ink);border:1.5px solid var(--line);border-radius:14px;padding:15px 16px;font:600 17px Manrope,sans-serif;cursor:pointer;transition:all .15s}
+.opt.on{border-color:var(--accent);background:var(--key);box-shadow:0 0 0 1px var(--accent) inset}
+.sig{margin-top:22px;font-size:15px;color:var(--muted);font-weight:600}
+
+@keyframes goldshine{0%{background-position:100% 0}100%{background-position:0% 0}}
+.gt,h1 em,.big em{font-style:italic;background:var(--gold);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:goldshine 3.2s ease-in-out infinite alternate;background-repeat:no-repeat;filter:drop-shadow(0 0 10px rgba(230,199,102,.35))}
+body{background:radial-gradient(120% 50% at 50% 100%,#111e42 0%,#0a1430 60%) fixed,#0a1430}
+h1,.big,.gift-h{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;letter-spacing:0}
+h1{font-size:44px;line-height:1.02}.big{font-size:38px;line-height:1.08}
+.ql{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;font-size:29px;line-height:1.15;letter-spacing:0}
+.eyebrow,.qn{color:#e6c766;letter-spacing:.2em;font-size:11px;text-shadow:0 0 12px rgba(247,214,130,.45)}
+.btn{background:var(--gold);background-size:250% 100%;animation:goldshine 3.2s ease-in-out infinite alternate;background-repeat:no-repeat;color:#14213d;border-radius:999px;box-shadow:0 0 26px rgba(230,199,102,.35),inset 0 1px 0 #fff6d8}
+.btn.ghost{animation:none;background:var(--card);color:#e6c766;border:1px solid var(--line);box-shadow:none;border-radius:999px}
+.bar{height:4px;background:rgba(230,199,102,.15)}.bar i{background:var(--gold);background-size:250% 100%;animation:goldshine 3.2s ease-in-out infinite alternate;background-repeat:no-repeat;box-shadow:0 0 10px rgba(230,199,102,.6)}
+.card,.fact{background:rgba(17,30,66,.75);border:1px solid var(--line)}
+.card .ic{color:#e6c766;font-size:20px;text-shadow:0 0 10px #ffd77a}
+.opt{background:rgba(17,30,66,.75);border:1.5px solid var(--line)}
+.opt.on{border-color:#e6c766;background:rgba(230,199,102,.12);box-shadow:0 0 0 1px #e6c766 inset,0 0 18px rgba(230,199,102,.25);color:#fff6d2}
+textarea,input{border:1.5px solid var(--line)}textarea:focus,input:focus{border-color:#e6c766;box-shadow:0 0 0 3px rgba(230,199,102,.12)}
+textarea::placeholder,input::placeholder{color:#6f7da3}
+.nav{background:linear-gradient(to top,#0a1430 72%,transparent)}
+.saved{color:#6f7da3}
+body.cov .stage{justify-content:flex-start;padding-top:0}body.cov .top,body.cov .bar{display:none}
+.hero{position:relative;margin:0 -16px;height:420px;background:url(lar.jpg) center 16%/cover;isolation:isolate}
+.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(55% 45% at 50% 30%,rgba(212,175,55,.22),transparent 70%);mix-blend-mode:screen}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,20,48,.45) 0%,rgba(10,20,48,.1) 40%,#0a1430 97%)}
+.sp{position:absolute;inset:0;z-index:3;pointer-events:none}.sp b{position:absolute;color:#ffe9b0;text-shadow:0 0 10px #ffd77a,0 0 20px rgba(255,215,122,.7);font-weight:400}
+.covtxt{position:relative;z-index:5;margin-top:-64px}
+.chips{display:flex;gap:8px;margin:20px 0 6px}.chip{flex:1;background:rgba(17,30,66,.75);border:1px solid rgba(247,214,130,.65);border-radius:14px;padding:10px 4px;text-align:center;font-size:12px;color:#d9dfee;box-shadow:inset 0 1px 0 rgba(255,240,200,.2),0 0 18px rgba(216,180,106,.12)}
+.chip b{display:block;font-size:16px;background:var(--gold);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:goldshine 3.2s ease-in-out infinite alternate;background-repeat:no-repeat}
+.sig{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:22px;text-align:right;background:var(--gold);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:goldshine 3.2s ease-in-out infinite alternate;background-repeat:no-repeat}
+.book{position:relative;width:200px;height:270px;margin:26px auto 30px;transform:perspective(900px) rotateY(-16deg) rotateX(3deg);transform-style:preserve-3d}
+.book .cv{position:absolute;inset:0;border-radius:4px 12px 12px 4px;background:linear-gradient(135deg,#1a2c66 0%,#0e1a42 55%,#0a1430 100%);box-shadow:18px 24px 40px rgba(0,0,0,.55),0 0 30px rgba(230,199,102,.18);overflow:hidden;border:1px solid rgba(230,199,102,.35)}
+.book .cv:before{content:"";position:absolute;left:12px;top:0;bottom:0;width:2px;background:rgba(230,199,102,.45)}
+.book .cv:after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,246,210,.22) 45%,transparent 60%);background-size:250% 100%;animation:goldshine 3.2s ease-in-out infinite alternate;background-repeat:no-repeat}
+.book .pg{position:absolute;right:-7px;top:6px;bottom:6px;width:9px;background:repeating-linear-gradient(180deg,#f4efe2 0 2px,#d8d0bd 2px 3px);border-radius:0 3px 3px 0;transform:translateZ(-1px)}
+.book .in{position:absolute;inset:22px 18px 18px 28px;border:1px solid rgba(230,199,102,.55);border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10px}
+.book .s1{font-size:9px;letter-spacing:.24em;color:#e6c766;text-transform:uppercase;font-weight:700}
+.book .t{font-family:"Cormorant Garamond",serif;font-weight:700;font-size:28px;line-height:1.02;margin:12px 0 10px;background:var(--gold);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:goldshine 3.2s ease-in-out infinite alternate;background-repeat:no-repeat}
+.book .st{font-size:22px;color:#e6c766;text-shadow:0 0 10px #ffd77a}
+.book .au{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;color:#e6c766;margin-top:14px}
+.price{text-align:center;margin:0 0 6px}.price s{color:#6f7da3;font-size:18px;margin-right:10px}.price b{font-family:"Cormorant Garamond",serif;font-size:30px}
+.giftlead{text-align:center;color:var(--muted);font-size:16px;margin:0 0 6px}
+.offer{position:relative;margin:34px 0 0;padding:24px 18px 20px;border-radius:24px;background:linear-gradient(160deg,#16275a 0%,#0f1c44 60%,#0c1736 100%);border:1.5px solid rgba(230,199,102,.6);box-shadow:0 0 34px rgba(230,199,102,.2),inset 0 1px 0 rgba(255,240,200,.18);text-align:center}
+.offer .eyebrow{display:block;margin:0 0 10px}
+.offer h2{font-family:"Cormorant Garamond",serif;font-weight:700;font-size:32px;line-height:1.08;margin:0 0 12px;color:var(--ink)}
+.offer .price{margin:0 0 12px}
+.offer .val{color:var(--muted);font-size:16px;margin:0 0 18px;text-align:left}
+.timer{display:flex;justify-content:space-between;align-items:center;gap:12px;border:1.5px solid rgba(230,199,102,.7);border-radius:16px;padding:12px 16px;margin:0 0 18px;background:rgba(230,199,102,.06);text-align:left}
+.timer span{font-size:13px;color:var(--muted);line-height:1.35}
+.timer b{font-size:26px;font-weight:800;letter-spacing:.03em;font-variant-numeric:tabular-nums;background:var(--gold);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:goldshine 3.2s ease-in-out infinite alternate;background-repeat:no-repeat}
+.btn2{display:block;text-align:center;border:1.5px solid rgba(230,199,102,.7);color:#e6c766;border-radius:999px;padding:15px;font-weight:800;text-decoration:none;margin-top:4px}
+.offer .bk{--bk-acc:#e6c766;--bk-on:#14213d;--bk-fg:#eef1f8;--bk-mut:#a9b6d3;--bk-card:#0d1838;--bk-field:#0a1430;--bk-line:rgba(230,199,102,.22)}
+.offer .bk-go{background:var(--gold);background-size:250% 100%;animation:goldshine 3.2s ease-in-out infinite alternate;background-repeat:no-repeat;box-shadow:0 0 26px rgba(230,199,102,.35),inset 0 1px 0 #fff6d8}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@twemoji/api@15.1.0/dist/twemoji.min.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/files/booking.css">
+<script src="/files/booking.js"></script>
+</head>
+<body>
+<div class="app">
+  <div class="top"><div class="count" id="count">Интервью</div></div>
+  <div class="bar" id="bar"><i id="bari"></i></div>
+  <div class="stage" id="stage"></div>
+</div>
+<div class="nav" id="nav"><div class="in">
+  <button class="btn ghost" id="back" type="button" aria-label="Назад">←</button>
+  <button class="btn" id="next" type="button">Начать</button>
+</div><div class="saved" id="saved"></div></div>
+<script>
+var HOOK="https://api.chatplace.io/hooks/01a1e5445c2b71c6bbd1183090abe683b55929c62e3b3b7024e0f079cc2b0a1e2f393a003088b865";
+var GS="https://script.google.com/macros/s/AKfycbw2iYnAv4ysLUnojFJoK9JmOxL6TzM8OewQtbxdcB0sY6XvYzsF30JJIpKEywHLcQYk/exec"; // Google Apps Script web app URL: empty = do not send
+var GIFT="https://t.me/turnelarisa_bot?start=kniga"; // workbook; intervyu ref link not created (ChatPlace unreachable 25.11)
+// b = internal block (not shown), k = internal key-question mark (not shown)
+function Q(id,b,l,h,k){return{t:"q",id:id,b:b,l:l,h:h,k:k?1:0}}
+function O(id,b,l,o){return{t:"opt",id:id,b:b,l:l,o:o}}
+function D(big,small){return{t:"div",big:big,small:small}}
+var S=[
+ {t:"cover"},
+ {t:"how"},
+ {t:"name",id:"q1",b:"Знакомство",l:"Как вас зовут и ваш ник в Telegram?"},
+ Q("q2","Знакомство","Расскажите немного о себе: возраст, город, есть ли дети. Есть ли близкие, которые финансово зависят от вас?"),
+ Q("q3","Знакомство","Откуда вы меня знаете и что откликается в том, что я пишу?"),
+ Q("q4","Ваши деньги сейчас","Как устроен ваш доход: работаете по найму, ведёте своё дело, практикуете как специалист или совмещаете?"),
+ O("q5","Ваши деньги сейчас","Какой у вас средний доход в месяц за последние полгода?",["до 50 тыс.","50-100 тыс.","100-200 тыс.","200-500 тыс.","больше 500 тыс."]),
+ Q("q6","Ваши деньги сейчас","Финансовые решения вы принимаете сами? Если покупка крупная, с кем-то её обсуждаете?"),
+ Q("q7","Ваши деньги сейчас","Какая покупка для вас крупная? От какой суммы?"),
+ O("q8","Ваши деньги сейчас","Есть ли долги или кредиты? Платежи по ним больше половины вашего дохода?",["нет долгов","да, меньше половины","да, больше половины"]),
+ Q("q9","Ваши деньги сейчас","Есть ли подушка безопасности? На сколько месяцев жизни её хватит?"),
+ Q("q10","Ваши деньги сейчас","Как защищена ваша семья на случай непредвиденного: болезни, потери дохода, других событий?"),
+ Q("q11","Ваши деньги сейчас","Думали о пассивном доходе? Какие инструменты уже используете?"),
+ D("Половина пути 🔥","Спасибо, что отвечаете честно. Дальше вопросы о том, что хочется поменять."),
+ Q("q12","Что сейчас с деньгами","Что больше всего крутится в голове про деньги? Если решить одну задачу, то какую?"),
+ Q("q13","Что сейчас с деньгами","Представьте: прошёл год, и это решилось. Что конкретно поменялось в жизни, в деньгах, в обычном дне?","Опишите как можно подробнее, как будто рассказываете про реальный день.",1),
+ Q("q14","Что сейчас с деньгами","Где сейчас буксует сильнее всего?"),
+ Q("q15","Что сейчас с деньгами","Что уже пробовали, чтобы это решить? Что сработало, а что нет?"),
+ Q("q16","Глубже","Что вы почувствуете, когда это решится? Честно, без «будет хорошо».",null,1),
+ Q("q17","Глубже","А если через год всё останется как сейчас, что тогда?",null,1),
+ Q("q18","Глубже","Какой доход через год был бы для вас «вау»?"),
+ Q("q19","Глубже","Что, по-вашему, останавливает прямо сейчас?",null,1),
+ D("Почти финиш ✨","Осталось всего три вопроса."),
+ Q("q20","Опыт и помощь","Были ли уже курсы, консультанты, психологи по деньгам? Что понравилось, что нет?"),
+ Q("q21","Опыт и помощь","С каким специалистом вам было бы спокойно и понятно работать? Что он должен сделать, чтобы вы сразу сказали «да, это моё»?"),
+ Q("q22","Опыт и помощь","Что вы для себя взяли и осознали, пока отвечали на эти вопросы?"),
+ {t:"done"}
+];
+var TOTAL=22, last=S.length-1;
+var qnum={}, n=1; S.forEach(function(s,i){ if(s.id) qnum[i]=n++; });
+var KEY="intervyu_v1", st={i:0,a:{}};
+try{var sv=JSON.parse(localStorage.getItem(KEY)||"null"); if(sv&&sv.a) st=sv;}catch(e){}
+var params=new URLSearchParams(location.search), who=params.get("name")||"";
+var stage=document.getElementById("stage"), nextB=document.getElementById("next"), backB=document.getElementById("back"), savedEl=document.getElementById("saved");
+function esc(x){return String(x).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st)); savedEl.textContent="Ответы сохранены";}catch(e){}}
+function qhead(){return '<div class="qn">ВОПРОС '+qnum[st.i]+' ИЗ '+TOTAL+'</div>';}
+function render(){
+  var s=S[st.i], h="";
+  if(s.t==="cover"){
+    h='<div class="hero"><div class="sp"><b style="left:36px;top:60px;font-size:14px;opacity:0.9">✦</b><b style="left:330px;top:96px;font-size:18px;opacity:1">✦</b><b style="left:312px;top:280px;font-size:10px;opacity:0.8">✦</b><b style="left:48px;top:230px;font-size:9px;opacity:0.7">✦</b><b style="left:350px;top:36px;font-size:9px;opacity:0.8">✦</b></div></div><div class="covtxt"><span class="eyebrow">Интервью перед консультацией</span><h1>Ваши деньги:<br><em>честный разговор</em></h1>'+
+      '<p class="sub">Несколько вопросов о том, как сейчас устроены ваши деньги и куда вы хотите прийти. Я прочитаю ответы до встречи, и мы начнём сразу с главного.</p>'+
+      '<div class="chips"><div class="chip"><b>15 мин</b>в своём темпе</div><div class="chip"><b>Лично</b>ответы вижу я</div><div class="chip"><b>Подарок</b>тетрадь</div></div>'+
+      '<p class="sig">Лариса Тернер</p></div>';
+  } else if(s.t==="how"){
+    h='<div class="big">Здесь нет <em>правильных</em> ответов</div><p class="sub">Пишите как есть, своими словами: коротко или подробно, как удобно.</p>'+
+      '<div class="cards">'+
+      '<div class="card"><div class="ic">✦</div><p><b>Чем подробнее, тем точнее</b>По вашим словам я заранее вижу картину и на встрече сразу перехожу к сути.</p></div>'+
+      '<div class="card"><div class="ic">✦</div><p><b>Польза уже по ходу</b>Когда описываете ситуацию словами, многое становится яснее само.</p></div>'+
+      '<div class="card"><div class="ic">✦</div><p><b>Ничего не пропадёт</b>Ответы сохраняются. Отвлечётесь, вернётесь и продолжите с того же места.</p></div></div>';
+  } else if(s.t==="name"){
+    h=qhead()+'<div class="ql">'+esc(s.l)+'</div><input data-id="q1n" placeholder="Имя"><input data-id="q1t" placeholder="@ник в Telegram">';
+  } else if(s.t==="q"){
+    h=qhead()+'<div class="ql">'+esc(s.l)+'</div>'+(s.h?'<div class="hint">'+esc(s.h)+'</div>':'')+
+      '<textarea data-id="'+s.id+'" placeholder="Ваш ответ"></textarea>';
+  } else if(s.t==="opt"){
+    var cur=st.a[s.id]||"", bs="";
+    s.o.forEach(function(o){ bs+='<button type="button" class="opt'+(o===cur?' on':'')+'" data-o="'+esc(o)+'">'+esc(o)+'</button>'; });
+    h=qhead()+'<div class="ql">'+esc(s.l)+'</div><div class="hint">Выберите вариант.</div><div class="opts" id="opts">'+bs+'</div>';
+  } else if(s.t==="div"){
+    h='<div class="big">'+s.big+'</div><p class="sub">'+s.small+'</p>';
+  } else if(s.t==="done"){
+    h='<div class="big" style="text-align:center">Спасибо за <em>откровенность</em></div><p class="sub" style="text-align:center">Ответы уже у меня. Я прочитаю каждое слово до нашей встречи.</p>'+
+      '<span class="eyebrow" style="display:block;text-align:center;margin:18px 0 0">Ваш подарок</span>'+
+      '<div class="book"><div class="pg"></div><div class="cv"><div class="in"><div class="s1">Рабочая тетрадь</div><div class="t">Деньги без автопилота</div><div class="st">✦</div><div class="au">Лариса Тернер</div></div></div></div>'+
+      '<p class="price"><s>490 ₽</s><b class="gt">для вас бесплатно</b></p>'+
+      '<p class="giftlead">С ней вы увидите, куда деньги уходят на автопилоте, и по шагам вернёте их под свой контроль.</p>'+
+      '<a class="btn2" href="'+GIFT+'" target="_blank" rel="noopener">Забрать тетрадь</a>'+
+      '<div class="offer"><span class="eyebrow">Главное</span><h2>Стратегическая сессия <em class="gt">по вашим ответам</em></h2>'+
+      '<p class="price"><s>15 000 ₽</s><b class="gt">бесплатно</b></p>'+
+      '<p class="val">40-45 минут в Zoom. Я уже знаю ваши ответы, поэтому начнём сразу с главного: покажу, где утекают деньги и какой путь ведёт к вашей цели. Уйдёте с планом первых шагов.</p>'+
+      '<div class="timer"><span id="tmsg">Бесплатно, если запишетесь<br>в течение</span><b id="tm">24:00:00</b></div>'+
+      '<div id="bk"></div></div>';
+  }
+  document.body.classList.toggle('cov',s.t==='cover');
+  stage.innerHTML='<div class="scr">'+h+'</div>';
+  if(s.t==="done"){ if(window.Booking) Booking.mount(document.getElementById("bk"),{page:"intervyu",gift:true,cta:"Записаться на сессию",vy:true}); timer(); }
+  if(window.twemoji) try{twemoji.parse(stage,{folder:'svg',ext:'.svg'})}catch(e){}
+  stage.querySelectorAll("[data-id]").forEach(function(el){
+    el.value=st.a[el.dataset.id]||"";
+    el.addEventListener("input",function(){st.a[el.dataset.id]=el.value; clearTimeout(window._t); window._t=setTimeout(save,400);});
+  });
+  var os=document.getElementById("opts");
+  if(os) os.querySelectorAll(".opt").forEach(function(b){ b.onclick=function(){ st.a[s.id]=b.dataset.o; save(); os.querySelectorAll(".opt").forEach(function(x){x.classList.toggle("on",x===b)}); var e=document.getElementById("err"); if(e) e.remove(); }; });
+  var done=0; Object.keys(qnum).forEach(function(i){ if(+i<st.i) done++; });
+  var inQ=st.i>=2&&st.i<last;
+  document.getElementById("bar").style.visibility=inQ?"visible":"hidden";
+  document.getElementById("bari").style.width=(done/TOTAL*100)+"%";
+  document.getElementById("count").textContent=inQ?("Готово "+done+" из "+TOTAL):"Интервью";
+  backB.style.display=(st.i>0&&st.i<last)?"block":"none";
+  document.getElementById("nav").style.display=st.i===last?"none":"block";
+  nextB.disabled=false;
+  nextB.textContent=st.i===0?"Начать интервью":st.i===last-1?"Отправить":(s.t==="div"?"Продолжить":"Дальше");
+  window.scrollTo(0,0);
+}
+function timer(){
+  var t0=0, K="intervyu_fin_t0";
+  try{ t0=+localStorage.getItem(K)||0; if(!t0){ t0=Date.now(); localStorage.setItem(K,t0); } }catch(e){ t0=t0||Date.now(); }
+  function z(n){return (n<10?"0":"")+n}
+  function tick(){
+    var el=document.getElementById("tm"); if(!el) return;
+    var left=Math.max(0,Math.floor((t0+864e5-Date.now())/1000));
+    el.textContent=z(Math.floor(left/3600))+":"+z(Math.floor(left%3600/60))+":"+z(left%60);
+    if(!left){ document.getElementById("tmsg").innerHTML="Время вышло, но заявку<br>ещё можно оставить"; return; }
+    setTimeout(tick,1000);
+  }
+  tick();
+}
+backB.onclick=function(){st.i--; save(); render();};
+nextB.onclick=function(){ if(!valid()) return; if(st.i===last-1){send(); return;} st.i++; save(); render(); };
+function err(msg,el){
+  var old=document.getElementById("err"); if(old) old.remove();
+  var d=document.createElement("div"); d.id="err"; d.className="err"; d.textContent=msg;
+  stage.querySelector(".scr").appendChild(d);
+  if(el){ el.classList.add("bad"); el.focus(); el.addEventListener("input",function f(){ el.classList.remove("bad"); var e=document.getElementById("err"); if(e) e.remove(); el.removeEventListener("input",f); }); }
+}
+function valid(){
+  var s=S[st.i];
+  if(s.t==="opt"){ if(!st.a[s.id]){ err("Выберите, пожалуйста, один вариант"); return false; } return true; }
+  if(s.t!=="name" && s.t!=="q") return true;
+  var els=stage.querySelectorAll("[data-id]");
+  for(var i=0;i<els.length;i++){ if(!(st.a[els[i].dataset.id]||"").trim()){ err(s.t==="name"?"Напишите, пожалуйста, имя и ник в Telegram, чтобы я знала, кому ответить":"Напишите хотя бы пару слов, без ответа дальше не пускает",els[i]); return false; } }
+  return true;
+}
+function flat(){
+  // flat keys for Google Sheets: "Q1 Имя", "Q2 ..." + internal block/key marks
+  var g={form:"Интервью", "Источник":who, "Имя":st.a.q1n||"", "Ник":st.a.q1t||""};
+  S.forEach(function(s,i){ if(!s.id||s.t==="name") return; g["Q"+qnum[i]+" "+s.l.slice(0,60)+(s.k?" [ключ]":"")]=st.a[s.id]||""; });
+  return g;
+}
+function send(){
+  nextB.disabled=true; nextB.textContent="Отправляем…";
+  var p={src:"intervyu",form:"Интервью консультация",who:who,sent:new Date().toISOString(),blocks:{},keys:[]};
+  S.forEach(function(s){ if(s.id){ p.blocks[s.id]=s.b; if(s.k) p.keys.push(s.id); } });
+  Object.keys(st.a).forEach(function(k){p[k]=st.a[k]});
+  if(GS) try{ fetch(GS,{method:"POST",mode:"no-cors",body:JSON.stringify(flat())}); }catch(e){}
+  fetch(HOOK,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify(p)})
+  .then(function(r){if(!r.ok) throw 0; st.i=last; st.sent=true; save(); render();})
+  .catch(function(){nextB.disabled=false; nextB.textContent="Отправить ещё раз"; alert("Не получилось отправить. Проверьте интернет и нажмите ещё раз, ответы сохранены.");});
+}
+if(st.sent) st.i=last;
+if(params.get("s")) st.i=+params.get("s");
+render();
+</script>
+</body>
+</html>
