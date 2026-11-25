@@ -10,22 +10,26 @@ function esc(x){return String(x).replace(/[&<>"]/g,function(c){return {"&":"&amp
 function days(){
   // dates in Moscow time (UTC+3, no DST), starting tomorrow
   var msk=new Date(Date.now()+3*3600e3), out=[];
-  for(var k=1;k<=5;k++){
+  // Larisa's meeting windows (25.11): Tue, Wed, Thu 11:00-18:00 MSK, last start 18:00; next 5 such days
+  for(var k=1;out.length<5&&k<=21;k++){
     var d=new Date(Date.UTC(msk.getUTCFullYear(),msk.getUTCMonth(),msk.getUTCDate()+k)), w=d.getUTCDay();
-    out.push({wd:WD[w],date:d.getUTCDate()+" "+MON[d.getUTCMonth()],times:(w===0||w===6)?["12:00","17:00"]:["11:00","15:00","19:00"]});
+    if(w<2||w>4) continue;
+    out.push({wd:WD[w],date:d.getUTCDate()+" "+MON[d.getUTCMonth()],times:["11:00","14:00","18:00"]});
   }
   return out;
 }
 function mount(el,o){
+  var V=o.vy?{l:"Какую задачу хотите решить?",ph:"Пара предложений своими словами",nm:"Как к вам обращаться",e1:"Напишите, какую задачу хотите решить",e2:"Выберите день и время",e3:"Напишите имя",e4:"Проверьте ник в Telegram: латиница, цифры и _",ok:"Напишем вам в Telegram в течение часа и подтвердим время.",ne:"Не отправилось, попробуйте ещё раз"}:
+    {l:"Какую задачу хочешь решить?",ph:"Пара предложений своими словами",nm:"Как к тебе обращаться",e1:"Напиши, какую задачу хочешь решить",e2:"Выбери день и время",e3:"Напиши имя",e4:"Проверь ник в Telegram: латиница, цифры и _",ok:"Напишем тебе в Telegram в течение часа и подтвердим время.",ne:"Не отправилось, попробуй ещё раз"};
   var test=/[?&]test=1/.test(location.search), slot="";
   var rows=days().map(function(d){
     return '<div class="bk-day"><div class="bk-dn">'+d.wd+'<small>'+d.date+'</small></div><div class="bk-slots">'+
       d.times.map(function(t){var v=d.wd+" "+d.date+" "+t+" МСК";return '<button type="button" class="bk-s" data-v="'+esc(v)+'">'+t+'</button>';}).join("")+'</div></div>';
   }).join("");
   el.classList.add("bk");
-  el.innerHTML='<label class="bk-l">Какую задачу хочешь решить?</label><textarea data-f="task" placeholder="Пара предложений своими словами"></textarea>'+
+  el.innerHTML='<label class="bk-l">'+V.l+'</label><textarea data-f="task" placeholder="'+V.ph+'"></textarea>'+
     '<label class="bk-l">День и время<small>время московское</small></label><div class="bk-days">'+rows+'</div>'+
-    '<label class="bk-l">Имя</label><input data-f="name" autocomplete="given-name" placeholder="Как к тебе обращаться">'+
+    '<label class="bk-l">Имя</label><input data-f="name" autocomplete="given-name" placeholder="'+V.nm+'">'+
     '<label class="bk-l">Ник в Telegram</label><input data-f="tg" autocomplete="off" placeholder="@ник">'+
     '<button type="button" class="bk-go">'+esc(o.cta||"Оставить заявку")+'</button>'+
     '<p class="bk-note">Подтвердим заявку и время в личных сообщениях Telegram</p>';
@@ -43,10 +47,10 @@ function mount(el,o){
   el.querySelectorAll("[data-f]").forEach(function(i){ i.addEventListener("input",function(){ i.classList.remove("bad"); var e=el.querySelector(".bk-err"); if(e) e.remove(); }); });
   go.onclick=function(){
     var task=f("task").value.trim(), name=f("name").value.trim(), tg=f("tg").value.trim().replace(/^@+/,"").replace(/^https?:\/\/t\.me\//,"");
-    if(!task) return err("Напиши, какую задачу хочешь решить",f("task"));
-    if(!slot){ err("Выбери день и время"); daysEl.scrollIntoView({behavior:"smooth",block:"center"}); return; }
-    if(!name) return err("Напиши имя",f("name"));
-    if(!/^[A-Za-z0-9_]{4,32}$/.test(tg)) return err("Проверь ник в Telegram: латиница, цифры и _",f("tg"));
+    if(!task) return err(V.e1,f("task"));
+    if(!slot){ err(V.e2); daysEl.scrollIntoView({behavior:"smooth",block:"center"}); return; }
+    if(!name) return err(V.e3,f("name"));
+    if(!/^[A-Za-z0-9_]{4,32}$/.test(tg)) return err(V.e4,f("tg"));
     go.disabled=true; go.textContent="Отправляем…";
     var p={src:"zayavka",page:o.page,gift:!!o.gift,paid:!!o.paid,task:task,slot:slot,name:name,tg:"@"+tg,ts:new Date().toISOString()};
     if(test) p.test=true;
@@ -54,10 +58,10 @@ function mount(el,o){
       "Страница":o.page,"Подарок":o.gift?"да":"нет","Оплачено":o.paid?"да":"","Задача":task,"Время":slot,"Имя":name,"Ник":"@"+tg,"Тест":test?"да":""})})}catch(e){}
     fetch(HOOK,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify(p)})
     .then(function(r){ if(!r.ok) throw 0;
-      el.innerHTML='<div class="bk-ok"><b>Заявка принята</b><p>Напишем тебе в Telegram в течение часа и подтвердим время.</p></div>';
+      el.innerHTML='<div class="bk-ok"><b>Заявка принята</b><p>'+V.ok+'</p></div>';
       if(o.onDone) try{o.onDone()}catch(e){}
     })
-    .catch(function(){ go.disabled=false; go.textContent=o.cta||"Оставить заявку"; err("Не отправилось, попробуй ещё раз"); });
+    .catch(function(){ go.disabled=false; go.textContent=o.cta||"Оставить заявку"; err(V.ne); });
   };
 }
 window.Booking={mount:mount};
