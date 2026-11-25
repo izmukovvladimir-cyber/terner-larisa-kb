@@ -4,7 +4,7 @@
    straight to the owner's Google Sheet, so a copy exists outside the server. */
 (function(){
 var HOOK="https://api.chatplace.io/hooks/01a1e5445c2b71c6bbd1183090abe683b55929c62e3b3b7024e0f079cc2b0a1e2f393a003088b865";
-var GS_ME=""; // paused 25.11 until personal script fixed // Larisa personal sheet: intervyu bookings
+var GS_ME="https://script.google.com/macros/s/AKfycbyTp9uBFJHwHGFwJ1ict5Es1vEasQk-opDFM_k5-Kbb3xlV61bOiZzOv-oTiUYtmKo/exec"; // Larisa personal sheet: intervyu bookings
 var GS="https://script.google.com/macros/s/AKfycbwOtnTL-X1l8wKfX0IJEzhCsdBb5Zh_2reDmysJIu-N1vRJNFzAENajVpICWZxROQvZ/exec";
 var WD=["Вс","Пн","Вт","Ср","Чт","Пт","Сб"], MON=["янв","фев","мар","апр","мая","июн","июл","авг","сен","окт","ноя","дек"];
 function esc(x){return String(x).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
