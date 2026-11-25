@@ -184,10 +184,10 @@ function render(){
     h='<span class="eyebrow">Спасибо за честность 💜</span><h1>Прожарка <em>в подарок. Только 24 часа</em></h1>'+
       '<div class="price"><s>7 000 ₽</s><b>0 ₽</b></div>'+
       '<p class="fin-lead">60 минут мы разбираем твой бизнес с двух сторон: деньги внутри и маркетинг снаружи. Ты уходишь с картой бизнеса, 1-3 шагами, которые дадут рост дохода, и неделей обратной связи.</p>'+
-      '<img class="pz" src="pz_title.jpg" alt="Прожарка x2: Лариса Тернер и продюсер" width="780" height="1050">'+
+      '<img class="pz" src="pz_title.jpg" alt="Прожарка x2: Лариса Тернер и продюсер" width="780" height="770">'+
       '<p class="sub">Ответы ты уже дал. Дальше обычно так: закрыл вкладку, покивал сам себе и живёшь как раньше. Если задача правда горит, оставь заявку сейчас.</p>'+
       '<div class="timer"><span id="tmsg">Подарок сгорит<br>через</span><b id="tm">24:00:00</b></div>'+
-      '<div id="bk"></div><p class="fin-more"><a href="/prozharka/?gift=1">Что такое Прожарка</a></p>';
+      '<div id="bk"></div><p class="fin-more"><a href="/prozharka/?gift=1">Что такое Прожарка</a></p><p class="fin-more"><a href="#" onclick="try{localStorage.removeItem(\'kastdev_v2\');localStorage.removeItem(\'kastdev_fin_t0\')}catch(e){};location.href=location.pathname;return false">Пройти исследование сначала</a></p>';
   }
   stage.innerHTML='<div class="scr">'+h+'</div>';
   if(window.twemoji) try{twemoji.parse(stage,{folder:'svg',ext:'.svg'})}catch(e){}
